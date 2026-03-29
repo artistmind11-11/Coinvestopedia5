@@ -16,6 +16,7 @@
     "mathjs": "^15.1.1",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
+    "react-helmet-async": "^3.0.0",
     "recharts": "^3.8.0",
     "simple-statistics": "^7.8.9",
     "tailwind-merge": "^2.3.0"
