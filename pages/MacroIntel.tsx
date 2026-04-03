@@ -7,7 +7,10 @@ import {
   ChevronRight, Lock, Zap, ArrowUpRight, ArrowDownRight
 } from 'lucide-react';
 import { fetchMacroIndicators } from '../services/api';
-
+import { AdUnit } from '../components/AdUnit';
+import { AffiliateCTA } from '../components/AffiliateCTA';
+import { LeaderboardAd } from '../components/LeaderboardAd';
+import { NativeSponsoredCard } from '../components/NativeSponsoredCard';
 // ─── TYPES ────────────────────────────────────────────────────────────────────
 
 type MacroTab = 'weekly' | 'geopolitical' | 'cross-market' | 'institutional' | 'archive';
@@ -32,12 +35,12 @@ interface MacroReport {
 
 // ─── TABS ─────────────────────────────────────────────────────────────────────
 
-const TABS: { id: MacroTab; label: string; icon: React.ReactNode; isPro?: boolean }[] = [
+const TABS: { id: MacroTab; label: string; icon: React.ReactNode }[] = [
   { id: 'weekly', label: 'Weekly Briefing', icon: <Zap size={16} /> },
   { id: 'geopolitical', label: 'Geopolitical Decoder', icon: <Globe size={16} /> },
   { id: 'cross-market', label: 'Cross-Market', icon: <BarChart3 size={16} /> },
   { id: 'institutional', label: 'Institutional Lens', icon: <Eye size={16} /> },
-  { id: 'archive', label: 'Archive', icon: <ArchiveIcon size={16} />, isPro: true },
+  { id: 'archive', label: 'Archive', icon: <ArchiveIcon size={16} /> },
 ];
 
 // ─── SEED REPORTS ─────────────────────────────────────────────────────────────
@@ -628,6 +631,16 @@ export const MacroIntel: React.FC = () => {
             </section>
           ))}
         </div>
+        
+        <div className="mt-12 pt-8 border-t border-border">
+          <AffiliateCTA
+            partner="TradingView"
+            text="Track these macro metrics in real-time."
+            ctaLabel="Get TradingView Pro"
+            href="#"
+            variant="banner"
+          />
+        </div>
       </div>
     );
   }
@@ -635,6 +648,7 @@ export const MacroIntel: React.FC = () => {
   // ── LIST VIEW ──
   return (
     <div className="space-y-8 animate-fade-in">
+      <LeaderboardAd partner="bybit" />
       {/* Hero */}
       <div className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface via-background to-surface p-8 lg:p-12">
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -667,11 +681,6 @@ export const MacroIntel: React.FC = () => {
           >
             {tab.icon}
             {tab.label}
-            {tab.isPro && (
-              <span className="flex items-center gap-0.5 px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded text-[9px] text-amber-400 font-bold">
-                <Lock size={9} /> PRO
-              </span>
-            )}
           </button>
         ))}
       </div>
@@ -686,6 +695,14 @@ export const MacroIntel: React.FC = () => {
               onClick={() => setActiveReportId(report.id)}
             />
           ))}
+          
+          <NativeSponsoredCard
+            partner="CoinLedger"
+            title="Macro Impact on Taxes"
+            description="Rebalancing due to macro shifts? Ensure your trades are tracked efficiently."
+            ctaLabel="Start Tracking"
+            href="#"
+          />
         </div>
       ) : (
         <div className="text-center py-20">

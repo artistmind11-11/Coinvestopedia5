@@ -3,6 +3,9 @@ import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { BookOpen, Video, FileText, PlayCircle, Star, Award, TrendingUp, Shield, ArrowLeft, Lock, Unlock, Clock } from 'lucide-react';
 import { TargetIcon } from '../components/AnimatedIcons';
+import { AdUnit } from '../components/AdUnit';
+import { AffiliateCTA } from '../components/AffiliateCTA';
+import { LeaderboardAd } from '../components/LeaderboardAd';
 
 // --- Types & Data ---
 
@@ -35,7 +38,7 @@ const ACADEMY_CATEGORIES: Category[] = [
     desc: 'Master decentralized finance, liquidity provision, lending protocols, and yield generation strategies.',
     resources: [
       { id: 'df-1', title: 'Yield Farming 101: Understanding Liquidity Pools', type: 'Video Series', time: '1h 20m', level: 'Beginner', locked: false, desc: 'A fundamental overview of how AMMs work and how to earn trading fees.' },
-      { id: 'df-2', title: 'Flash Loans & Arbitrage Mechanics', type: 'Deep Dive', time: '45m read', level: 'Advanced', locked: true, desc: 'Technical breakdown of 0-block risk-free arbitrage opportunities.' },
+      { id: 'df-2', title: 'Flash Loans & Arbitrage Mechanics', type: 'Deep Dive', time: '45m read', level: 'Advanced', locked: false, desc: 'Technical breakdown of 0-block risk-free arbitrage opportunities.' },
       { id: 'df-3', title: 'Navigating Impermanent Loss in AMMs', type: 'Guide', time: '20m read', level: 'Intermediate', locked: false, desc: 'Mathematical modeling and hedging strategies against AMM price divergence.' },
       { id: 'df-4', title: 'Evaluating Protocol TVL & Tokenomics', type: 'Article', time: '15m read', level: 'Intermediate', locked: false, desc: 'Frameworks to analyze actual usage vs purely inflationary utility metrics.' },
     ]
@@ -46,9 +49,9 @@ const ACADEMY_CATEGORIES: Category[] = [
     icon: <TargetIcon className="w-6 h-6" />,
     desc: 'Read charts like an institutional trader using advanced indicators, order flow, and market profiling.',
     resources: [
-      { id: 'ta-1', title: 'Reading Institutional Order Flow', type: 'Video', time: '40m', level: 'Advanced', locked: true, desc: 'How to use order book heatmaps to spot smart money positioning.' },
+      { id: 'ta-1', title: 'Reading Institutional Order Flow', type: 'Video', time: '40m', level: 'Advanced', locked: false, desc: 'How to use order book heatmaps to spot smart money positioning.' },
       { id: 'ta-2', title: 'Advanced Fibonacci Extensions & Retracements', type: 'Guide', time: '25m read', level: 'Intermediate', locked: false, desc: 'Proper anchor placement for structural price expansion targets.' },
-      { id: 'ta-3', title: 'Volume Profile & VPVR Trading', type: 'Video Series', time: '2h 15m', level: 'Advanced', locked: true, desc: 'Finding hidden support/resistance using volume nodes.' },
+      { id: 'ta-3', title: 'Volume Profile & VPVR Trading', type: 'Video Series', time: '2h 15m', level: 'Advanced', locked: false, desc: 'Finding hidden support/resistance using volume nodes.' },
       { id: 'ta-4', title: 'Spotting Wyckoff Accumulation Patterns', type: 'Article', time: '18m read', level: 'Beginner', locked: false, desc: 'Identifying composite operator footprints during sideways markets.' },
     ]
   },
@@ -60,7 +63,7 @@ const ACADEMY_CATEGORIES: Category[] = [
     resources: [
       { id: 'sec-1', title: 'Hardware Wallet Cold Storage Best Practices', type: 'Video', time: '30m', level: 'Beginner', locked: false, desc: 'Setting up and securing physical seed phrase backups.' },
       { id: 'sec-2', title: 'Multi-Sig Wallets vs MPC Technology', type: 'Deep Dive', time: '22m read', level: 'Advanced', locked: false, desc: 'Comparing multisig contracts against Multi-Party Computation architectures.' },
-      { id: 'sec-3', title: 'How to Read Smart Contract Audit Reports', type: 'Guide', time: '35m read', level: 'Intermediate', locked: true, desc: 'What red flags to look for when evaluating new DeFi protocol deposits.' },
+      { id: 'sec-3', title: 'How to Read Smart Contract Audit Reports', type: 'Guide', time: '35m read', level: 'Intermediate', locked: false, desc: 'What red flags to look for when evaluating new DeFi protocol deposits.' },
       { id: 'sec-4', title: 'Phishing Defense & OpSec for Crypto Investors', type: 'Article', time: '12m read', level: 'Beginner', locked: false, desc: 'Common attack vectors and how to harden your personal operational security.' },
     ]
   },
@@ -72,7 +75,7 @@ const ACADEMY_CATEGORIES: Category[] = [
     resources: [
       { id: 'psy-1', title: 'Managing Fear & Greed in High Volatility', type: 'Video', time: '45m', level: 'Beginner', locked: false, desc: 'Techniques to prevent emotional decision making during 20%+ daily moves.' },
       { id: 'psy-2', title: 'Probabilistic Thinking vs Certainty Bias', type: 'Guide', time: '15m read', level: 'Intermediate', locked: false, desc: 'Why traders must think in EV (Expected Value) rather than absolute predictions.' },
-      { id: 'psy-3', title: 'Building a Rule-Based Trading System', type: 'Video Series', time: '1h 30m', level: 'Advanced', locked: true, desc: 'Constructing systematic entry, invalidation, and profit taking frameworks.' },
+      { id: 'psy-3', title: 'Building a Rule-Based Trading System', type: 'Video Series', time: '1h 30m', level: 'Advanced', locked: false, desc: 'Constructing systematic entry, invalidation, and profit taking frameworks.' },
       { id: 'psy-4', title: 'The Sunk Cost Fallacy in Altcoin Bags', type: 'Article', time: '10m read', level: 'Beginner', locked: false, desc: 'How to know when a thesis is objectively broken and a position must be cut.' },
     ]
   }
@@ -139,15 +142,9 @@ export const Learn: React.FC = () => {
                 <div className="flex-1 p-6 flex flex-col justify-center relative">
                   <div className="flex justify-between items-start gap-4 mb-2">
                     <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{resource.title}</h3>
-                    {resource.locked ? (
-                      <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1 bg-surface border border-border rounded text-xs font-medium text-text-muted cursor-not-allowed">
-                        <Lock size={14} /> PRO
-                      </div>
-                    ) : (
-                      <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1 bg-primary/10 border border-primary/20 rounded text-xs font-medium text-primary">
-                        <Unlock size={14} /> FREE
-                      </div>
-                    )}
+                    <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1 bg-primary/10 border border-primary/20 rounded text-xs font-medium text-primary">
+                      <Unlock size={14} /> FREE
+                    </div>
                   </div>
                   
                   <p className="text-text-muted text-sm mb-6 max-w-2xl">{resource.desc}</p>
@@ -164,6 +161,16 @@ export const Learn: React.FC = () => {
             </Card>
           ))}
         </div>
+        
+        <div className="mt-12 pt-8 border-t border-border">
+          <AffiliateCTA
+            partner="Ledger"
+            text="Secure your assets while learning."
+            ctaLabel="Get Ledger Nano X"
+            href="#"
+            variant="banner"
+          />
+        </div>
       </div>
     );
   }
@@ -172,6 +179,7 @@ export const Learn: React.FC = () => {
 
   return (
     <div className="animate-fade-in space-y-12 lg:space-y-16 pb-12">
+      <LeaderboardAd partner="binance" className="mb-4" />
       {/* Header */}
       <div>
         <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-bold uppercase tracking-wider mb-4">

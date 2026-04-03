@@ -6,7 +6,10 @@ import {
   LineChart, Sparkles, Globe, Target
 } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
-
+import { AdUnit } from '../components/AdUnit';
+import { AffiliateCTA } from '../components/AffiliateCTA';
+import { LeaderboardAd } from '../components/LeaderboardAd';
+import { NativeSponsoredCard } from '../components/NativeSponsoredCard';
 // Existing Tools
 import { DCACalculator } from '../components/tools/Tier3/DCACalculator';
 import { ROICalculator } from '../components/tools/Tier3/ROICalculator';
@@ -35,36 +38,35 @@ export interface ToolDefinition {
   icon: React.ReactNode;
   tier: ToolTier;
   category: string;
-  isPro: boolean;
   component: React.FC | null; // null means under construction
 }
 
 export const TOOLS_REGISTRY: ToolDefinition[] = [
   // Tier 1
-  { id: 'allocation-sim', name: 'Asset Allocation Simulator', description: 'Backtest portfolio allocations across crypto and traditional assets.', icon: <PieChart size={18} />, tier: 'Tier 1', category: 'Portfolio Construction', isPro: false, component: AssetSimulator },
-  { id: 'rebalancer', name: 'Rebalancing Calculator', description: 'Calculate exact buy/sell orders to restore target portfolio weights.', icon: <Target size={18} />, tier: 'Tier 1', category: 'Portfolio Construction', isPro: false, component: RebalancingCalculator },
+  { id: 'allocation-sim', name: 'Asset Allocation Simulator', description: 'Backtest portfolio allocations across crypto and traditional assets.', icon: <PieChart size={18} />, tier: 'Tier 1', category: 'Portfolio Construction', component: AssetSimulator },
+  { id: 'rebalancer', name: 'Rebalancing Calculator', description: 'Calculate exact buy/sell orders to restore target portfolio weights.', icon: <Target size={18} />, tier: 'Tier 1', category: 'Portfolio Construction', component: RebalancingCalculator },
   
   // Tier 2
-  { id: 'drawdown', name: 'Drawdown Analyzer', description: 'Analyze historical underwater equity curves and recovery durations.', icon: <TrendingDown size={18} />, tier: 'Tier 2', category: 'Risk Analytics', isPro: false, component: DrawdownAnalyzer },
-  { id: 'beta-alpha', name: 'Beta & Alpha Calculator', description: 'Measure systematic risk and excess returns relative to benchmarks.', icon: <BarChart3 size={18} />, tier: 'Tier 2', category: 'Risk Analytics', isPro: false, component: BetaAlphaCalculator },
+  { id: 'drawdown', name: 'Drawdown Analyzer', description: 'Analyze historical underwater equity curves and recovery durations.', icon: <TrendingDown size={18} />, tier: 'Tier 2', category: 'Risk Analytics', component: DrawdownAnalyzer },
+  { id: 'beta-alpha', name: 'Beta & Alpha Calculator', description: 'Measure systematic risk and excess returns relative to benchmarks.', icon: <BarChart3 size={18} />, tier: 'Tier 2', category: 'Risk Analytics', component: BetaAlphaCalculator },
   
   // Tier 3
-  { id: 'on-chain-valuation', name: 'Bitcoin On-Chain Valuation', description: 'Fidelity/ARK style models: S2F, MVRV Z-Score, Realized Price.', icon: <Globe size={18} />, tier: 'Tier 3', category: 'Crypto Analytics', isPro: true, component: OnChainValuation },
-  { id: 'dca', name: 'DCA Strategy Simulator', description: 'Project portfolio value over time using dollar-cost averaging.', icon: <DollarSign size={18} />, tier: 'Tier 3', category: 'Crypto Analytics', isPro: false, component: DCACalculator },
-  { id: 'roi', name: 'ROI & Trade Calculator', description: 'Compute net profit, break-even, and annualized returns with fees.', icon: <TrendingUp size={18} />, tier: 'Tier 3', category: 'Crypto Analytics', isPro: false, component: ROICalculator },
-  { id: 'il', name: 'Impermanent Loss', description: 'Calculate LP impermanent loss and break-even thresholds.', icon: <AlertTriangle size={18} />, tier: 'Tier 3', category: 'Crypto Analytics', isPro: false, component: ILCalculator },
+  { id: 'on-chain-valuation', name: 'Bitcoin On-Chain Valuation', description: 'Fidelity/ARK style models: S2F, MVRV Z-Score, Realized Price.', icon: <Globe size={18} />, tier: 'Tier 3', category: 'Crypto Analytics', component: OnChainValuation },
+  { id: 'dca', name: 'DCA Strategy Simulator', description: 'Project portfolio value over time using dollar-cost averaging.', icon: <DollarSign size={18} />, tier: 'Tier 3', category: 'Crypto Analytics', component: DCACalculator },
+  { id: 'roi', name: 'ROI & Trade Calculator', description: 'Compute net profit, break-even, and annualized returns with fees.', icon: <TrendingUp size={18} />, tier: 'Tier 3', category: 'Crypto Analytics', component: ROICalculator },
+  { id: 'il', name: 'Impermanent Loss', description: 'Calculate LP impermanent loss and break-even thresholds.', icon: <AlertTriangle size={18} />, tier: 'Tier 3', category: 'Crypto Analytics', component: ILCalculator },
   
   // Tier 4
-  { id: 'fixed-income', name: 'Fixed Income Yield', description: 'Calculate YTM, Macaulay duration, and convexity for bonds.', icon: <LineChart size={18} />, tier: 'Tier 4', category: 'Traditional Assets', isPro: false, component: FixedIncomeCalculator },
-  { id: 'dividend-screen', name: 'Yield & Income Screener', description: 'Rank TradFi dividend yields alongside DeFi stablecoin APYs.', icon: <Search size={18} />, tier: 'Tier 4', category: 'Traditional Assets', isPro: false, component: DividendScreener },
-  { id: 'inflation-adj', name: 'Inflation-Adjusted Returns', description: 'Calculate real purchasing power by offsetting nominal CPI inflation.', icon: <Activity size={18} />, tier: 'Tier 4', category: 'Traditional Assets', isPro: false, component: InflationAdjusted },
-  { id: 'tax', name: 'US Tax Estimator 2024', description: 'Estimate STCG, LTCG, and NIIT tax liabilities across income brackets.', icon: <Percent size={18} />, tier: 'Tier 4', category: 'Traditional Assets', isPro: false, component: TaxEstimator },
+  { id: 'fixed-income', name: 'Fixed Income Yield', description: 'Calculate YTM, Macaulay duration, and convexity for bonds.', icon: <LineChart size={18} />, tier: 'Tier 4', category: 'Traditional Assets', component: FixedIncomeCalculator },
+  { id: 'dividend-screen', name: 'Yield & Income Screener', description: 'Rank TradFi dividend yields alongside DeFi stablecoin APYs.', icon: <Search size={18} />, tier: 'Tier 4', category: 'Traditional Assets', component: DividendScreener },
+  { id: 'inflation-adj', name: 'Inflation-Adjusted Returns', description: 'Calculate real purchasing power by offsetting nominal CPI inflation.', icon: <Activity size={18} />, tier: 'Tier 4', category: 'Traditional Assets', component: InflationAdjusted },
+  { id: 'tax', name: 'US Tax Estimator 2024', description: 'Estimate STCG, LTCG, and NIIT tax liabilities across income brackets.', icon: <Percent size={18} />, tier: 'Tier 4', category: 'Traditional Assets', component: TaxEstimator },
   
   // Tier 5
-  { id: 'monte-carlo', name: 'Monte Carlo Simulator', description: '10,000 geometric Brownian motion paths forecasting target probability.', icon: <Sparkles size={18} />, tier: 'Tier 5', category: 'Advanced Pro Tools', isPro: true, component: MonteCarloSimulator },
-  { id: 'risk-adjusted', name: 'Sharpe & Sortino Analyzer', description: 'Comprehensive risk-adjusted return suite evaluating portfolio efficiency.', icon: <Shield size={18} />, tier: 'Tier 5', category: 'Advanced Pro Tools', isPro: true, component: RiskAdjustedReturns },
-  { id: 'macro-regime', name: 'Macro Regime Indicator', description: '4-quadrant Growth/Inflation matrix signaling economic environment shifts.', icon: <Globe size={18} />, tier: 'Tier 5', category: 'Advanced Pro Tools', isPro: true, component: MacroRegimeIndicator },
-  { id: 'fear-greed', name: 'Fear & Greed Index Composite', description: 'Proprietary 0-100 institutional sentiment gauge.', icon: <Activity size={18} />, tier: 'Tier 5', category: 'Advanced Pro Tools', isPro: true, component: FearGreedComposite },
+  { id: 'monte-carlo', name: 'Monte Carlo Simulator', description: '10,000 geometric Brownian motion paths forecasting target probability.', icon: <Sparkles size={18} />, tier: 'Tier 5', category: 'Advanced Pro Tools', component: MonteCarloSimulator },
+  { id: 'risk-adjusted', name: 'Sharpe & Sortino Analyzer', description: 'Comprehensive risk-adjusted return suite evaluating portfolio efficiency.', icon: <Shield size={18} />, tier: 'Tier 5', category: 'Advanced Pro Tools', component: RiskAdjustedReturns },
+  { id: 'macro-regime', name: 'Macro Regime Indicator', description: '4-quadrant Growth/Inflation matrix signaling economic environment shifts.', icon: <Globe size={18} />, tier: 'Tier 5', category: 'Advanced Pro Tools', component: MacroRegimeIndicator },
+  { id: 'fear-greed', name: 'Fear & Greed Index Composite', description: 'Proprietary 0-100 institutional sentiment gauge.', icon: <Activity size={18} />, tier: 'Tier 5', category: 'Advanced Pro Tools', component: FearGreedComposite },
 ];
 
 const PlaceholderTool: React.FC<{ tool: ToolDefinition }> = ({ tool }) => (
@@ -81,7 +83,6 @@ const PlaceholderTool: React.FC<{ tool: ToolDefinition }> = ({ tool }) => (
 
 export const Tools: React.FC = () => {
   const [activeToolId, setActiveToolId] = useState<string | null>(null);
-  const { isProUser } = useAppContext();
 
   // Scroll top on navigate
   useEffect(() => {
@@ -111,16 +112,21 @@ export const Tools: React.FC = () => {
           <h1 className="text-3xl lg:text-4xl font-heading font-bold mb-3 flex items-center gap-3">
              <div className="p-2 bg-primary/10 border border-primary/20 rounded-lg text-primary">{activeTool.icon}</div>
              {activeTool.name}
-             {activeTool.isPro && !isProUser && (
-               <span className="flex items-center gap-1 px-2 py-1 bg-amber-500/10 border border-amber-500/30 rounded-full text-xs text-amber-500 tracking-widest uppercase">
-                 <Lock size={12} /> Pro
-               </span>
-             )}
           </h1>
           <p className="text-text-muted text-lg">{activeTool.description}</p>
         </div>
 
         {ActiveComponent ? <ActiveComponent /> : <PlaceholderTool tool={activeTool} />}
+        
+        <div className="mt-12 pt-8 border-t border-border">
+          <AffiliateCTA
+            partner="CoinLedger"
+            text="Need API-tier data for these calculations?"
+            ctaLabel="Get Node Access"
+            href="#"
+            variant="banner"
+          />
+        </div>
       </div>
     );
   }
@@ -130,6 +136,7 @@ export const Tools: React.FC = () => {
 
   return (
     <div className="animate-fade-in pb-16">
+      <LeaderboardAd partner="binance" className="mb-4" />
       {/* Hero */}
       <div className="relative overflow-hidden rounded-2xl border border-border bg-[#09090b] p-8 lg:p-16 mb-12 shadow-2xl">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -176,11 +183,6 @@ export const Tools: React.FC = () => {
                        </div>
                        <div className="flex flex-col items-end gap-1.5">
                          <span className="text-[9px] font-extrabold text-text-muted/40 uppercase tracking-widest">{tool.tier}</span>
-                         {tool.isPro && (
-                           <span className="flex items-center gap-1 text-[9px] font-extrabold uppercase tracking-widest text-amber-500 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-full shadow-sm">
-                             <Lock size={10} /> Pro
-                           </span>
-                         )}
                          {tool.component === null && (
                            <span className="text-[9px] font-extrabold uppercase tracking-widest text-blue-400 bg-blue-500/10 border border-blue-500/20 px-2 py-0.5 rounded-full">
                              Draft
@@ -211,6 +213,17 @@ export const Tools: React.FC = () => {
                     <div className="absolute inset-0 border border-primary/0 group-hover:border-primary/20 rounded-2xl pointer-events-none transition-colors duration-500" />
                   </button>
                 ))}
+                
+                {/* Conditionally add Native Sponsored Card to fill empty space */}
+                {catTools.length % 2 !== 0 && (
+                   <NativeSponsoredCard
+                     partner="CoinLedger"
+                     title="Automated Tax Reports"
+                     description="Connect your exchanges and wallets to generate professional tax reports in minutes."
+                     ctaLabel="Start Free Report"
+                     href="#"
+                   />
+                )}
               </div>
             </div>
           );

@@ -3,6 +3,7 @@ import { Shield, CheckCircle, AlertCircle, AlertTriangle, Search, FileCode, Bug,
 import { Button } from '../components/Button';
 import { Input } from '../components/Input';
 import { Card } from '../components/Card';
+import { AffiliateCTA } from '../components/AffiliateCTA';
 
 // Interfaces
 interface CheckResult {
@@ -178,6 +179,16 @@ export const SecurityAudit: React.FC = () => {
                                 Smart contract interactions involve significant risk; always perform your own due diligence.
                             </p>
                          </div>
+                    </div>
+                    
+                    <div className="mt-8 pt-6 border-t border-border">
+                        <AffiliateCTA
+                            partner="Hacken"
+                            text="Need a comprehensive, manual smart contract audit?"
+                            ctaLabel="Request Professional Audit"
+                            href="#"
+                            variant="banner"
+                        />
                     </div>
                 </div>
             )}

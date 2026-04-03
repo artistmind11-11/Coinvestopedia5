@@ -1,14 +1,19 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { AreaChart, Area, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import Table, { Column } from '../components/Table';
-import { Lock, Search, Sparkles, ExternalLink, X, Tag, Edit2, Save, Filter, Copy } from 'lucide-react';
+import { AdUnit } from '../components/AdUnit';
+import { AffiliateCTA } from '../components/AffiliateCTA';
+import { LeaderboardAd } from '../components/LeaderboardAd';
+import { NativeSponsoredCard } from '../components/NativeSponsoredCard';
+import { Lock, Search, Sparkles, ExternalLink, X, Tag, Edit2, Save, Filter, Copy, Shield } from 'lucide-react';
 import { Modal } from '../components/Modal';
 import { analyzeAssetMovement, InsightResult } from '../services/geminiService';
 import { Input } from '../components/Input';
 import { useAppContext } from '../context/AppContext';
-import { PulseIcon } from '../components/AnimatedIcons';
+import { PulseIcon, TargetIcon } from '../components/AnimatedIcons';
 import { fetchWhaleAlerts, fetchMempoolTxs } from '../services/api';
 
 // Helper to generate fake ETH addresses
@@ -278,7 +283,8 @@ export const WhaleTracker: React.FC = () => {
    };
 
   return (
-    <div className="animate-fade-in">
+    <div className="space-y-6 animate-fade-in">
+      <LeaderboardAd partner="binance" className="mb-2" />
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 lg:mb-8">
         <div>
           <h1 className="text-3xl lg:text-4xl font-heading font-bold mb-2">Whale Radar 🐋</h1>
@@ -319,9 +325,9 @@ export const WhaleTracker: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 lg:mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 lg:mb-8">
         {/* Net Flow Chart */}
-        <div className="leather-card p-4 lg:p-6 rounded-xl flex flex-col">
+        <div className="lg:col-span-2 leather-card p-4 lg:p-6 rounded-xl flex flex-col">
           <h3 className="font-bold text-sm lg:text-base mb-4">24h Flow Velocity</h3>
           <div className="h-[200px] w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -345,30 +351,41 @@ export const WhaleTracker: React.FC = () => {
               </AreaChart>
             </ResponsiveContainer>
           </div>
+          
+          <NativeSponsoredCard
+             partner="Ledger"
+             title="Hardware Wallet Security"
+             description="Is your portfolio secure? Move your high-value assets off exchanges and into cold storage."
+             ctaLabel="Shop Ledger Wallets"
+             href="#"
+          />
         </div>
 
-        {/* Network Visual */}
-        <div className="leather-card p-4 lg:p-6 rounded-xl relative overflow-hidden flex flex-col items-center justify-center">
-          <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/40 via-background to-background"></div>
-          <h3 className="font-bold text-sm lg:text-base mb-2 absolute top-4 left-6 z-10">Exchange Dominance</h3>
-          
-          <div className="relative w-full aspect-[2/1] max-w-sm mt-8 flex items-center justify-center">
-             <div className="absolute top-1/2 left-0 w-16 h-16 -translate-y-1/2 rounded-full border border-primary/50 bg-primary/10 flex items-center justify-center">
-               <span className="text-xs font-bold text-primary">Binance</span>
-             </div>
-             <div className="absolute top-1/4 right-0 w-12 h-12 rounded-full border border-primary/50 bg-primary/10 flex items-center justify-center">
-               <span className="text-[10px] font-bold text-primary">Coinbase</span>
-             </div>
-             <div className="absolute bottom-1/4 right-8 w-14 h-14 rounded-full border border-emerald-500/50 bg-emerald-500/10 flex items-center justify-center">
-               <span className="text-[10px] font-bold text-emerald-500">Cold Vault</span>
-             </div>
+        {/* Sidebar */}
+        <div className="space-y-6">
+           <AdUnit size="medium" partner="coinledger" label="Sponsored" />
+           <div className="leather-card p-4 lg:p-6 rounded-xl relative overflow-hidden flex flex-col items-center justify-center">
+             <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/40 via-background to-background"></div>
+             <h3 className="font-bold text-sm lg:text-base mb-2 absolute top-4 left-6 z-10">Exchange Dominance</h3>
              
-             {/* Lines */}
-             <svg className="absolute inset-0 pointer-events-none w-full h-full" style={{ overflow: 'visible' }}>
-                <path d="M 64 50 Q 150 20 280 25" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" className="text-primary/30 animate-pulse-slow"></path>
-                <path d="M 64 50 Q 150 80 250 75" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="4 4" className="animate-pulse-slow"></path>
-             </svg>
-          </div>
+             <div className="relative w-full aspect-[2/1] max-w-sm mt-8 flex items-center justify-center">
+                <div className="absolute top-1/2 left-0 w-16 h-16 -translate-y-1/2 rounded-full border border-primary/50 bg-primary/10 flex items-center justify-center">
+                  <span className="text-xs font-bold text-primary">Binance</span>
+                </div>
+                <div className="absolute top-1/4 right-0 w-12 h-12 rounded-full border border-primary/50 bg-primary/10 flex items-center justify-center">
+                  <span className="text-[10px] font-bold text-primary">Coinbase</span>
+                </div>
+                <div className="absolute bottom-1/4 right-8 w-14 h-14 rounded-full border border-emerald-500/50 bg-emerald-500/10 flex items-center justify-center">
+                  <span className="text-[10px] font-bold text-emerald-500">Cold Vault</span>
+                </div>
+                
+                {/* Lines */}
+                <svg className="absolute inset-0 pointer-events-none w-full h-full" style={{ overflow: 'visible' }}>
+                   <path d="M 64 50 Q 150 20 280 25" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" className="text-primary/30 animate-pulse-slow"></path>
+                   <path d="M 64 50 Q 150 80 250 75" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="4 4" className="animate-pulse-slow"></path>
+                </svg>
+             </div>
+           </div>
         </div>
       </div>
 

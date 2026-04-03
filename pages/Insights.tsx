@@ -3,6 +3,11 @@ import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { Search, ArrowLeft, Clock, Share2, BookmarkPlus, Globe, Shield, Building2 } from 'lucide-react';
 import { TargetIcon } from '../components/AnimatedIcons';
+import { AdUnit } from '../components/AdUnit';
+import { AffiliateCTA } from '../components/AffiliateCTA';
+import { LeaderboardAd } from '../components/LeaderboardAd';
+import { NativeSponsoredCard } from '../components/NativeSponsoredCard';
+import { StickyMobileBanner } from '../components/StickyMobileBanner';
 
 const CATEGORIES = ['All', 'Sovereignty', 'Regulation', 'Institutions', 'Markets', 'Geopolitics'];
 
@@ -654,6 +659,16 @@ export const Insights: React.FC = () => {
               <Button>Subscribe</Button>
            </div>
         </div>
+         
+         <div className="mt-12 pt-8 border-t border-border">
+           <AffiliateCTA
+             partner="Binance"
+             text="Act on this research today."
+             ctaLabel="Trade SECURELY"
+             href="#"
+             variant="banner"
+           />
+         </div>
       </div>
     );
   }
@@ -670,6 +685,7 @@ export const Insights: React.FC = () => {
 
   return (
     <div className="animate-fade-in space-y-10 lg:space-y-14 pb-12">
+      <LeaderboardAd partner="binance" />
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
@@ -789,12 +805,25 @@ export const Insights: React.FC = () => {
                   </div>
                </Card>
             ))}
+            
+            {/* Native Sponsored Card seamlessly woven into feed */}
+            {listArticles.length > 2 && (
+               <NativeSponsoredCard
+                  partner="CoinLedger"
+                  title="Optimize Your Crypto Taxes"
+                  description="Complex portfolios require robust reporting. Generate CPA-ready reports in minutes."
+                  ctaLabel="Connect Exchange"
+                  href="#"
+               />
+            )}
          </div>
       </section>
       
       <div className="flex justify-center mt-8">
          <Button variant="secondary" size="lg">Load More Research</Button>
       </div>
+
+      <StickyMobileBanner partner="Ledger" />
     </div>
   );
 };
