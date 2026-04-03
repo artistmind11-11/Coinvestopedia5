@@ -50,7 +50,8 @@ export const Header: React.FC<HeaderProps> = ({
       route: PageRoute.LEARN, 
       options: [
         { label: 'DeFi Strategies', route: PageRoute.LEARN },
-        { label: 'Security & Custody', route: PageRoute.LEARN },
+        { label: 'Security & Custody', route: PageRoute.AUDIT },
+        { label: 'Research', route: PageRoute.RESEARCH },
         { label: 'Technical Analysis', route: PageRoute.LEARN },
         { label: 'Insights', route: PageRoute.INSIGHTS }
       ] 

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
-import { Search, ArrowLeft, Clock, Share2, BookmarkPlus, Globe, Shield, Building2 } from 'lucide-react';
+import { Search, ArrowLeft, Clock, Share2, BookmarkPlus, Globe, Shield, Building2, Zap, BarChart3 } from 'lucide-react';
 import { TargetIcon } from '../components/AnimatedIcons';
 import { AdUnit } from '../components/AdUnit';
 import { AffiliateCTA } from '../components/AffiliateCTA';
-import { LeaderboardAd } from '../components/LeaderboardAd';
 import { NativeSponsoredCard } from '../components/NativeSponsoredCard';
-import { StickyMobileBanner } from '../components/StickyMobileBanner';
 
 const CATEGORIES = ['All', 'Sovereignty', 'Regulation', 'Institutions', 'Markets', 'Geopolitics'];
 
@@ -603,7 +601,7 @@ export const Insights: React.FC = () => {
 
   if (activeArticle) {
     return (
-      <div className="animate-fade-in max-w-[800px] mx-auto pb-16">
+      <div className="animate-fade-in max-w-container mx-auto pb-16">
         <button 
           onClick={handleBackToList}
           className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors text-sm font-bold group mb-8"
@@ -611,64 +609,88 @@ export const Insights: React.FC = () => {
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Insights
         </button>
 
-        <div className="mb-8">
-          <div className="flex items-center gap-3 text-xs font-bold text-text-muted tracking-wider uppercase mb-4">
-            <span className="text-primary">{activeArticle.category}</span>
-            <span>•</span>
-            <span>{activeArticle.date}</span>
-            <span>•</span>
-            <span className="flex items-center gap-1"><Clock size={12} /> {activeArticle.readTime}</span>
-          </div>
-          
-          <h1 className="text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
-            {activeArticle.title}
-          </h1>
-          
-          <div className="flex items-center justify-between py-6 border-y border-border mb-8">
-            <div className="flex items-center gap-4">
-               <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                  RT
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+          {/* Article Main */}
+          <div className="lg:col-span-3">
+            <div className="mb-8">
+              <div className="flex items-center gap-3 text-xs font-bold text-text-muted tracking-wider uppercase mb-4">
+                <span className="text-primary">{activeArticle.category}</span>
+                <span>•</span>
+                <span>{activeArticle.date}</span>
+                <span>•</span>
+                <span className="flex items-center gap-1"><Clock size={12} /> {activeArticle.readTime}</span>
+              </div>
+              
+              <h1 className="text-4xl lg:text-6xl font-heading font-bold mb-8 leading-tight">
+                {activeArticle.title}
+              </h1>
+              
+              <div className="flex items-center justify-between py-6 border-y border-border mb-8">
+                <div className="flex items-center gap-4">
+                   <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                      RT
+                   </div>
+                   <div>
+                      <div className="font-bold text-sm">Coinvestopedia Research Team</div>
+                      <div className="text-xs text-text-muted">Institutional Strategy</div>
+                   </div>
+                </div>
+                <div className="flex items-center gap-3">
+                   <button className="p-2 border border-border rounded-lg text-text-muted hover:text-primary transition-colors"><BookmarkPlus size={18} /></button>
+                   <button className="p-2 border border-border rounded-lg text-text-muted hover:text-primary transition-colors"><Share2 size={18} /></button>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-12 flex justify-center py-4 border-b border-border/30">
+               <AdUnit size="leaderboard" partner="binance" label="Research Sponsor" />
+            </div>
+
+            <article className="prose prose-invert max-w-none text-text leading-relaxed text-lg">
+              {activeArticle.content}
+            </article>
+
+            {/* Newsletter Callout */}
+            <div className="mt-16 p-8 lg:p-12 bg-surface border border-primary/20 rounded-2xl text-center relative overflow-hidden">
+               <div className="absolute top-0 right-0 p-8 transform translate-x-1/2 -translate-y-1/2">
+                  <div className="w-32 h-32 bg-primary/20 blur-3xl rounded-full"></div>
                </div>
-               <div>
-                  <div className="font-bold text-sm">Coinvestopedia Research Team</div>
-                  <div className="text-xs text-text-muted">Institutional Strategy</div>
+               <h3 className="text-2xl lg:text-3xl font-bold mb-4">Get Institutional Crypto Insights</h3>
+               <p className="text-text-muted mb-8 max-w-lg mx-auto text-sm lg:text-base leading-relaxed">
+                  Join 15,000+ fund managers and analysts receiving our weekly deep-dives.
+               </p>
+               <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto relative z-10">
+                  <input type="email" placeholder="Your work email" className="flex-1 bg-background border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary text-sm" />
+                  <Button>Subscribe</Button>
                </div>
             </div>
-            <div className="flex items-center gap-3">
-               <button className="p-2 border border-border rounded-lg text-text-muted hover:text-primary transition-colors"><BookmarkPlus size={18} /></button>
-               <button className="p-2 border border-border rounded-lg text-text-muted hover:text-primary transition-colors"><Share2 size={18} /></button>
+            
+            <div className="mt-12 flex justify-center">
+               <AdUnit size="billboard" partner="okx" label="Trading Partner" />
             </div>
           </div>
-        </div>
 
-        <article className="prose prose-invert max-w-none text-text leading-relaxed">
-          {activeArticle.content}
-        </article>
+          {/* Sticky Article Sidebar */}
+          <aside className="hidden lg:block lg:col-span-1">
+            <div className="sticky top-28 space-y-8">
+               <AdUnit size="medium" partner="ledger" label="Sponsored Integration" />
+               
+               <div className="p-6 bg-surface border border-border rounded-xl">
+                  <h4 className="font-bold text-sm mb-4">You might also like</h4>
+                  <div className="space-y-4">
+                     {ARTICLES.filter(a => a.id !== activeArticle.id).slice(0, 3).map(a => (
+                        <div key={a.id} className="group cursor-pointer" onClick={() => setActiveArticleId(a.id)}>
+                           <p className="text-[10px] text-primary font-bold uppercase mb-1">{a.category}</p>
+                           <h5 className="text-sm font-bold group-hover:text-primary transition-colors line-clamp-2">{a.title}</h5>
+                        </div>
+                     ))}
+                  </div>
+               </div>
 
-        {/* Newsletter Callout */}
-        <div className="mt-16 p-8 bg-surface border border-primary/20 rounded-2xl text-center relative overflow-hidden">
-           <div className="absolute top-0 right-0 p-8 transform translate-x-1/2 -translate-y-1/2">
-              <div className="w-32 h-32 bg-primary/20 blur-3xl rounded-full"></div>
-           </div>
-           <h3 className="text-2xl font-bold mb-3">Get Institutional Crypto Insights</h3>
-           <p className="text-text-muted mb-6 max-w-lg mx-auto">
-              Join 15,000+ fund managers and analysts receiving our weekly deep-dives.
-           </p>
-           <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <input type="email" placeholder="Your work email" className="flex-1 bg-background border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary text-sm" />
-              <Button>Subscribe</Button>
-           </div>
+               <AdUnit size="skyscraper" partner="kucoin" label="Market Liquidity" />
+            </div>
+          </aside>
         </div>
-         
-         <div className="mt-12 pt-8 border-t border-border">
-           <AffiliateCTA
-             partner="Binance"
-             text="Act on this research today."
-             ctaLabel="Trade SECURELY"
-             href="#"
-             variant="banner"
-           />
-         </div>
       </div>
     );
   }
@@ -685,7 +707,6 @@ export const Insights: React.FC = () => {
 
   return (
     <div className="animate-fade-in space-y-10 lg:space-y-14 pb-12">
-      <LeaderboardAd partner="binance" />
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
         <div>
@@ -727,24 +748,23 @@ export const Insights: React.FC = () => {
 
       {/* Featured Article */}
       <section>
-         <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-            <span className="w-1.5 h-6 bg-primary rounded-sm inline-block"></span> 
-            Featured Research
+         <h2 className="text-xl font-bold mb-6 flex items-center gap-2 text-primary font-heading tracking-widest uppercase text-[10px]">
+            <Zap size={14} className="fill-primary" /> Featured Research
          </h2>
          <Card 
             className="p-0 overflow-hidden group cursor-pointer border border-border hover:border-primary/50 transition-all duration-300"
             onClick={() => setActiveArticleId(featuredArticle.id)}
          >
-            <div className="flex flex-col">
-               <div className="w-full relative h-[300px] lg:h-[400px] overflow-hidden">
+            <div className="flex flex-col lg:flex-row">
+               <div className="w-full lg:w-1/2 relative h-[300px] lg:h-auto overflow-hidden">
                   <img 
                      src={featuredArticle.image} 
                      alt="Featured" 
                      className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-90"
                   />
-                  <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent hidden lg:block"></div>
                </div>
-               <div className="w-full p-8 lg:p-12 flex flex-col justify-center bg-surface relative z-10">
+               <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center bg-surface relative z-10">
                   <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-text-muted uppercase tracking-widest mb-4">
                      <span className="text-primary">{featuredArticle.category}</span>
                      <span>•</span>
@@ -767,63 +787,75 @@ export const Insights: React.FC = () => {
          </Card>
       </section>
 
-      {/* Latest Intelligence */}
-      <section>
-         <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
-            <span className="w-1.5 h-6 bg-border rounded-sm inline-block"></span> 
-            Latest Intelligence
-         </h2>
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {listArticles.map((article) => (
-               <Card 
-                  key={article.id} 
-                  className="flex flex-col group hover:border-primary/40 cursor-pointer h-full transition-all duration-300"
-                  onClick={() => setActiveArticleId(article.id)}
-               >
-                  <div className="flex justify-between items-start mb-6">
-                     <div className="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center group-hover:scale-110 transition-transform">
-                        {article.icon}
-                     </div>
-                     <span className="px-3 py-1 bg-surface border border-border text-xs rounded-full font-bold text-text-muted uppercase tracking-widest">
-                        {article.category}
-                     </span>
-                  </div>
-                  
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-snug">
-                     {article.title}
-                  </h3>
-                  
-                  <p className="text-text-muted text-sm mb-8 flex-grow">
-                     {article.desc}
-                  </p>
-                  
-                  <div className="flex items-center justify-between pt-4 border-t border-border mt-auto w-full text-xs font-medium text-text-muted">
-                     <div className="flex items-center gap-2">
-                        <Clock size={14} /> {article.readTime}
-                     </div>
-                     <span>{article.date}</span>
-                  </div>
-               </Card>
-            ))}
-            
-            {/* Native Sponsored Card seamlessly woven into feed */}
-            {listArticles.length > 2 && (
-               <NativeSponsoredCard
-                  partner="CoinLedger"
-                  title="Optimize Your Crypto Taxes"
-                  description="Complex portfolios require robust reporting. Generate CPA-ready reports in minutes."
-                  ctaLabel="Connect Exchange"
-                  href="#"
-               />
-            )}
-         </div>
-      </section>
-      
-      <div className="flex justify-center mt-8">
-         <Button variant="secondary" size="lg">Load More Research</Button>
+      {/* Mid-list Ad Break */}
+      <div className="py-2 border-y border-border/50 flex flex-col items-center gap-4">
+         <span className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-bold">Research Sponsor</span>
+         <AdUnit size="leaderboard" partner="kucoin" />
       </div>
 
-      <StickyMobileBanner partner="Ledger" />
+      {/* Latest Intelligence with Sidebar */}
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-10">
+         <section className="xl:col-span-3">
+            <h2 className="text-xl font-bold mb-8 flex items-center gap-2 text-text-muted font-heading tracking-widest uppercase text-[10px]">
+               <BarChart3 size={14} /> Latest Intelligence
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+               {listArticles.map((article) => (
+                  <Card 
+                     key={article.id} 
+                     className="flex flex-col group hover:border-primary/40 cursor-pointer h-full transition-all duration-300"
+                     onClick={() => setActiveArticleId(article.id)}
+                  >
+                     <div className="flex justify-between items-start mb-6">
+                        <div className="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center group-hover:scale-110 transition-transform">
+                           {article.icon}
+                        </div>
+                        <span className="px-3 py-1 bg-surface border border-border text-[10px] rounded-full font-bold text-text-muted uppercase tracking-widest">
+                           {article.category}
+                        </span>
+                     </div>
+                     
+                     <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-snug">
+                        {article.title}
+                     </h3>
+                     
+                     <p className="text-text-muted text-sm mb-8 flex-grow line-clamp-2">
+                        {article.desc}
+                     </p>
+                     
+                     <div className="flex items-center justify-between pt-4 border-t border-border mt-auto w-full text-xs font-medium text-text-muted">
+                        <div className="flex items-center gap-2">
+                           <Clock size={14} /> {article.readTime}
+                        </div>
+                        <span>{article.date}</span>
+                     </div>
+                  </Card>
+               ))}
+            </div>
+            
+            <div className="flex justify-center mt-12">
+               <Button variant="secondary" size="lg" isFullWidth className="md:w-fit">Load More Research</Button>
+            </div>
+         </section>
+
+         {/* Insights List Sidebar */}
+         <aside className="hidden xl:flex flex-col gap-8 pt-12">
+            <AdUnit size="medium" partner="ledger" label="Sponsored Content" />
+            
+            <div className="leather-card p-6 rounded-xl border border-border bg-gradient-to-b from-surface to-background">
+               <h4 className="font-bold text-sm mb-4 flex items-center gap-2">
+                  <Shield size={16} className="text-primary" />
+                  Institutional Access
+               </h4>
+               <p className="text-xs text-text-muted mb-6 leading-relaxed">
+                  Unlock our proprietary capital flow database and regulatory risk matrix.
+               </p>
+               <Button isFullWidth size="sm" variant="secondary">Upgrade to Pro</Button>
+            </div>
+
+            <AdUnit size="skyscraper" partner="3commas" label="Trading Tools" />
+         </aside>
+      </div>
     </div>
   );
 };

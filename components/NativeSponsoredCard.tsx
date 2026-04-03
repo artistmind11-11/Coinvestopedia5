@@ -8,9 +8,10 @@ export interface NativeSponsoredCardProps {
   ctaLabel: string;
   href: string;
   icon?: React.ReactNode;
+  image?: string;
 }
 
-export const NativeSponsoredCard: React.FC<NativeSponsoredCardProps> = ({ partner, title, description, ctaLabel, href, icon }) => {
+export const NativeSponsoredCard: React.FC<NativeSponsoredCardProps> = ({ partner, title, description, ctaLabel, href, icon, image }) => {
   return (
     <div className="flex flex-col group cursor-pointer h-full transition-all duration-300 leather-card border-border rounded-xl p-6 relative overflow-hidden">
       <div className="absolute top-0 right-0 p-4 shrink-0">

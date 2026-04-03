@@ -8,9 +8,9 @@ import {
 } from 'lucide-react';
 import { fetchMacroIndicators } from '../services/api';
 import { AdUnit } from '../components/AdUnit';
-import { AffiliateCTA } from '../components/AffiliateCTA';
 import { LeaderboardAd } from '../components/LeaderboardAd';
-import { NativeSponsoredCard } from '../components/NativeSponsoredCard';
+import { AffiliateCTA } from '../components/AffiliateCTA';
+
 // ─── TYPES ────────────────────────────────────────────────────────────────────
 
 type MacroTab = 'weekly' | 'geopolitical' | 'cross-market' | 'institutional' | 'archive';
@@ -35,12 +35,12 @@ interface MacroReport {
 
 // ─── TABS ─────────────────────────────────────────────────────────────────────
 
-const TABS: { id: MacroTab; label: string; icon: React.ReactNode }[] = [
+const TABS: { id: MacroTab; label: string; icon: React.ReactNode; isPro?: boolean }[] = [
   { id: 'weekly', label: 'Weekly Briefing', icon: <Zap size={16} /> },
   { id: 'geopolitical', label: 'Geopolitical Decoder', icon: <Globe size={16} /> },
   { id: 'cross-market', label: 'Cross-Market', icon: <BarChart3 size={16} /> },
   { id: 'institutional', label: 'Institutional Lens', icon: <Eye size={16} /> },
-  { id: 'archive', label: 'Archive', icon: <ArchiveIcon size={16} /> },
+  { id: 'archive', label: 'Archive', icon: <ArchiveIcon size={16} />, isPro: true },
 ];
 
 // ─── SEED REPORTS ─────────────────────────────────────────────────────────────
@@ -579,7 +579,7 @@ export const MacroIntel: React.FC = () => {
   // ── REPORT READER VIEW ──
   if (activeReport) {
     return (
-      <div className="animate-fade-in max-w-[800px] mx-auto pb-16">
+      <div className="animate-fade-in max-w-container mx-auto pb-16">
         <button
           onClick={() => setActiveReportId(null)}
           className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors text-sm font-bold group mb-8"
@@ -587,59 +587,99 @@ export const MacroIntel: React.FC = () => {
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Macro Intel
         </button>
 
-        {/* Report Header */}
-        <div className="mb-10">
-          <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-text-muted uppercase tracking-widest mb-4">
-            <span className="text-primary">{TABS.find(t => t.id === activeReport.tab)?.label}</span>
-            <span>•</span>
-            <span>{activeReport.date}</span>
-            <span>•</span>
-            <span className="flex items-center gap-1"><Clock size={12} /> {activeReport.readTime}</span>
-          </div>
-          <h1 className="text-3xl lg:text-4xl font-heading font-bold mb-4 leading-tight">{activeReport.title}</h1>
-          <p className="text-lg text-text-muted leading-relaxed">{activeReport.subtitle}</p>
-        </div>
-
-        {/* Key Metrics Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10 p-4 bg-surface rounded-xl border border-border">
-          {activeReport.keyMetrics.map(m => (
-            <div key={m.label} className="text-center">
-              <p className="text-[10px] text-text-muted uppercase font-bold tracking-wider">{m.label}</p>
-              <p className={`text-xl font-bold font-mono mt-1 ${m.direction === 'up' ? 'text-emerald-400' : m.direction === 'down' ? 'text-red-400' : 'text-text'}`}>
-                {m.value}
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+          {/* Main Content */}
+          <div className="lg:col-span-3">
+            {/* Report Header */}
+            <div className="mb-10">
+              <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-text-muted uppercase tracking-widest mb-4">
+                <span className="text-primary">{TABS.find(t => t.id === activeReport.tab)?.label}</span>
+                <span>•</span>
+                <span>{activeReport.date}</span>
+                <span>•</span>
+                <span className="flex items-center gap-1"><Clock size={12} /> {activeReport.readTime}</span>
+              </div>
+              <h1 className="text-3xl lg:text-5xl font-heading font-bold mb-4 leading-tight">{activeReport.title}</h1>
+              <p className="text-lg text-text-muted leading-relaxed">{activeReport.subtitle}</p>
             </div>
-          ))}
-        </div>
 
-        {/* Report Sections */}
-        <div className="space-y-10">
-          {activeReport.sections.map((section, idx) => (
-            <section key={idx} className="relative">
-              <div className="flex items-center gap-3 mb-5">
-                <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                  {section.icon}
+            {/* Key Metrics Bar */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10 p-4 bg-surface rounded-xl border border-border">
+              {activeReport.keyMetrics.map(m => (
+                <div key={m.label} className="text-center">
+                  <p className="text-[10px] text-text-muted uppercase font-bold tracking-wider">{m.label}</p>
+                  <p className={`text-xl font-bold font-mono mt-1 ${m.direction === 'up' ? 'text-emerald-400' : m.direction === 'down' ? 'text-red-400' : 'text-text'}`}>
+                    {m.value}
+                  </p>
                 </div>
-                <h2 className="text-xl font-bold">{section.title}</h2>
-              </div>
-              <div className="text-text leading-relaxed pl-12">
-                {section.content}
-              </div>
-              {idx < activeReport.sections.length - 1 && (
-                <div className="border-b border-border mt-10" />
-              )}
-            </section>
-          ))}
-        </div>
-        
-        <div className="mt-12 pt-8 border-t border-border">
-          <AffiliateCTA
-            partner="TradingView"
-            text="Track these macro metrics in real-time."
-            ctaLabel="Get TradingView Pro"
-            href="#"
-            variant="banner"
-          />
+              ))}
+            </div>
+
+            {/* Report Sections */}
+            <div className="space-y-12">
+              {activeReport.sections.map((section, idx) => (
+                <React.Fragment key={idx}>
+                  <section className="relative">
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                        {section.icon}
+                      </div>
+                      <h2 className="text-2xl font-bold">{section.title}</h2>
+                    </div>
+                    <div className="text-text leading-relaxed text-lg pl-0 md:pl-12">
+                      {section.content}
+                    </div>
+                  </section>
+                  
+                  {/* Ad after Section 1 */}
+                  {idx === 0 && (
+                    <div className="py-8 border-y border-border/50 my-12">
+                       <div className="flex flex-col items-center gap-4">
+                          <span className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-bold">Research Sponsor</span>
+                          <AdUnit size="leaderboard" partner="binance" />
+                       </div>
+                    </div>
+                  )}
+
+                  {idx > 0 && idx < activeReport.sections.length - 1 && (
+                    <div className="border-b border-border my-12" />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+
+            {/* Bottom CTA */}
+            <div className="mt-16 pt-12 border-t border-border">
+               <AffiliateCTA 
+                  partner="TradingView" 
+                  text="Chart these signal yourself with pro-level tools." 
+                  ctaLabel="Try TradingView Pro" 
+                  href="#" 
+                  variant="banner" 
+               />
+            </div>
+          </div>
+
+          {/* Sticky Reader Sidebar */}
+          <aside className="hidden lg:block lg:col-span-1">
+            <div className="sticky top-28 space-y-8">
+               <AdUnit size="medium" partner="ledger" label="Sponsored Content" />
+               
+               <div className="p-6 bg-surface border border-border rounded-xl">
+                  <h4 className="font-bold text-sm mb-4">Related Intelligence</h4>
+                  <div className="space-y-4">
+                     {REPORTS.filter(r => r.id !== activeReport.id).slice(0, 2).map(r => (
+                        <div key={r.id} className="group cursor-pointer" onClick={() => setActiveReportId(r.id)}>
+                           <p className="text-[10px] text-primary font-bold uppercase mb-1">{r.date}</p>
+                           <h5 className="text-sm font-bold group-hover:text-primary transition-colors line-clamp-2">{r.title}</h5>
+                        </div>
+                     ))}
+                  </div>
+               </div>
+
+               <AdUnit size="skyscraper" partner="kucoin" label="Market Liquidity" />
+            </div>
+          </aside>
         </div>
       </div>
     );
@@ -648,7 +688,6 @@ export const MacroIntel: React.FC = () => {
   // ── LIST VIEW ──
   return (
     <div className="space-y-8 animate-fade-in">
-      <LeaderboardAd partner="bybit" />
       {/* Hero */}
       <div className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface via-background to-surface p-8 lg:p-12">
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
@@ -681,36 +720,51 @@ export const MacroIntel: React.FC = () => {
           >
             {tab.icon}
             {tab.label}
+            {tab.isPro && (
+              <span className="flex items-center gap-0.5 px-1.5 py-0.5 bg-amber-500/10 border border-amber-500/20 rounded text-[9px] text-amber-400 font-bold">
+                <Lock size={9} /> PRO
+              </span>
+            )}
           </button>
         ))}
       </div>
 
-      {/* Reports Grid */}
-      {filteredReports.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-          {filteredReports.map(report => (
-            <ReportCard
-              key={report.id}
-              report={report}
-              onClick={() => setActiveReportId(report.id)}
-            />
-          ))}
-          
-          <NativeSponsoredCard
-            partner="CoinLedger"
-            title="Macro Impact on Taxes"
-            description="Rebalancing due to macro shifts? Ensure your trades are tracked efficiently."
-            ctaLabel="Start Tracking"
-            href="#"
-          />
+      {/* Reports Grid with Sidebar */}
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+        <div className="xl:col-span-3">
+          {filteredReports.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {filteredReports.map(report => (
+                <ReportCard
+                  key={report.id}
+                  report={report}
+                  onClick={() => setActiveReportId(report.id)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20">
+              <Globe size={48} className="mx-auto text-text-muted/30 mb-4" />
+              <h3 className="text-lg font-bold text-text-muted mb-2">No reports in this category yet</h3>
+              <p className="text-sm text-text-muted/70">Check back soon. New intelligence is published weekly.</p>
+            </div>
+          )}
         </div>
-      ) : (
-        <div className="text-center py-20">
-          <Globe size={48} className="mx-auto text-text-muted/30 mb-4" />
-          <h3 className="text-lg font-bold text-text-muted mb-2">No reports in this category yet</h3>
-          <p className="text-sm text-text-muted/70">Check back soon. New intelligence is published weekly.</p>
-        </div>
-      )}
+
+        {/* List Sidebar Ad */}
+        <aside className="hidden xl:flex flex-col gap-6">
+          <AdUnit size="medium" partner="kucoin" label="Sponsored Integration" />
+          <div className="leather-card p-6 rounded-xl border-dashed border-border flex flex-col items-center justify-center text-center">
+             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
+                <ArchiveIcon size={24} />
+             </div>
+             <h4 className="font-bold text-sm mb-2">Institutional Archive</h4>
+             <p className="text-xs text-text-muted mb-4">Access 5+ years of historical macro data and cross-asset correlations.</p>
+             <Button variant="secondary" size="sm" isFullWidth>Unlock with Pro</Button>
+          </div>
+          <AdUnit size="skyscraper" partner="3commas" label="Trading Tools" />
+        </aside>
+      </div>
     </div>
   );
 };

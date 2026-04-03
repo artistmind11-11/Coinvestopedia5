@@ -37,6 +37,7 @@ interface TableProps<T> {
     totalItems?: number;
     onPageChange?: (page: number, pageSize: number) => void;
   } | null;
+  renderAfterRow?: (rowIndex: number, item: T) => React.ReactNode;
 }
 
 function TableComponent<T extends Record<string, any>>({
@@ -51,6 +52,7 @@ function TableComponent<T extends Record<string, any>>({
   loading = false,
   ariaLabel,
   pagination = null,
+  renderAfterRow,
 }: TableProps<T>) {
   const [sortKey, setSortKey] = useState<keyof T | string | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
@@ -228,49 +230,51 @@ function TableComponent<T extends Record<string, any>>({
           </thead>
           <tbody>
             {sortedData.map((item, rowIndex) => (
-              <tr
-                key={rowIndex}
-                className={cn(
-                  'border-b border-border transition-colors min-h-[44px]',
-                  striped && rowIndex % 2 === 0 && 'bg-surface/30',
-                  hoverable && 'hover:bg-surface/70',
-                  onRowClick && 'cursor-pointer'
-                )}
-                onClick={() => onRowClick?.(item)}
-                tabIndex={onRowClick ? 0 : undefined}
-                onKeyDown={(e) => {
-                  if (!onRowClick) return;
-                  // Make rows keyboard accessible: Enter or Space
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    onRowClick(item);
-                  }
-                }}
-                role="row"
-                aria-rowindex={visibleStart + rowIndex}
-              >
-                {columns.map((column) => {
-                  const isActionCol = !!column.isAction;
-                  return (
-                    <td
-                    key={String(column.key)}
-                    className={cn(
-                      'px-4 text-sm text-text align-middle',
-                      compact ? 'py-2' : 'py-3',
-                      column.align === 'center' && 'text-center',
-                      (column.align === 'right' || isActionCol) && 'text-right',
-                      getResponsiveClass(column)
-                    )}
-                    style={{ width: column.width }}
-                    role="cell"
-                  >
-                    {column.render
-                      ? column.render((item as any)[column.key as any], item)
-                      : (isActionCol ? null : (item as any)[column.key as any])}
-                    </td>
-                  );
-                })}
-              </tr>
+              <React.Fragment key={rowIndex}>
+                <tr
+                  className={cn(
+                    'border-b border-border transition-colors min-h-[44px]',
+                    striped && rowIndex % 2 === 0 && 'bg-surface/30',
+                    hoverable && 'hover:bg-surface/70',
+                    onRowClick && 'cursor-pointer'
+                  )}
+                  onClick={() => onRowClick?.(item)}
+                  tabIndex={onRowClick ? 0 : undefined}
+                  onKeyDown={(e) => {
+                    if (!onRowClick) return;
+                    // Make rows keyboard accessible: Enter or Space
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      onRowClick(item);
+                    }
+                  }}
+                  role="row"
+                  aria-rowindex={visibleStart + rowIndex}
+                >
+                  {columns.map((column) => {
+                    const isActionCol = !!column.isAction;
+                    return (
+                      <td
+                      key={String(column.key)}
+                      className={cn(
+                        'px-4 text-sm text-text align-middle',
+                        compact ? 'py-2' : 'py-3',
+                        column.align === 'center' && 'text-center',
+                        (column.align === 'right' || isActionCol) && 'text-right',
+                        getResponsiveClass(column)
+                      )}
+                      style={{ width: column.width }}
+                      role="cell"
+                    >
+                      {column.render
+                        ? column.render((item as any)[column.key as any], item)
+                        : (isActionCol ? null : (item as any)[column.key as any])}
+                      </td>
+                    );
+                  })}
+                </tr>
+                {renderAfterRow?.(rowIndex, item)}
+              </React.Fragment>
             ))}
           </tbody>
         </table>

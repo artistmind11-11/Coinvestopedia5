@@ -15,6 +15,7 @@ export const SidebarLeft: React.FC<SidebarLeftProps> = ({ onNavigate, currentRou
     { icon: <TargetIcon className="w-5 h-5" />, label: 'Whale Tracker', route: PageRoute.WHALE },
     { icon: <Calculator size={20} />, label: 'Tools & Calculators', route: PageRoute.TOOLS },
     { icon: <Shield size={20} />, label: 'Security', route: PageRoute.AUDIT },
+    { icon: <BookOpen size={20} />, label: 'Research', route: PageRoute.RESEARCH },
     { icon: <BookOpen size={20} />, label: 'Academy', route: PageRoute.LEARN },
   ];
 

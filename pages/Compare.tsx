@@ -10,10 +10,6 @@ import { RiskPanel } from '../components/compare/RiskPanel';
 import { AllocationPanel } from '../components/compare/AllocationPanel';
 import { CorrelationHeatmap } from '../components/compare/CorrelationHeatmap';
 import { AnalystPanel } from '../components/compare/AnalystPanel';
-import { AdUnit } from '../components/AdUnit';
-import { AffiliateCTA } from '../components/AffiliateCTA';
-import { StickyMobileBanner } from '../components/StickyMobileBanner';
-import { Card } from '../components/Card';
 
 // Icons
 import { LayoutDashboard, TrendingUp, ShieldAlert, PieChart, GitMerge, Lightbulb } from 'lucide-react';
@@ -55,14 +51,9 @@ export const Compare: React.FC = () => {
           <h1 className="text-3xl lg:text-4xl font-heading font-extrabold tracking-tight mb-3 leading-tight">
             Cross-Asset <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-primary-dark to-accent">Dashboard</span>
           </h1>
-          <p className="text-text-muted text-sm md:text-base mb-6 lg:mb-8 font-mono">
-            Data-driven comparisions between traditional assets and digital counterparts.
+          <p className="text-text-muted text-base max-w-2xl mb-6">
+            Multi-asset intelligence for standard crypto, macro, and traditional markets. Q1 2026 data.
           </p>
-
-          {/* AdUnit placeholder directly below text */}
-          <div className="mb-8">
-             <AdUnit size="leaderboard" partner="binance" label="Ad" className="hidden lg:flex" />
-          </div>
 
           {/* Target Universe — integrated */}
           <div className="border-t border-border/30 pt-5">
@@ -119,18 +110,6 @@ export const Compare: React.FC = () => {
         {activeTab === 'analyst' && <AnalystPanel assets={selectedAssets} isProUser={isProUser} />}
       </div>
 
-      {/* Contextual Affiliate CTA below content */}
-      <div className="mt-8">
-        <AffiliateCTA
-          partner="Binance"
-          text="Ready to execute these strategies?"
-          ctaLabel="Trade Now"
-          href="#"
-          variant="banner"
-        />
-      </div>
-
-      <StickyMobileBanner partner="bybit" />
     </div>
   );
 };

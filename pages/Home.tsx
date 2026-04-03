@@ -8,14 +8,9 @@ import { VideoTutorial } from '../components/VideoTutorial';
 import { FilterChips } from '../components/FilterChips';
 import { MarketPulseDashboard } from '../components/MarketPulseDashboard';
 import { NewsletterSignup } from '../components/NewsletterSignup';
-import { Button } from '../components/Button';
-import { TargetIcon, PulseIcon } from '../components/AnimatedIcons';
-import { AffiliateCTA } from '../components/AffiliateCTA';
-import { LeaderboardAd } from '../components/LeaderboardAd';
-import { NativeSponsoredCard } from '../components/NativeSponsoredCard';
-import { StickyMobileBanner } from '../components/StickyMobileBanner';
 import { TrendingUp, Activity, Globe, LineChart, Zap, Shield, BookOpen, Calculator, Hash, Sparkles, Flame, Coins, BarChart3, Target, DollarSign } from 'lucide-react';
 import { PageRoute } from '../types';
+import { TargetIcon } from '../components/AnimatedIcons';
 
 interface HomeProps {
   onNavigate?: (route: PageRoute) => void;
@@ -205,55 +200,11 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
               </div>
             </Card>
           ))}
-          
-          {/* Native Sponsored Card injected into feature grid */}
-          <NativeSponsoredCard
-             partner="CoinLedger"
-             title="Automated Tax Reports"
-             description="Connect your exchanges and wallets to generate professional tax reports in minutes. Over $100M+ tracked."
-             ctaLabel="Start Free Report"
-             href="#"
-          />
-        </div>
-
-        {/* Sticky Skyscraper Ad Container overlay logic */}
-        <div className="hidden lg:block absolute top-24 -right-[320px]">
-           <div className="sticky top-24">
-              <AdUnit size="skyscraper" partner="bybit" label="Advertisement" className="w-[300px]" />
-           </div>
         </div>
       </section>
-
-      {/* Exchange CTA Cluster */}
-      <section className="py-20 bg-surface/50 border-y border-border">
-         <div className="container mx-auto px-4">
-            <div className="text-center max-w-2xl mx-auto mb-10">
-               <h2 className="text-3xl font-heading font-bold mb-4">Institutional Trading Partners</h2>
-               <p className="text-text-muted">Execute strategies across top-tier venues with verified liquidity.</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-               <AffiliateCTA
-                 partner="Binance"
-                 text="Trade on the world's most liquid exchange"
-                 ctaLabel="Open Binance"
-                 href="#"
-                 variant="card"
-                 className="h-full"
-               />
-               <AffiliateCTA
-                 partner="Bybit"
-                 text="Deep derivatives liquidity with 0% maker fees"
-                 ctaLabel="Open Bybit"
-                 href="#"
-                 variant="card"
-                 className="h-full"
-               />
-            </div>
-         </div>
-      </section>
-
-      {/* Tools & Analytics Preview - Sticky Sidebar Ad */}
-      <section className="py-24 relative overflow-hidden">
+      
+      {/* Market Pulse Section */}
+      <section>
         <MarketPulseDashboard onNavigate={onNavigate} />
       </section>
 
@@ -266,10 +217,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Leaderboard Ad Placeholder */}
-      <LeaderboardAd partner="binance" className="mb-4" />
-
-      {/* Trust Badges */}
+      {/* Tools Grid */}
       <section>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <h2 className="text-2xl lg:text-3xl font-bold text-text">Essential Tools & Guides</h2>

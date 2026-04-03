@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
-import { BookOpen, Video, FileText, PlayCircle, Star, Award, TrendingUp, Shield, ArrowLeft, Lock, Unlock, Clock } from 'lucide-react';
+import { BookOpen, Video, FileText, PlayCircle, Star, Award, TrendingUp, Shield, ArrowLeft, Lock, Unlock, Clock, BarChart3, Zap } from 'lucide-react';
 import { TargetIcon } from '../components/AnimatedIcons';
+import { PageRoute } from '../types';
 import { AdUnit } from '../components/AdUnit';
 import { AffiliateCTA } from '../components/AffiliateCTA';
-import { LeaderboardAd } from '../components/LeaderboardAd';
+import { NativeSponsoredCard } from '../components/NativeSponsoredCard';
 
 // --- Types & Data ---
 
@@ -38,7 +39,7 @@ const ACADEMY_CATEGORIES: Category[] = [
     desc: 'Master decentralized finance, liquidity provision, lending protocols, and yield generation strategies.',
     resources: [
       { id: 'df-1', title: 'Yield Farming 101: Understanding Liquidity Pools', type: 'Video Series', time: '1h 20m', level: 'Beginner', locked: false, desc: 'A fundamental overview of how AMMs work and how to earn trading fees.' },
-      { id: 'df-2', title: 'Flash Loans & Arbitrage Mechanics', type: 'Deep Dive', time: '45m read', level: 'Advanced', locked: false, desc: 'Technical breakdown of 0-block risk-free arbitrage opportunities.' },
+      { id: 'df-2', title: 'Flash Loans & Arbitrage Mechanics', type: 'Deep Dive', time: '45m read', level: 'Advanced', locked: true, desc: 'Technical breakdown of 0-block risk-free arbitrage opportunities.' },
       { id: 'df-3', title: 'Navigating Impermanent Loss in AMMs', type: 'Guide', time: '20m read', level: 'Intermediate', locked: false, desc: 'Mathematical modeling and hedging strategies against AMM price divergence.' },
       { id: 'df-4', title: 'Evaluating Protocol TVL & Tokenomics', type: 'Article', time: '15m read', level: 'Intermediate', locked: false, desc: 'Frameworks to analyze actual usage vs purely inflationary utility metrics.' },
     ]
@@ -49,9 +50,9 @@ const ACADEMY_CATEGORIES: Category[] = [
     icon: <TargetIcon className="w-6 h-6" />,
     desc: 'Read charts like an institutional trader using advanced indicators, order flow, and market profiling.',
     resources: [
-      { id: 'ta-1', title: 'Reading Institutional Order Flow', type: 'Video', time: '40m', level: 'Advanced', locked: false, desc: 'How to use order book heatmaps to spot smart money positioning.' },
+      { id: 'ta-1', title: 'Reading Institutional Order Flow', type: 'Video', time: '40m', level: 'Advanced', locked: true, desc: 'How to use order book heatmaps to spot smart money positioning.' },
       { id: 'ta-2', title: 'Advanced Fibonacci Extensions & Retracements', type: 'Guide', time: '25m read', level: 'Intermediate', locked: false, desc: 'Proper anchor placement for structural price expansion targets.' },
-      { id: 'ta-3', title: 'Volume Profile & VPVR Trading', type: 'Video Series', time: '2h 15m', level: 'Advanced', locked: false, desc: 'Finding hidden support/resistance using volume nodes.' },
+      { id: 'ta-3', title: 'Volume Profile & VPVR Trading', type: 'Video Series', time: '2h 15m', level: 'Advanced', locked: true, desc: 'Finding hidden support/resistance using volume nodes.' },
       { id: 'ta-4', title: 'Spotting Wyckoff Accumulation Patterns', type: 'Article', time: '18m read', level: 'Beginner', locked: false, desc: 'Identifying composite operator footprints during sideways markets.' },
     ]
   },
@@ -63,7 +64,7 @@ const ACADEMY_CATEGORIES: Category[] = [
     resources: [
       { id: 'sec-1', title: 'Hardware Wallet Cold Storage Best Practices', type: 'Video', time: '30m', level: 'Beginner', locked: false, desc: 'Setting up and securing physical seed phrase backups.' },
       { id: 'sec-2', title: 'Multi-Sig Wallets vs MPC Technology', type: 'Deep Dive', time: '22m read', level: 'Advanced', locked: false, desc: 'Comparing multisig contracts against Multi-Party Computation architectures.' },
-      { id: 'sec-3', title: 'How to Read Smart Contract Audit Reports', type: 'Guide', time: '35m read', level: 'Intermediate', locked: false, desc: 'What red flags to look for when evaluating new DeFi protocol deposits.' },
+      { id: 'sec-3', title: 'How to Read Smart Contract Audit Reports', type: 'Guide', time: '35m read', level: 'Intermediate', locked: true, desc: 'What red flags to look for when evaluating new DeFi protocol deposits.' },
       { id: 'sec-4', title: 'Phishing Defense & OpSec for Crypto Investors', type: 'Article', time: '12m read', level: 'Beginner', locked: false, desc: 'Common attack vectors and how to harden your personal operational security.' },
     ]
   },
@@ -75,13 +76,17 @@ const ACADEMY_CATEGORIES: Category[] = [
     resources: [
       { id: 'psy-1', title: 'Managing Fear & Greed in High Volatility', type: 'Video', time: '45m', level: 'Beginner', locked: false, desc: 'Techniques to prevent emotional decision making during 20%+ daily moves.' },
       { id: 'psy-2', title: 'Probabilistic Thinking vs Certainty Bias', type: 'Guide', time: '15m read', level: 'Intermediate', locked: false, desc: 'Why traders must think in EV (Expected Value) rather than absolute predictions.' },
-      { id: 'psy-3', title: 'Building a Rule-Based Trading System', type: 'Video Series', time: '1h 30m', level: 'Advanced', locked: false, desc: 'Constructing systematic entry, invalidation, and profit taking frameworks.' },
+      { id: 'psy-3', title: 'Building a Rule-Based Trading System', type: 'Video Series', time: '1h 30m', level: 'Advanced', locked: true, desc: 'Constructing systematic entry, invalidation, and profit taking frameworks.' },
       { id: 'psy-4', title: 'The Sunk Cost Fallacy in Altcoin Bags', type: 'Article', time: '10m read', level: 'Beginner', locked: false, desc: 'How to know when a thesis is objectively broken and a position must be cut.' },
     ]
   }
 ];
 
-export const Learn: React.FC = () => {
+export interface LearnProps {
+  onNavigate?: (route: PageRoute) => void;
+}
+
+export const Learn: React.FC<LearnProps> = ({ onNavigate }) => {
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
 
   const featuredCourse = {
@@ -142,9 +147,15 @@ export const Learn: React.FC = () => {
                 <div className="flex-1 p-6 flex flex-col justify-center relative">
                   <div className="flex justify-between items-start gap-4 mb-2">
                     <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{resource.title}</h3>
-                    <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1 bg-primary/10 border border-primary/20 rounded text-xs font-medium text-primary">
-                      <Unlock size={14} /> FREE
-                    </div>
+                    {resource.locked ? (
+                      <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1 bg-surface border border-border rounded text-xs font-medium text-text-muted cursor-not-allowed">
+                        <Lock size={14} /> PRO
+                      </div>
+                    ) : (
+                      <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1 bg-primary/10 border border-primary/20 rounded text-xs font-medium text-primary">
+                        <Unlock size={14} /> FREE
+                      </div>
+                    )}
                   </div>
                   
                   <p className="text-text-muted text-sm mb-6 max-w-2xl">{resource.desc}</p>
@@ -161,16 +172,6 @@ export const Learn: React.FC = () => {
             </Card>
           ))}
         </div>
-        
-        <div className="mt-12 pt-8 border-t border-border">
-          <AffiliateCTA
-            partner="Ledger"
-            text="Secure your assets while learning."
-            ctaLabel="Get Ledger Nano X"
-            href="#"
-            variant="banner"
-          />
-        </div>
       </div>
     );
   }
@@ -179,122 +180,248 @@ export const Learn: React.FC = () => {
 
   return (
     <div className="animate-fade-in space-y-12 lg:space-y-16 pb-12">
-      <LeaderboardAd partner="binance" className="mb-4" />
       {/* Header */}
-      <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-bold uppercase tracking-wider mb-4">
-          <Award size={14} /> Academy
+      <div className="flex flex-col md:flex-row justify-between items-end gap-6">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-[10px] font-bold uppercase tracking-wider mb-4">
+            <Award size={14} /> Academy
+          </div>
+          <h1 className="text-3xl lg:text-5xl font-heading font-bold mb-4">Master the Markets</h1>
+          <p className="text-text-muted text-lg max-w-2xl leading-relaxed">
+            Institutional education for digital assets. From foundational concepts to complex derivatives and on-chain forensics.
+          </p>
         </div>
-        <h1 className="text-3xl lg:text-4xl font-heading font-bold mb-4">Master the Markets</h1>
-        <p className="text-text-muted text-lg max-w-2xl">
-          Curated education from industry professionals. Elevate your understanding of digital assets, from foundational concepts to advanced trading mechanics.
-        </p>
+        <div className="hidden lg:block">
+           <AdUnit size="medium" partner="okx" label="Learning Partner" />
+        </div>
       </div>
+
+      <div className="h-px bg-border/50 w-full" />
 
       {/* Featured Course */}
       <section>
-        <Card variant="featured" className="p-0 overflow-hidden relative group">
+        <Card variant="featured" className="p-0 overflow-hidden relative group border-primary/20 shadow-[0_0_50px_rgba(212,175,55,0.05)]">
           <div className="flex flex-col md:flex-row h-full">
-             <div className="md:w-1/2 relative min-h-[250px] md:min-h-full">
+             <div className="md:w-1/2 relative min-h-[300px] md:min-h-full">
                <img 
                  src={featuredCourse.image} 
                  alt="Course cover" 
-                 className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-700 group-hover:scale-105"
+                 className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-1000 group-hover:scale-105"
                />
                <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 to-transparent"></div>
                <div className="absolute inset-x-0 bottom-0 p-6 md:hidden">
-                 <div className="px-3 py-1 bg-primary text-white text-xs font-bold rounded-full w-fit mb-2">FEATURED</div>
+                 <div className="px-3 py-1 bg-primary text-white text-xs font-bold rounded-full w-fit mb-2 shadow-lg">FEATURED</div>
                </div>
              </div>
              
-             <div className="md:w-1/2 p-6 lg:p-10 flex flex-col justify-center relative z-10">
-               <div className="hidden md:block px-3 py-1 bg-primary text-white text-xs font-bold rounded-full w-fit mb-4">FEATURED COURSE</div>
-               <h2 className="text-2xl lg:text-3xl font-bold mb-4">{featuredCourse.title}</h2>
-               <p className="text-text-muted mb-8 leading-relaxed">
+             <div className="md:w-1/2 p-8 lg:p-14 flex flex-col justify-center relative z-10">
+               <div className="hidden md:block px-3 py-1 bg-primary text-white text-[10px] font-extrabold rounded-full w-fit mb-6 tracking-widest shadow-lg">FEATURED COURSE</div>
+               <h2 className="text-3xl lg:text-4xl font-bold mb-6 font-heading tracking-tight leading-tight">{featuredCourse.title}</h2>
+               <p className="text-text-muted mb-10 text-lg leading-relaxed font-medium">
                  {featuredCourse.description}
                </p>
                
-               <div className="flex flex-wrap gap-6 mb-8 text-sm text-text-muted font-medium">
-                  <div className="flex items-center gap-2"><PlayCircle size={16} className="text-primary" /> {featuredCourse.modules} Modules</div>
-                  <div className="flex items-center gap-2"><Star size={16} className="text-[#FFD700]" /> {featuredCourse.level}</div>
+               <div className="flex flex-wrap gap-8 mb-10 text-sm text-text-muted font-bold uppercase tracking-tighter">
+                  <div className="flex items-center gap-2"><PlayCircle size={18} className="text-primary" /> {featuredCourse.modules} Modules</div>
+                  <div className="flex items-center gap-2"><Star size={18} className="text-primary" /> {featuredCourse.level}</div>
                   <div className="flex items-center gap-2">⏱ {featuredCourse.duration}</div>
                </div>
                
-               <Button>
-                 Start Learning Now
+               <Button size="lg" className="w-full md:w-fit font-bold tracking-widest shadow-xl">
+                 GET CERTIFIED <ArrowLeft className="rotate-180 ml-2" size={18} />
                </Button>
              </div>
           </div>
         </Card>
       </section>
 
-      {/* Categories Grid */}
-      <section>
-        <h2 className="text-2xl font-bold mb-6">Browse by Category</h2>
-        <div className="flex flex-col gap-4">
-          {ACADEMY_CATEGORIES.map((cat) => (
-             <div 
-               key={cat.id} 
-               onClick={() => setActiveCategoryId(cat.id)}
-               className="leather-card rounded-xl p-6 cursor-pointer hover:border-primary/50 group flex items-center gap-6 transition-all"
-             >
-                <div className="p-4 bg-surface rounded-xl text-primary group-hover:bg-primary/20 transition-all flex-shrink-0">
-                   {cat.icon}
-                </div>
-                <div className="flex-1">
-                   <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{cat.name}</h3>
-                   <p className="text-sm text-text-muted mt-1">{cat.resources.length} Modules & Resources</p>
-                </div>
-             </div>
-          ))}
-        </div>
-      </section>
+      {/* Main Grid View */}
+      <div className="grid grid-cols-1 xl:grid-cols-4 gap-12">
+         <div className="xl:col-span-3 space-y-12 lg:space-y-16">
+            
+            {/* Quick Access Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Research & Reports Card */}
+               <div 
+                  className="leather-card rounded-2xl p-8 bg-gradient-to-br from-surface to-background relative overflow-hidden group cursor-pointer border border-border hover:border-primary/50 transition-all flex flex-col items-center text-center gap-6 shadow-xl"
+                  onClick={() => onNavigate?.(PageRoute.RESEARCH)}
+               >
+                  <div className="absolute top-0 right-0 p-4">
+                     <AdUnit size="medium" partner="ledger" label="Sponsor" />
+                  </div>
+                  <div className="flex-shrink-0 w-16 h-16 bg-surface border border-border rounded-xl flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-500 shadow-inner mt-4">
+                     <BookOpen size={32} className="group-hover:animate-pulse" />
+                  </div>
+                  <div className="relative z-10">
+                     <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Research & Reports</h3>
+                     <p className="text-text-muted text-sm leading-relaxed mb-4">
+                        Weekly on-chain analysis and institutional reports.
+                     </p>
+                     <span className="text-primary font-bold text-xs flex items-center gap-1 justify-center group-hover:gap-2 transition-all">
+                        EXPLORE NOW <ArrowLeft className="rotate-180" size={14} />
+                     </span>
+                  </div>
+               </div>
 
-      {/* Latest Resources */}
-      <section>
-        <div className="flex items-center justify-between mb-6">
-           <h2 className="text-2xl font-bold">Latest Free Resources</h2>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-           {recentArticles.map((article, i) => (
-              <Card key={i} className="flex flex-col cursor-pointer group hover:border-primary/40">
-                 <div className="flex justify-between items-start mb-4">
-                    <span className="px-2 py-1 bg-surface border border-border text-xs rounded font-medium text-text-muted uppercase">
-                       {article.tag}
-                    </span>
-                    <div className="flex items-center gap-1.5 text-xs text-primary font-bold">
-                       {article.icon} {article.type}
-                    </div>
-                 </div>
-                 
-                 <h3 className="text-lg font-bold mb-4 group-hover:text-primary transition-colors pr-4">
-                    {article.title}
-                 </h3>
-                 
-                 <div className="mt-auto flex items-center justify-between text-xs text-text-muted font-medium pt-4 border-t border-border">
-                    <span>{article.readTime}</span>
-                    <span className="flex items-center gap-1 group-hover:text-primary transition-colors">Read Now</span>
-                 </div>
-              </Card>
-           ))}
-        </div>
-      </section>
+               {/* Institutional Insights Card */}
+               <div 
+                  className="leather-card rounded-2xl p-8 bg-gradient-to-br from-surface to-background relative overflow-hidden group cursor-pointer border border-border hover:border-primary/50 transition-all flex flex-col items-center text-center gap-6 shadow-xl"
+                  onClick={() => onNavigate?.(PageRoute.INSIGHTS)}
+               >
+                  <div className="flex-shrink-0 w-16 h-16 bg-surface border border-border rounded-xl flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-500 shadow-inner">
+                     <TargetIcon className="w-8 h-8 group-hover:animate-pulse" />
+                  </div>
+                  <div className="relative z-10">
+                     <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Market Insights</h3>
+                     <p className="text-text-muted text-sm leading-relaxed mb-4">
+                        Regulatory frameworks and geopolitical deep dives.
+                     </p>
+                     <span className="text-primary font-bold text-xs flex items-center gap-1 justify-center group-hover:gap-2 transition-all">
+                        READ REPORTS <ArrowLeft className="rotate-180" size={14} />
+                     </span>
+                  </div>
+                  <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+               </div>
+            </div>
+
+            {/* In-feed Ad */}
+            <div className="py-4 border-y border-border/30">
+               <AdUnit size="leaderboard" partner="binance" label="Academy Sponsor" />
+            </div>
+
+            {/* Categories */}
+            <section>
+               <h2 className="text-sm font-bold font-heading uppercase tracking-[0.25em] text-text-muted mb-8 flex items-center gap-4">
+                  Learning Modules <div className="h-[1px] flex-1 bg-border/50" />
+               </h2>
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+               {ACADEMY_CATEGORIES.map((cat) => (
+                  <div 
+                     key={cat.id} 
+                     onClick={() => setActiveCategoryId(cat.id)}
+                     className="leather-card rounded-xl p-6 cursor-pointer hover:border-primary/50 group flex items-center gap-6 transition-all bg-gradient-to-r from-surface to-transparent shadow-lg"
+                  >
+                     <div className="p-4 bg-surface rounded-xl text-primary group-hover:bg-primary/20 transition-all flex-shrink-0 shadow-inner">
+                        {cat.icon}
+                     </div>
+                     <div className="flex-1">
+                        <h3 className="text-lg font-bold group-hover:text-primary transition-colors">{cat.name}</h3>
+                        <p className="text-xs text-text-muted mt-1 uppercase font-bold tracking-widest">{cat.resources.length} Modules Available</p>
+                     </div>
+                     <ArrowLeft className="rotate-180 text-border group-hover:text-primary transition-colors" size={20} />
+                  </div>
+               ))}
+               </div>
+            </section>
+
+            {/* Latest Resources */}
+            <section>
+               <h2 className="text-sm font-bold font-heading uppercase tracking-[0.25em] text-text-muted mb-8 flex items-center gap-4">
+                  Latest Academy Drops <div className="h-[1px] flex-1 bg-border/50" />
+               </h2>
+               
+               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {recentArticles.slice(0, 2).map((article, i) => (
+                     <Card key={i} className="flex flex-col cursor-pointer group hover:border-primary/40 p-6 bg-surface">
+                        <div className="flex justify-between items-start mb-6">
+                           <span className="px-3 py-1 bg-background border border-border text-[9px] rounded-full font-extrabold text-text-muted uppercase tracking-widest">
+                              {article.tag}
+                           </span>
+                           <div className="flex items-center gap-1.5 text-[10px] text-primary font-extrabold uppercase tracking-widest">
+                              {article.icon} {article.type}
+                           </div>
+                        </div>
+                        
+                        <h3 className="text-xl font-bold mb-6 group-hover:text-primary transition-colors leading-snug">
+                           {article.title}
+                        </h3>
+                        
+                        <div className="mt-auto flex items-center justify-between text-[10px] text-text-muted font-extrabold uppercase tracking-widest pt-4 border-t border-border">
+                           <span>{article.readTime}</span>
+                           <span className="flex items-center gap-1 group-hover:text-primary transition-colors">Start Module</span>
+                        </div>
+                     </Card>
+                  ))}
+                  
+                  {/* Native Ad Integrated in List */}
+                  <NativeSponsoredCard 
+                     title="Automate Your Trading Modules"
+                     description="Apply your academy learnings with 3Commas AI bots. The smart way to handle 24/7 markets."
+                     ctaLabel="Start Bot"
+                     href="#"
+                     partner="3Commas"
+                     image="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&q=80&w=400"
+                  />
+               </div>
+            </section>
+         </div>
+
+         {/* Academy Sidebar */}
+         <aside className="hidden xl:flex flex-col gap-10">
+            <AdUnit size="medium" partner="bybit" label="Sponsored Partner" />
+            
+            <div className="leather-card p-6 rounded-2xl border-dashed border-primary/30 bg-primary/5">
+               <h4 className="font-bold text-sm mb-4 flex items-center gap-2">
+                  <Zap size={18} className="text-primary fill-primary" />
+                  Free Alpha
+               </h4>
+               <p className="text-xs text-text-muted mb-6 leading-relaxed">
+                  Join our discord to get real-time institutional flow alerts and community research reviews.
+               </p>
+               <Button isFullWidth size="sm" variant="secondary" className="font-bold tracking-widest">JOIN DISCORD</Button>
+            </div>
+
+            <div className="p-6 bg-surface border border-border rounded-xl shadow-lg">
+               <h4 className="font-bold text-sm mb-6 flex items-center gap-2">
+                  <Star size={16} className="text-primary" />
+                  Your Progress
+               </h4>
+               <div className="space-y-6">
+                  <div>
+                     <div className="flex justify-between text-[10px] font-bold uppercase mb-2">
+                        <span className="text-text-muted">Total XP</span>
+                        <span className="text-primary">2,450 / 5,000</span>
+                     </div>
+                     <div className="h-1.5 w-full bg-background rounded-full overflow-hidden border border-border">
+                        <div className="h-full bg-primary w-[45%] shadow-[0_0_10px_rgba(212,175,55,0.3)]" />
+                     </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                     <div className="p-3 bg-background border border-border rounded-lg text-center">
+                        <div className="text-lg font-bold text-primary">08</div>
+                        <div className="text-[8px] text-text-muted uppercase font-bold">Resourses</div>
+                     </div>
+                     <div className="p-3 bg-background border border-border rounded-lg text-center">
+                        <div className="text-lg font-bold text-emerald-400">03</div>
+                        <div className="text-[8px] text-text-muted uppercase font-bold">Certificates</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <AdUnit size="skyscraper" partner="ledger" label="Secure Your Gains" />
+         </aside>
+      </div>
 
       {/* Assessment CTA */}
-      <section>
-         <div className="leather-card rounded-2xl p-8 lg:p-12 text-center bg-gradient-to-b from-surface to-background relative overflow-hidden">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+      <section className="pt-8">
+         <div className="leather-card rounded-3xl p-10 lg:p-16 text-center bg-gradient-to-b from-surface to-background relative overflow-hidden border-border/50 shadow-2xl">
+            <div className="absolute top-0 right-0 p-12 opacity-10 rotate-12">
+               <Award size={200} />
+            </div>
             
             <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-               <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6 rotate-12">
-                  <BookOpen size={32} />
+               <div className="w-20 h-20 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-8 rotate-12 shadow-inner">
+                  <Star size={40} className="fill-primary" />
                </div>
-               <h2 className="text-3xl font-bold mb-4">Test Your Knowledge</h2>
-               <p className="text-text-muted mb-8">
-                  Take our comprehensive 50-question assessment to identify gaps in your crypto knowledge and get personalized course recommendations.
+               <h2 className="text-3xl lg:text-4xl font-heading font-bold mb-6 tracking-tight">Institutional Skills Assessment</h2>
+               <p className="text-text-muted mb-10 text-lg leading-relaxed font-medium">
+                  Take our comprehensive 50-question assessment designed by senior analysts to identify gaps in your crypto portfolio management and get personalized course recommendations.
                </p>
-               <Button size="lg" variant="secondary">Take the Assessment</Button>
+               <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+                  <Button size="lg" className="px-10 font-bold tracking-widest">START EXAM</Button>
+                  <Button size="lg" variant="secondary" className="px-10 font-bold tracking-widest">VIEW SYLLABUS</Button>
+               </div>
             </div>
          </div>
       </section>

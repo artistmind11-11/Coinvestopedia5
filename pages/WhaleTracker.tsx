@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { AreaChart, Area, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
-import Table, { Column } from '../components/Table';
+import { Table, Column } from '../components/Table';
 import { AdUnit } from '../components/AdUnit';
 import { AffiliateCTA } from '../components/AffiliateCTA';
 import { LeaderboardAd } from '../components/LeaderboardAd';
@@ -13,7 +12,7 @@ import { Modal } from '../components/Modal';
 import { analyzeAssetMovement, InsightResult } from '../services/geminiService';
 import { Input } from '../components/Input';
 import { useAppContext } from '../context/AppContext';
-import { PulseIcon, TargetIcon } from '../components/AnimatedIcons';
+import { PulseIcon } from '../components/AnimatedIcons';
 import { fetchWhaleAlerts, fetchMempoolTxs } from '../services/api';
 
 // Helper to generate fake ETH addresses
@@ -283,8 +282,7 @@ export const WhaleTracker: React.FC = () => {
    };
 
   return (
-    <div className="space-y-6 animate-fade-in">
-      <LeaderboardAd partner="binance" className="mb-2" />
+    <div className="animate-fade-in">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6 lg:mb-8">
         <div>
           <h1 className="text-3xl lg:text-4xl font-heading font-bold mb-2">Whale Radar 🐋</h1>
@@ -325,9 +323,9 @@ export const WhaleTracker: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 lg:mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 lg:mb-8">
         {/* Net Flow Chart */}
-        <div className="lg:col-span-2 leather-card p-4 lg:p-6 rounded-xl flex flex-col">
+        <div className="leather-card p-4 lg:p-6 rounded-xl flex flex-col">
           <h3 className="font-bold text-sm lg:text-base mb-4">24h Flow Velocity</h3>
           <div className="h-[200px] w-full">
             <ResponsiveContainer width="100%" height="100%">
@@ -351,41 +349,30 @@ export const WhaleTracker: React.FC = () => {
               </AreaChart>
             </ResponsiveContainer>
           </div>
-          
-          <NativeSponsoredCard
-             partner="Ledger"
-             title="Hardware Wallet Security"
-             description="Is your portfolio secure? Move your high-value assets off exchanges and into cold storage."
-             ctaLabel="Shop Ledger Wallets"
-             href="#"
-          />
         </div>
 
-        {/* Sidebar */}
-        <div className="space-y-6">
-           <AdUnit size="medium" partner="coinledger" label="Sponsored" />
-           <div className="leather-card p-4 lg:p-6 rounded-xl relative overflow-hidden flex flex-col items-center justify-center">
-             <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/40 via-background to-background"></div>
-             <h3 className="font-bold text-sm lg:text-base mb-2 absolute top-4 left-6 z-10">Exchange Dominance</h3>
-             
-             <div className="relative w-full aspect-[2/1] max-w-sm mt-8 flex items-center justify-center">
-                <div className="absolute top-1/2 left-0 w-16 h-16 -translate-y-1/2 rounded-full border border-primary/50 bg-primary/10 flex items-center justify-center">
-                  <span className="text-xs font-bold text-primary">Binance</span>
-                </div>
-                <div className="absolute top-1/4 right-0 w-12 h-12 rounded-full border border-primary/50 bg-primary/10 flex items-center justify-center">
-                  <span className="text-[10px] font-bold text-primary">Coinbase</span>
-                </div>
-                <div className="absolute bottom-1/4 right-8 w-14 h-14 rounded-full border border-emerald-500/50 bg-emerald-500/10 flex items-center justify-center">
-                  <span className="text-[10px] font-bold text-emerald-500">Cold Vault</span>
-                </div>
-                
-                {/* Lines */}
-                <svg className="absolute inset-0 pointer-events-none w-full h-full" style={{ overflow: 'visible' }}>
-                   <path d="M 64 50 Q 150 20 280 25" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" className="text-primary/30 animate-pulse-slow"></path>
-                   <path d="M 64 50 Q 150 80 250 75" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="4 4" className="animate-pulse-slow"></path>
-                </svg>
+        {/* Network Visual */}
+        <div className="leather-card p-4 lg:p-6 rounded-xl relative overflow-hidden flex flex-col items-center justify-center">
+          <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/40 via-background to-background"></div>
+          <h3 className="font-bold text-sm lg:text-base mb-2 absolute top-4 left-6 z-10">Exchange Dominance</h3>
+          
+          <div className="relative w-full aspect-[2/1] max-w-sm mt-8 flex items-center justify-center">
+             <div className="absolute top-1/2 left-0 w-16 h-16 -translate-y-1/2 rounded-full border border-primary/50 bg-primary/10 flex items-center justify-center">
+               <span className="text-xs font-bold text-primary">Binance</span>
              </div>
-           </div>
+             <div className="absolute top-1/4 right-0 w-12 h-12 rounded-full border border-primary/50 bg-primary/10 flex items-center justify-center">
+               <span className="text-[10px] font-bold text-primary">Coinbase</span>
+             </div>
+             <div className="absolute bottom-1/4 right-8 w-14 h-14 rounded-full border border-emerald-500/50 bg-emerald-500/10 flex items-center justify-center">
+               <span className="text-[10px] font-bold text-emerald-500">Cold Vault</span>
+             </div>
+             
+             {/* Lines */}
+             <svg className="absolute inset-0 pointer-events-none w-full h-full" style={{ overflow: 'visible' }}>
+                <path d="M 64 50 Q 150 20 280 25" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" className="text-primary/30 animate-pulse-slow"></path>
+                <path d="M 64 50 Q 150 80 250 75" fill="none" stroke="#10B981" strokeWidth="2" strokeDasharray="4 4" className="animate-pulse-slow"></path>
+             </svg>
+          </div>
         </div>
       </div>
 
@@ -432,18 +419,30 @@ export const WhaleTracker: React.FC = () => {
               onRowClick={(item) => setSelectedTx(item)}
               striped
               hoverable
+              renderAfterRow={(index) => index === 4 ? (
+                <tr>
+                  <td colSpan={7} className="p-4 bg-surface/50 border-b border-border">
+                    <AdUnit size="leaderboard" partner="binance" label="Sponsored Alert" />
+                  </td>
+                </tr>
+              ) : null}
             />
          </div>
          {/* Paywall Overlay */}
          <div className="relative border-t border-border z-10">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-surface z-10"></div>
-            <div className="relative z-20 flex flex-col items-center justify-center py-8 lg:py-12 gap-3 lg:gap-4 px-4">
-               <div className="p-2 lg:p-3 bg-primary/10 rounded-full text-primary">
-                  <Lock size={24} className="lg:size-[32px]" />
+            <div className="relative z-20 grid grid-cols-1 md:grid-cols-3 gap-6 items-center py-8 lg:py-12 px-6">
+               <div className="md:col-span-2 flex flex-col items-center md:items-start text-center md:text-left gap-3 lg:gap-4">
+                  <div className="p-2 lg:p-3 bg-primary/10 rounded-full text-primary w-fit">
+                     <Lock size={24} className="lg:size-[32px]" />
+                  </div>
+                  <h3 className="text-xl lg:text-3xl font-bold">Unlock Full Live Tracking</h3>
+                  <p className="text-text-muted text-sm lg:text-lg max-w-md">Get access to historical data, wallet labelling, and real-time push notifications.</p>
+                  <Button className="mt-2" size="lg">Upgrade to Pro</Button>
                </div>
-               <h3 className="text-lg lg:text-xl font-bold text-center">Unlock Full Live Tracking</h3>
-               <p className="text-text-muted text-sm lg:text-base max-w-md text-center">Get access to historical data, wallet labelling, and real-time push notifications.</p>
-               <Button className="mt-2">Upgrade to Pro</Button>
+               <div className="hidden md:block sticky top-24">
+                  <AdUnit size="medium" partner="ledger" label="Sponsored" />
+               </div>
             </div>
             <div className="opacity-30 blur-sm pointer-events-none p-4 space-y-4">
                {[1,2,3].map(i => <div key={i} className="h-8 lg:h-10 bg-background rounded w-full"></div>)}
@@ -579,6 +578,27 @@ export const WhaleTracker: React.FC = () => {
                      <p className="text-sm text-red-400">Analysis failed. Please check your network or API key.</p>
                   )}
                </div>
+
+               {analysis && (
+                  <div className="p-4 bg-primary/5 rounded-xl border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+                     <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                           <Shield size={20} />
+                        </div>
+                        <div>
+                           <p className="text-sm font-bold text-text">Secure your portfolio</p>
+                           <p className="text-xs text-text-muted">Take these assets off the exchange & into your own custody.</p>
+                        </div>
+                     </div>
+                     <AffiliateCTA 
+                        partner="Ledger" 
+                        text="" 
+                        ctaLabel="Get Ledger Nano X" 
+                        href="#" 
+                        variant="card"
+                     />
+                  </div>
+               )}
 
                <Button isFullWidth onClick={closeModal} variant="secondary">Close Report</Button>
             </div>

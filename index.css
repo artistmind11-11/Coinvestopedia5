@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Mode - Silver/Platinum "Easy on Eyes" Palette */
+  --c-background: 224 226 230; /* Light Metallic Grey */
+  --c-surface: 243 245 248; /* Silver/White Surface */
+  --c-border: 200 205 215; /* Defined Silver Border */
+  --c-primary: 16 185 129; /* emerald-500 */
+  --c-primary-dark: 5 150 105; /* emerald-600 */
+  --c-text: 15 23 42; /* slate-900 - High contrast text */
+  --c-text-muted: 71 85 105; /* slate-600 */
+  --c-input-bg: 226 232 240; /* Slate-200 */
+}
+
+.dark {
+  /* Dark Mode - Deep Carbon Palette */
+  --c-background: 10 10 10; /* near black */
+  --c-surface: 23 23 23; /* neutral-900 */
+  --c-border: 48 48 48; /* neutral-800 */
+  --c-primary: 16 185 129; /* emerald-500 */
+  --c-primary-dark: 5 150 105; /* emerald-600 */
+  --c-text: 250 250 250; /* neutral-50 */
+  --c-text-muted: 163 163 163; /* neutral-400 */
+  --c-input-bg: 38 38 38; /* neutral-800 */
+}
+
+@layer base {
+  body {
+    background-color: rgb(var(--c-background));
+    color: rgb(var(--c-text));
+    font-family: 'Source Sans 3', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(var(--c-border), 0.8); 
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--c-text-muted), 0.5); 
+  }
+
+  /* Mesh Gradient Animation for Hero */
+  .hero-mesh::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+    animation: pulse-mesh 8s ease-in-out infinite;
+    z-index: 0;
+  }
+}
+
+@keyframes pulse-mesh {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+@layer components {
+  .glass-nav {
+    background: rgba(var(--c-surface), 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(var(--c-border), 0.6);
+  }
+  
+  .pattern-grid {
+    background-image: 
+      linear-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  
+  .glass-morphism {
+    background: rgba(var(--c-surface), 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(var(--c-border), 0.5);
+  }
+  
+  .silver-sheen {
+    background-image: linear-gradient(135deg, rgba(255,255,255,0.6) 0%, transparent 50%, rgba(255,255,255,0.2) 100%);
+  }
+
+  /* Premium Skin Finish - Light Mode Base (Clean Silver) */
+  .leather-card {
+    position: relative;
+    background-color: rgb(var(--c-surface));
+    /* Silver gradient for light mode */
+    background-image: linear-gradient(145deg, rgba(255,255,255,0.6) 0%, rgba(0,0,0,0.02) 100%);
+    /* Softer, more diffuse shadows for light mode to reduce eye strain */
+    box-shadow: 
+      0 2px 4px 0 rgba(0, 0, 0, 0.05),
+      0 1px 2px 0 rgba(0, 0, 0, 0.03),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.8); /* Highlight top bevel */
+    border: 1px solid rgb(var(--c-border));
+    isolation: isolate;
+    overflow: hidden;
+    overflow-wrap: break-word;
+  }
+
+  .dark .leather-card {
+    background-color: #171717;
+    background-image: radial-gradient(circle at top left, #1f1f1f, #171717);
+    box-shadow: 
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05), 
+      0 4px 6px -1px rgba(0, 0, 0, 0.5), 
+      0 2px 4px -1px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .leather-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    /* Leather grain texture using SVG noise */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+    border-radius: inherit;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.15; /* Increased opacity in light mode for visible silver texture */
+  }
+  
+  .dark .leather-card::before {
+    opacity: 0.08; /* Stronger in dark mode */
+  }
+
+  .leather-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .leather-card:hover {
+    background-color: rgb(var(--c-surface));
+    border-color: rgb(var(--c-primary));
+    box-shadow: 
+      0 10px 15px -3px rgba(16, 185, 129, 0.05), 
+      0 4px 6px -2px rgba(16, 185, 129, 0.02);
+  }
+
+  .dark .leather-card:hover {
+    background-color: #1a1a1a;
+    background-image: radial-gradient(circle at top left, #252525, #1a1a1a);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+      0 10px 15px -3px rgba(0, 0, 0, 0.6), 
+      0 4px 6px -2px rgba(0, 0, 0, 0.4);
+  }
+}

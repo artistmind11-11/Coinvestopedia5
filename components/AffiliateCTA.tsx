@@ -15,6 +15,29 @@ export interface AffiliateCTAProps {
 export const AffiliateCTA: React.FC<AffiliateCTAProps> = ({ 
   partner, text, subtext, ctaLabel, href, variant = 'banner', icon, className = '' 
 }) => {
+  if (variant === 'card') {
+    return (
+      <div className={`p-4 rounded-xl border border-border bg-surface hover:border-primary/50 transition-colors ${className}`}>
+        <div className="flex items-center gap-2 mb-3">
+          <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+            {icon || <ExternalLink size={16} />}
+          </div>
+          <span className="text-[10px] font-bold uppercase tracking-widest text-text-muted">{partner}</span>
+        </div>
+        <h4 className="text-sm font-bold text-text mb-1">{text}</h4>
+        {subtext && <p className="text-xs text-text-muted mb-4">{subtext}</p>}
+        <a 
+          href={href} 
+          target="_blank" 
+          rel="noopener sponsored" 
+          className="flex items-center justify-center gap-2 px-4 py-2 bg-primary text-background text-xs font-bold rounded-lg hover:opacity-90 transition-all w-full"
+        >
+           {ctaLabel}
+        </a>
+      </div>
+    );
+  }
+
   return (
     <div className={`leather-card border-l-4 border-l-primary p-4 lg:p-6 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-4 ${className}`}>
         <div className="flex items-start gap-4 flex-1">

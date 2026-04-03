@@ -1,43 +1,27 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState } from 'react';
 import { Home as HomeIcon, BarChart2, Calculator, Menu } from 'lucide-react';
 import { Header } from './components/Header';
 import { SidebarLeft } from './components/SidebarLeft';
 import { SidebarRight } from './components/SidebarRight';
 import { Background } from './components/Background';
 import { ScrollToTop } from './components/ScrollToTop';
+import { Home } from './pages/Home';
+import { WhaleTracker } from './pages/WhaleTracker';
+import { Compare } from './pages/Compare';
+import { Tools } from './pages/Tools';
+import { MacroIntel } from './pages/MacroIntel';
+import { Learn } from './pages/Learn';
+import { Insights } from './pages/Insights';
+import { Research } from './pages/Research';
+import { Newsletter } from './pages/Newsletter';
+import { Privacy } from './pages/Privacy';
+import { Terms } from './pages/Terms';
+import { Cookies } from './pages/Cookies';
 import { PageRoute } from './types';
 import { AppProvider, useAppContext } from './context/AppContext';
 import { ToastContainer } from './components/Toast';
+import { SecurityAudit } from './pages/SecurityAudit';
 import { TargetIcon } from './components/AnimatedIcons';
-
-// Lazy load pages for code splitting
-const Home = lazy(() => import('./pages/Home').then(m => ({ default: m.Home })));
-const WhaleTracker = lazy(() => import('./pages/WhaleTracker').then(m => ({ default: m.WhaleTracker })));
-const Compare = lazy(() => import('./pages/Compare').then(m => ({ default: m.Compare })));
-const Tools = lazy(() => import('./pages/Tools').then(m => ({ default: m.Tools })));
-const MacroIntel = lazy(() => import('./pages/MacroIntel').then(m => ({ default: m.MacroIntel })));
-const Learn = lazy(() => import('./pages/Learn').then(m => ({ default: m.Learn })));
-const Insights = lazy(() => import('./pages/Insights').then(m => ({ default: m.Insights })));
-const Newsletter = lazy(() => import('./pages/Newsletter').then(m => ({ default: m.Newsletter })));
-const Privacy = lazy(() => import('./pages/Privacy').then(m => ({ default: m.Privacy })));
-const Terms = lazy(() => import('./pages/Terms').then(m => ({ default: m.Terms })));
-const Cookies = lazy(() => import('./pages/Cookies').then(m => ({ default: m.Cookies })));
-const SecurityAudit = lazy(() => import('./pages/SecurityAudit').then(m => ({ default: m.SecurityAudit })));
-
-// Loading skeleton component
-const PageSkeleton: React.FC = () => (
-  <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-    {[...Array(4)].map((_, i) => (
-      <div key={i} style={{
-        height: '80px',
-        borderRadius: '16px',
-        background: 'var(--cv-bg-secondary)',
-        animation: 'pulse 1.5s ease-in-out infinite',
-        animationDelay: `${i * 0.1}s`,
-      }} />
-    ))}
-  </div>
-);
 
 const AppContent: React.FC = () => {
   const { theme } = useAppContext();
@@ -68,7 +52,9 @@ const AppContent: React.FC = () => {
       case PageRoute.AUDIT:
         return <SecurityAudit />;
       case PageRoute.LEARN:
-        return <Learn />;
+        return <Learn onNavigate={handleNavigate} />;
+      case PageRoute.RESEARCH:
+        return <Research />;
       case PageRoute.INSIGHTS:
         return <Insights />;
       case PageRoute.PRIVACY:
@@ -119,9 +105,7 @@ const AppContent: React.FC = () => {
 
             {/* Col 3: Main Content */}
             <div className="w-full min-w-0">
-              <Suspense fallback={<PageSkeleton />}>
-                {renderPage()}
-              </Suspense>
+              {renderPage()}
             </div>
 
             {/* Col 4: Gap */}
