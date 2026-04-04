@@ -306,6 +306,10 @@ export const WhaleTracker: React.FC = () => {
         </div>
       </div>
 
+      <div className="mb-8 flex justify-center">
+         <AdUnit size="leaderboard" partner="kucoin" label="Market Liquidity" />
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 mb-6 lg:mb-8">
         <div className="leather-card p-4 lg:p-6 rounded-xl">
            <div className="text-text-muted text-xs lg:text-sm mb-1">24h Large Inflows</div>

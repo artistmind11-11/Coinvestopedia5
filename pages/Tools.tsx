@@ -7,6 +7,7 @@ import {
   BookOpen, Clock, ExternalLink
 } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
+import { AdUnit } from '../components/AdUnit';
 
 // Existing Tools
 import { DCACalculator } from '../components/tools/Tier3/DCACalculator';
@@ -127,6 +128,12 @@ export const Tools: React.FC = () => {
           <p className="text-text-muted text-lg">{activeTool.description}</p>
         </div>
 
+        {!isProUser && (
+          <div className="mb-8 flex justify-center">
+            <AdUnit size="leaderboard" partner="ledger" label="Secure Your Assets" />
+          </div>
+        )}
+
         {ActiveComponent ? <ActiveComponent /> : <PlaceholderTool tool={activeTool} />}
       </div>
     );
@@ -227,7 +234,13 @@ export const Tools: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           Economic Calendar — TradingView Widget
          ═══════════════════════════════════════════════════════════════════ */}
-      <div className="space-y-6 mt-16">
+      {!isProUser && (
+        <div className="flex justify-center mt-12 mb-4">
+          <AdUnit size="leaderboard" partner="binance" label="Sponsored Integration" />
+        </div>
+      )}
+
+      <div className="space-y-6 mt-12">
         {/* Section Header — matches existing section header pattern */}
         <div className="flex items-center gap-4">
           <h2 className="text-sm font-bold font-heading uppercase tracking-[0.25em] text-text-muted whitespace-nowrap">

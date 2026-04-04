@@ -285,7 +285,7 @@ export const Learn: React.FC<LearnProps> = ({ onNavigate }) => {
             </div>
 
             {/* In-feed Ad */}
-            <div className="py-4 border-y border-border/30">
+            <div className="py-8 border-y border-border/30 flex justify-center">
                <AdUnit size="leaderboard" partner="binance" label="Academy Sponsor" />
             </div>
 

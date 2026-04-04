@@ -704,6 +704,10 @@ export const MacroIntel: React.FC = () => {
         </div>
       </div>
 
+      <div className="mt-8 mb-4 flex justify-center">
+        <AdUnit size="leaderboard" partner="coinledger" label="Data Sponsor" />
+      </div>
+
       <LiveMacroBar />
 
       {/* Tab Navigation */}

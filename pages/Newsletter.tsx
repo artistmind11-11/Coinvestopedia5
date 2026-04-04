@@ -5,6 +5,7 @@ import { IconCard } from '../components/IconCard';
 import { Mail, Sparkles, TrendingUp, BarChart3, Shield, Clock, Check, Users, Target, ArrowLeft, ArrowUpRight, X } from 'lucide-react';
 import { Button } from '../components/Button';
 import { Modal } from '../components/Modal';
+import { AdUnit } from '../components/AdUnit';
 
 export const Newsletter: React.FC = () => {
   const [selectedIssue, setSelectedIssue] = useState<any>(null);
@@ -107,6 +108,10 @@ export const Newsletter: React.FC = () => {
           ))}
         </div>
       </section>
+
+      <div className="flex justify-center mb-16 lg:mb-24">
+        <AdUnit size="leaderboard" partner="3commas" label="Trading Tools" />
+      </div>
 
       {/* Sample Issues */}
       <section className="mb-16 lg:mb-24">

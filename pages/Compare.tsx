@@ -80,6 +80,12 @@ export const Compare: React.FC = () => {
         </div>
       </div>
 
+      {!isProUser && (
+        <div className="flex justify-center mt-2 mb-4">
+          <AdUnit size="leaderboard" partner="binance" label="Sponsored Integration" />
+        </div>
+      )}
+
       {/* ─── TABS & NAVIGATION ─────────────────────────────────────────────── */}
       <div className="flex overflow-x-auto no-scrollbar gap-2 md:gap-3 pb-2 scroll-smooth">
         {TABS.map(tab => {
