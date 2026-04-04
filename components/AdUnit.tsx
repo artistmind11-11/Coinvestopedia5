@@ -9,6 +9,7 @@ interface AdUnitProps {
   label?: string;
   partner?: AdPartner;
   context?: AdContext;
+  showOnMobileOnly?: boolean;
 }
 
 const PARTNERS: Record<AdPartner, {
@@ -181,11 +182,12 @@ const PARTNERS: Record<AdPartner, {
   }
 };
 
-export const AdUnit: React.FC<AdUnitProps> = ({ size, className = '', label = 'Advertisement', partner, context }) => {
+export const AdUnit: React.FC<AdUnitProps> = ({ size, className = '', label = 'Advertisement', partner, context, showOnMobileOnly }) => {
   const { isProUser } = useAppContext();
+  const [isDismissed, setIsDismissed] = React.useState(false);
 
-  // Ad rules: Hide if Pro user or if newsletter-mode (where we might not want display ads)
-  if (isProUser) return null;
+  // Ad rules: Hide if Pro user or if dismissed
+  if (isProUser || isDismissed) return null;
 
   const dimensions = {
     medium: 'w-[300px] h-[250px]',
@@ -193,8 +195,8 @@ export const AdUnit: React.FC<AdUnitProps> = ({ size, className = '', label = 'A
     billboard: 'w-full h-[250px]',
     skyscraper: 'w-[300px] h-[600px]',
     leaderboard: 'w-full max-w-[728px] h-[90px] mx-auto',
-    'mobile-sticky': 'fixed bottom-[64px] left-0 right-0 h-[50px] bg-background/95 backdrop-blur-sm border-t border-border z-[99] md:hidden',
-    native: 'w-full max-w-sm h-auto mx-auto'
+    'mobile-sticky': 'fixed bottom-0 left-0 right-0 h-[64px] bg-background/95 backdrop-blur-md border-t border-border/50 z-[100] md:hidden shadow-[0_-10px_30px_rgba(0,0,0,0.3)] animate-slide-up',
+    native: 'w-full h-auto mx-auto'
   };
 
   const resolvedPartner = useMemo(() => {
@@ -209,83 +211,113 @@ export const AdUnit: React.FC<AdUnitProps> = ({ size, className = '', label = 'A
 
   if (size === 'native') {
     return (
-      <div className={`leather-card rounded-xl p-5 border border-primary/20 relative shadow-lg hover:border-primary/50 transition-colors ${dimensions[size]} ${className}`}>
-        <span className="absolute top-2 right-2 text-[9px] text-text-muted uppercase tracking-widest font-bold px-2 py-1 bg-surface rounded">
+      <div className={`leather-card rounded-2xl p-6 border border-primary/20 relative shadow-2xl hover:border-primary/40 transition-all duration-500 overflow-hidden group bg-gradient-to-br from-surface to-background ${dimensions[size]} ${className}`}>
+        {/* Subtle Background Shimmer */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+        
+        <span className="absolute top-3 right-3 text-[9px] text-text-muted uppercase tracking-[0.2em] font-extrabold px-2 py-1 bg-surface/50 border border-border/30 rounded-md backdrop-blur-sm z-10">
           {label}
         </span>
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded bg-surface border border-border flex flex-shrink-0 items-center justify-center shadow-inner">
+        
+        <div className="flex items-center gap-4 mb-5 relative z-10">
+          <div className="w-12 h-12 rounded-xl bg-surface border border-border flex flex-shrink-0 items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-500">
             {adData.icon}
           </div>
-          <span className="font-bold text-sm text-text">{adData.name}</span>
+          <div className="flex flex-col">
+            <span className="font-bold text-xs text-text-muted uppercase tracking-widest leading-none mb-1">{adData.name}</span>
+            <span className="font-black text-sm text-text leading-tight">{adData.subOffer}</span>
+          </div>
         </div>
-        <p className="text-sm font-bold mb-1 drop-shadow-sm text-primary">{adData.offer}</p>
-        <p className="text-xs text-text-muted mb-4 line-clamp-2">{adData.description}</p>
+        
+        <div className="relative z-10">
+           <p className="text-xl font-black mb-2 tracking-tight text-primary group-hover:text-primary-light transition-colors leading-none">
+              {adData.offer}
+           </p>
+           <p className="text-xs text-text-muted mb-6 line-clamp-2 leading-relaxed font-medium">
+              {adData.description}
+           </p>
+        </div>
+        
         <a 
            href={adData.url} 
            target="_blank" 
            rel="nofollow sponsored"
-           className={`w-full py-2 flex items-center justify-center gap-1 rounded font-bold text-xs shadow-md transition-transform hover:-translate-y-0.5 ${adData.accentColor}`}
+           className={`w-full py-3 flex items-center justify-center gap-2 rounded-xl font-bold text-xs shadow-xl transition-all hover:shadow-2xl hover:-translate-y-1 relative z-10 ${adData.accentColor}`}
         >
-          {adData.cta} <ArrowUpRight size={12} strokeWidth={3} />
+          {adData.cta} <ArrowUpRight size={14} strokeWidth={3} />
         </a>
       </div>
     );
   }
 
   return (
-    <div className={`relative flex flex-col overflow-hidden rounded-xl shadow-lg transition-transform hover:scale-[1.01] ${dimensions[size]} ${className}`}>
+    <div className={`relative flex flex-col overflow-hidden rounded-2xl shadow-2xl transition-all duration-500 hover:scale-[1.01] ${(showOnMobileOnly && size !== 'mobile-sticky') ? 'flex md:hidden' : ''} ${dimensions[size]} ${className}`}>
         {/* Background */}
         <div className={`absolute inset-0 bg-gradient-to-br ${adData.bgGradient} opacity-95`}></div>
-        <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] animate-pulse"></div>
         
+        {/* Close Button for Sticky */}
+        {size === 'mobile-sticky' && (
+           <button 
+             onClick={(e) => {
+               e.preventDefault();
+               setIsDismissed(true);
+             }}
+             className="absolute -top-1 -right-1 p-2 text-white/50 hover:text-white z-20"
+           >
+              <div className="bg-red-500/20 hover:bg-red-500/40 p-1 rounded-full backdrop-blur-sm border border-white/10 transition-colors">
+                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </div>
+           </button>
+        )}
+
         {/* Label */}
-        <span className="absolute top-2 right-2 text-[9px] uppercase tracking-widest opacity-60 font-bold z-10 px-2 py-1 bg-black/20 rounded backdrop-blur-sm text-white border border-white/10">
+        <span className="absolute top-2 right-2 text-[8px] uppercase tracking-[0.2em] opacity-60 font-black z-10 px-2 py-1 bg-black/40 rounded-md backdrop-blur-sm text-white border border-white/10">
             {label}
         </span>
 
         {/* Content */}
         <div className={size === 'mobile-sticky' 
-            ? `relative z-10 flex items-center justify-between h-full px-4 ${adData.textColor}`
-            : `relative z-10 flex flex-col h-full p-6 justify-between ${adData.textColor}`
+            ? `relative z-10 flex items-center justify-between h-full px-5 ${adData.textColor}`
+            : `relative z-10 flex flex-col h-full p-8 justify-between ${adData.textColor}`
         }>
             {size === 'mobile-sticky' ? (
                 <>
-                   <div className="flex items-center gap-3">
-                      <div className="p-1 bg-white/10 rounded border border-white/10">{adData.icon}</div>
+                   <div className="flex items-center gap-4">
+                      <div className="p-1.5 bg-white/10 rounded-lg border border-white/20 backdrop-blur-md shadow-inner">{adData.icon}</div>
                       <div>
-                         <div className="text-xs font-black leading-none">{adData.offer}</div>
-                         <div className="text-[10px] opacity-70 font-bold uppercase">{adData.name}</div>
+                         <div className="text-sm font-black leading-none mb-0.5 tracking-tight">{adData.offer}</div>
+                         <div className="text-[10px] opacity-70 font-extrabold uppercase tracking-widest">{adData.name}</div>
                       </div>
                    </div>
                    <a 
                      href={adData.url} 
                      target="_blank" 
                      rel="nofollow sponsored"
-                     className={`px-4 py-1.5 rounded-lg text-[10px] font-bold shadow-lg ${adData.accentColor}`}
+                     className={`px-6 py-2 rounded-xl text-[10px] font-black shadow-2xl tracking-widest uppercase transition-transform active:scale-95 ${adData.accentColor}`}
                    >
                      {adData.cta}
                    </a>
                 </>
             ) : (
                 <>
-                    <div>
-                        <div className="flex items-center gap-2 mb-3 font-bold text-lg tracking-wide">
-                            <div className="p-1.5 bg-white/10 rounded-lg backdrop-blur-md border border-white/10">
+                    <div className="relative">
+                        <div className="flex items-center gap-3 mb-6 font-bold text-sm tracking-[0.1em] uppercase opacity-90">
+                            <div className="p-2 bg-white/10 rounded-xl backdrop-blur-xl border border-white/20 shadow-inner">
                                 {adData.icon}
                             </div>
                             {adData.name}
                         </div>
                         
-                        <div className="font-black text-4xl leading-none mb-1 tracking-tight drop-shadow-lg">
+                        <div className="font-black text-5xl leading-none mb-2 tracking-tighter drop-shadow-2xl">
                             {adData.offer}
                         </div>
-                        <div className="text-sm font-bold opacity-90 uppercase tracking-wider mb-4 text-white/80">
+                        <div className="text-sm font-black opacity-80 uppercase tracking-[0.25em] mb-6 text-white/90">
                             {adData.subOffer}
                         </div>
                         
                         {size !== 'medium' && size !== 'leaderboard' && (
-                            <p className="text-sm opacity-85 leading-relaxed max-w-[90%] font-medium">
+                            <p className="text-sm lg:text-base opacity-85 leading-relaxed max-w-[95%] font-medium drop-shadow-sm">
                                 {adData.description}
                             </p>
                         )}
@@ -295,9 +327,9 @@ export const AdUnit: React.FC<AdUnitProps> = ({ size, className = '', label = 'A
                       href={adData.url}
                       target="_blank"
                       rel="nofollow sponsored"
-                      className={`mt-4 w-full py-3.5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-0.5 ${adData.accentColor}`}
+                      className={`mt-8 w-full py-4 rounded-2xl font-black text-sm flex items-center justify-center gap-2 transition-all shadow-2xl hover:shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:-translate-y-1 active:translate-y-0 ${adData.accentColor}`}
                     >
-                        {adData.cta} <ArrowUpRight size={16} strokeWidth={3} />
+                        {adData.cta} <ArrowUpRight size={18} strokeWidth={3} />
                     </a>
                 </>
             )}

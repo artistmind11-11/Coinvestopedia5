@@ -128,18 +128,37 @@ export const SecurityAudit: React.FC = () => {
                                 <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5" />
                                 <div className="relative z-10 text-center">
                                     <Activity className="animate-spin text-primary mx-auto mb-6" size={64} />
-                                    <h3 className="text-xl font-bold mb-2">Analyzing Bytecode...</h3>
+                                    <h3 className="text-xl font-bold mb-2 text-text">Analyzing Bytecode...</h3>
                                     <p className="text-text-muted font-medium text-sm animate-pulse tracking-widest uppercase">Checking for 142 known vulnerability patterns</p>
                                 </div>
                                 <div className="absolute bottom-0 inset-x-0 h-1 bg-background">
                                    <div className="h-full bg-primary animate-progress-fast shadow-[0_0_15px_rgba(212,175,55,0.5)]" />
                                 </div>
                             </Card>
-                            
-                            <div className="flex justify-center">
-                               <AdUnit size="leaderboard" context={{ page: PageRoute.AUDIT }} label="Sponsored Security" />
-                            </div>
                          </div>
+                    )}
+
+                    {!isAnalyzing && !result && (
+                        <div className="max-w-4xl mx-auto mt-12 animate-fade-in">
+                            <div className="flex items-center gap-4 mb-8">
+                                <h2 className="text-xs font-bold font-heading uppercase tracking-[0.3em] text-text-muted whitespace-nowrap">
+                                    Most Trusted Hardware Safes 2026
+                                </h2>
+                                <div className="h-[1px] flex-1 bg-gradient-to-r from-border/50 to-transparent" />
+                            </div>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {!isProUser && (
+                                    <>
+                                        <AdUnit size="native" partner="ledger" label="Top Rated" />
+                                        <AdUnit size="native" partner="trezor" label="Original Choice" />
+                                        <div className="hidden lg:block">
+                                            <AdUnit size="native" partner="okx" label="Web3 Wallet" />
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
                     )}
 
                     {!isAnalyzing && result && (
@@ -201,25 +220,31 @@ export const SecurityAudit: React.FC = () => {
                                 </Card>
 
                                 <div className="space-y-8">
-                                   <div className="p-8 bg-surface border border-border rounded-2xl shadow-xl space-y-6">
-                                      <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-text-muted">Action Required</h3>
-                                      <p className="text-sm text-text-muted leading-relaxed font-medium">
-                                         Based on the detected risk factors, we strongly recommend securing your principal in cold storage before interacting with this contract.
-                                      </p>
-                                      <AffiliateCTA 
-                                         partner="Ledger" 
-                                         variant="card" 
-                                         text="Secure your assets with a Ledger hardware wallet."
-                                         ctaLabel="Get Ledger"
-                                         href="https://shop.ledger.com"
-                                      />
-                                   </div>
+                                   {!isProUser && (
+                                       <AdUnit 
+                                          size="native" 
+                                          context={{ page: PageRoute.AUDIT }} 
+                                          label="Recommended Fix"
+                                          className="w-full !max-w-none"
+                                       />
+                                   )}
 
-                                   <Card className="border-primary/20 bg-primary/5 p-8 flex flex-col items-center text-center">
-                                       <h4 className="font-bold mb-4 text-primary uppercase tracking-widest text-xs">Verify for Trading</h4>
-                                       <p className="text-xs text-text-muted mb-6 max-w-[200px]">Liquidity providers require verified security scores to list this asset.</p>
-                                       <Button variant="secondary" size="sm" isFullWidth>Request Manual Audit</Button>
-                                   </Card>
+                                   <div className="p-8 bg-surface border border-border rounded-2xl shadow-xl space-y-6 relative overflow-hidden group">
+                                      <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -translate-y-16 translate-x-16 blur-2xl group-hover:bg-primary/10 transition-colors" />
+                                      <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-text-muted relative z-10">Institutional Best Practices</h3>
+                                      <p className="text-sm text-text-muted leading-relaxed font-medium relative z-10">
+                                         Detected risks suggest moving significant capital to a distinct, cold-storage signing environment. 
+                                      </p>
+                                      {!isProUser && (
+                                          <AffiliateCTA 
+                                             partner="Ledger" 
+                                             variant="card" 
+                                             text="Deploy enterprise-grade security for your institutional assets."
+                                             ctaLabel="Secure with Ledger"
+                                             href="https://shop.ledger.com"
+                                          />
+                                      )}
+                                   </div>
                                 </div>
                             </div>
                             

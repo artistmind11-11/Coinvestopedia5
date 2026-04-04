@@ -590,23 +590,34 @@ export const WhaleTracker: React.FC = () => {
                   )}
                </div>
 
-               {analysis && (
-                  <div className="p-4 bg-primary/5 rounded-xl border border-primary/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                           <Shield size={20} />
+               {analysis && !isProUser && (
+                  <div className="space-y-4">
+                     <div className="p-5 bg-primary/5 rounded-2xl border border-primary/20 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden group">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+                        <div className="flex items-center gap-4 flex-1">
+                           <div className="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center text-primary shadow-inner group-hover:scale-110 transition-transform">
+                              <Shield size={24} />
+                           </div>
+                           <div>
+                              <p className="text-sm font-bold text-text">Institutional Custody</p>
+                              <p className="text-xs text-text-muted leading-relaxed">Secure your institutional-sized capital with enterprise-grade hardware.</p>
+                           </div>
                         </div>
-                        <div>
-                           <p className="text-sm font-bold text-text">Secure your portfolio</p>
-                           <p className="text-xs text-text-muted">Take these assets off the exchange & into your own custody.</p>
-                        </div>
+                        <AffiliateCTA 
+                           partner="Ledger" 
+                           text="" 
+                           ctaLabel="Get Nano X" 
+                           href="https://shop.ledger.com" 
+                           variant="card"
+                           className="!p-0 !bg-transparent !border-none"
+                        />
                      </div>
-                     <AffiliateCTA 
-                        partner="Ledger" 
-                        text="" 
-                        ctaLabel="Get Ledger Nano X" 
-                        href="#" 
-                        variant="card"
+
+                     <AdUnit 
+                        size="native" 
+                        partner="nansen" 
+                        label="Professional Tool" 
+                        className="w-full !max-w-none"
                      />
                   </div>
                )}

@@ -813,37 +813,25 @@ export const Insights: React.FC = () => {
             <h2 className="text-xl font-bold mb-8 flex items-center gap-2 text-text-muted font-heading tracking-widest uppercase text-[10px]">
                <BarChart3 size={14} /> Latest Intelligence
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-               {listArticles.map((article) => (
-                  <Card 
-                     key={article.id} 
-                     className="flex flex-col group hover:border-primary/40 cursor-pointer h-full transition-all duration-300"
-                     onClick={() => setActiveArticleId(article.id)}
-                  >
-                     <div className="flex justify-between items-start mb-6">
-                        <div className="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center group-hover:scale-110 transition-transform">
-                           {article.icon}
-                        </div>
-                        <span className="px-3 py-1 bg-surface border border-border text-[10px] rounded-full font-bold text-text-muted uppercase tracking-widest">
-                           {article.category}
-                        </span>
-                     </div>
-                     
-                     <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-snug">
-                        {article.title}
-                     </h3>
-                     
-                     <p className="text-text-muted text-sm mb-8 flex-grow line-clamp-2">
-                        {article.desc}
-                     </p>
-                     
-                     <div className="flex items-center justify-between pt-4 border-t border-border mt-auto w-full text-xs font-medium text-text-muted">
-                        <div className="flex items-center gap-2">
-                           <Clock size={14} /> {article.readTime}
-                        </div>
-                        <span>{article.date}</span>
-                     </div>
-                  </Card>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+               {listArticles.slice(0, 2).map((article) => (
+                  <InsightCard key={article.id} article={article} onClick={() => setActiveArticleId(article.id)} />
+               ))}
+
+               {!isProUser && (
+                  <AdUnit size="native" context={{ page: PageRoute.INSIGHTS }} label="Knowledge Partner" />
+               )}
+
+               {listArticles.slice(2, 4).map((article) => (
+                  <InsightCard key={article.id} article={article} onClick={() => setActiveArticleId(article.id)} />
+               ))}
+
+               {!isProUser && (
+                  <AdUnit size="native" partner="bybit" label="Trading Partner" />
+               )}
+
+               {listArticles.slice(4).map((article) => (
+                  <InsightCard key={article.id} article={article} onClick={() => setActiveArticleId(article.id)} />
                ))}
             </div>
             
@@ -873,5 +861,36 @@ export const Insights: React.FC = () => {
     </div>
   );
 };
+
+const InsightCard: React.FC<{ article: Article, onClick: () => void }> = ({ article, onClick }) => (
+  <Card 
+     className="flex flex-col group hover:border-primary/40 cursor-pointer h-full transition-all duration-300"
+     onClick={onClick}
+  >
+     <div className="flex justify-between items-start mb-6">
+        <div className="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center group-hover:scale-110 transition-transform">
+           {article.icon}
+        </div>
+        <span className="px-3 py-1 bg-surface border border-border text-[10px] rounded-full font-bold text-text-muted uppercase tracking-widest">
+           {article.category}
+        </span>
+     </div>
+     
+     <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-snug">
+        {article.title}
+     </h3>
+     
+     <p className="text-text-muted text-sm mb-8 flex-grow line-clamp-2">
+        {article.desc}
+     </p>
+     
+     <div className="flex items-center justify-between pt-4 border-t border-border mt-auto w-full text-xs font-medium text-text-muted">
+        <div className="flex items-center gap-2">
+           <Clock size={14} /> {article.readTime}
+        </div>
+        <span>{article.date}</span>
+     </div>
+  </Card>
+);
 
 export default Insights;

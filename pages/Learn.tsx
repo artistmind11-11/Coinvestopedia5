@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Hero } from '../components/Hero';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
 import { BookOpen, Video, FileText, PlayCircle, Star, Award, TrendingUp, Shield, ArrowLeft, Lock, Unlock, Clock, BarChart3, Zap } from 'lucide-react';
@@ -181,27 +182,11 @@ export const Learn: React.FC<LearnProps> = ({ onNavigate }) => {
 
   return (
     <div className="animate-fade-in space-y-12 lg:space-y-16 pb-12">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row justify-between items-end gap-6">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-[10px] font-bold uppercase tracking-wider mb-4">
-            <Award size={14} /> Academy
-          </div>
-          <h1 className="text-3xl lg:text-5xl font-heading font-bold mb-4">Master the Markets</h1>
-          <p className="text-text-muted text-lg max-w-2xl leading-relaxed">
-            Institutional education for digital assets. From foundational concepts to complex derivatives and on-chain forensics.
-          </p>
-        </div>
-         <div className="hidden lg:block">
-            {!isProUser && <AdUnit size="medium" context={{ page: PageRoute.LEARN }} label="Learning Partner" />}
-         </div>
-      </div>
+      <Hero onNavigate={onNavigate} partner="glassnode" />
 
-      {!isProUser && (
-         <div className="flex justify-center">
-            <AdUnit size="native" context={{ page: PageRoute.LEARN }} label="Academy Sponsor" />
-         </div>
-      )}
+      <div className="flex justify-center -mt-8 mb-4">
+         <AdUnit size="native" context={{ page: PageRoute.LEARN }} label="Academy Sponsor" />
+      </div>
 
       <div className="h-px bg-border/50 w-full" />
 

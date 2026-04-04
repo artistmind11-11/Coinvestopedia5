@@ -120,8 +120,8 @@ export const Research: React.FC = () => {
             <div className="h-[1px] flex-1 bg-gradient-to-r from-border/50 to-transparent" />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {GLASSNODE_ARTICLES.slice(0, 2).map((article, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {GLASSNODE_ARTICLES.slice(0, 3).map((article, idx) => (
               <ResearchCard key={idx} article={article} />
             ))}
             
@@ -129,8 +129,16 @@ export const Research: React.FC = () => {
                <AdUnit size="native" context={{ page: PageRoute.RESEARCH }} label="Sponsor" />
             )}
 
-            {GLASSNODE_ARTICLES.slice(2).map((article, idx) => (
-              <ResearchCard key={idx + 2} article={article} />
+            {GLASSNODE_ARTICLES.slice(3, 6).map((article, idx) => (
+              <ResearchCard key={idx + 3} article={article} />
+            ))}
+
+            {!isProUser && (
+               <AdUnit size="native" partner="binance" label="Exchange Partner" />
+            )}
+
+            {GLASSNODE_ARTICLES.slice(6).map((article, idx) => (
+              <ResearchCard key={idx + 6} article={article} />
             ))}
           </div>
 

@@ -5,12 +5,20 @@ import { ArrowUpRight } from 'lucide-react';
 
 interface HeroProps {
   onNavigate?: (route: PageRoute) => void;
+  partner?: string;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
+export const Hero: React.FC<HeroProps> = ({ onNavigate, partner }) => {
   return (
     <section className="relative hero-mesh bg-background overflow-hidden py-12 lg:py-24 mb-8 lg:mb-12 rounded-2xl lg:rounded-3xl border border-border">
       <div className="relative z-10 max-w-[800px] mx-auto text-center px-4 lg:px-6">
+        {partner && (
+          <div className="inline-flex items-center gap-2 mb-8 animate-fade-in">
+             <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-text-muted/60">Institutional Partner</span>
+             <div className="h-[1px] w-8 bg-border" />
+             <span className="text-sm font-heading font-extrabold text-primary tracking-tight capitalize">{partner}</span>
+          </div>
+        )}
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-4 lg:mb-6">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>

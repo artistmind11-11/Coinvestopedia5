@@ -140,12 +140,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
   return (
     <div className="animate-fade-in space-y-12 lg:space-y-20">
-      <div className="flex flex-col items-center gap-4">
-         <span className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-bold">Recommended Partner</span>
-         <AdUnit size="leaderboard" context={{ page: PageRoute.HOME }} />
-      </div>
-      
-      <Hero onNavigate={onNavigate} />
+      <Hero onNavigate={onNavigate} partner="binance" />
 
       <div className="flex justify-center -mt-8 mb-4">
          <AdUnit size="native" context={{ page: PageRoute.HOME }} label="Sponsor" />
