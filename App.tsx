@@ -27,6 +27,7 @@ import { SecurityAudit } from './pages/SecurityAudit';
 import { TargetIcon } from './components/AnimatedIcons';
 
 const AppContent: React.FC = () => {
+  console.log("AppContent initializing...");
   const { theme } = useAppContext();
   const [currentRoute, setCurrentRoute] = useState<PageRoute>(PageRoute.HOME);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

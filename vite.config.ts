@@ -34,7 +34,8 @@ export default defineConfig(({ mode }) => {
       plugins: [react()],
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
+        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
+        'process.env': env
       },
       resolve: {
         alias: {
@@ -42,33 +43,7 @@ export default defineConfig(({ mode }) => {
         }
       },
       build: {
-        rollupOptions: {
-          output: {
-            manualChunks(id) {
-              if (id.includes('node_modules')) {
-                if (
-                  id.includes('react') || 
-                  id.includes('react-dom') || 
-                  id.includes('scheduler') ||
-                  id.includes('prop-types')
-                ) {
-                  return 'foundation';
-                }
-                if (id.includes('lucide-react')) {
-                  return 'vendor-icons';
-                }
-                if (id.includes('framer-motion')) {
-                  return 'vendor-motion';
-                }
-                if (id.includes('recharts')) {
-                  return 'vendor-charts';
-                }
-                return 'vendor-libs';
-              }
-            }
-          }
-        },
-        chunkSizeWarningLimit: 1000,
+        chunkSizeWarningLimit: 2000,
       }
     };
 });
