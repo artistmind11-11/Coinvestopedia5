@@ -159,7 +159,7 @@ export const FearGreedComposite: React.FC = () => {
                       <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
                       <XAxis dataKey="name" tick={{ fontSize: 9, fill: '#a1a1aa' }} stroke="#3f3f46" />
                       <YAxis domain={[0, 100]} tick={{ fontSize: 10, fill: '#a1a1aa' }} stroke="#3f3f46" />
-                      <Tooltip 
+                      <Tooltip itemStyle={{ color: '#e4e4e7' }} labelStyle={{ color: '#a1a1aa' }} 
                         contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8 }}
                         formatter={(v: number) => [v, 'Signal Strength']}
                       />

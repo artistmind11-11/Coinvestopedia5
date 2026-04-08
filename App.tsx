@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Home as HomeIcon, BarChart2, Calculator, Menu } from 'lucide-react';
 import { Header } from './components/Header';
 import { SidebarLeft } from './components/SidebarLeft';
@@ -13,6 +14,8 @@ import { MacroIntel } from './pages/MacroIntel';
 import { Learn } from './pages/Learn';
 import { Insights } from './pages/Insights';
 import { Research } from './pages/Research';
+import { Glossary } from './pages/Glossary';
+import { Exchanges } from './pages/Exchanges';
 import { Newsletter } from './pages/Newsletter';
 import { Privacy } from './pages/Privacy';
 import { Terms } from './pages/Terms';
@@ -21,7 +24,6 @@ import { PageRoute } from './types';
 import { AppProvider, useAppContext } from './context/AppContext';
 import { ToastContainer } from './components/Toast';
 import { SecurityAudit } from './pages/SecurityAudit';
-import { AdUnit } from './components/AdUnit';
 import { TargetIcon } from './components/AnimatedIcons';
 
 const AppContent: React.FC = () => {
@@ -58,6 +60,10 @@ const AppContent: React.FC = () => {
         return <Research />;
       case PageRoute.INSIGHTS:
         return <Insights />;
+      case PageRoute.GLOSSARY:
+        return <Glossary />;
+      case PageRoute.EXCHANGES:
+        return <Exchanges />;
       case PageRoute.PRIVACY:
         return <Privacy />;
       case PageRoute.TERMS:
@@ -105,9 +111,18 @@ const AppContent: React.FC = () => {
             <div className="hidden lg:block"></div>
 
             {/* Col 3: Main Content */}
-            <div className="w-full min-w-0">
-              {renderPage()}
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={currentRoute}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="w-full min-w-0"
+              >
+                {renderPage()}
+              </motion.div>
+            </AnimatePresence>
 
             {/* Col 4: Gap */}
             <div className="hidden lg:block"></div>
@@ -130,7 +145,7 @@ const AppContent: React.FC = () => {
                 className={`h-9 w-auto opacity-80 hover:opacity-100 transition-opacity ${theme === 'dark' ? 'mix-blend-screen' : 'mix-blend-multiply'}`}
               />
               <p className="text-text-muted text-sm px-4">
-                © 2025 Coinvestopedia Academy. World-class institutional crypto data and research.
+                © 2025 Coinvestopedia Knowledge. World-class institutional crypto data and research.
               </p>
             </div>
 
@@ -191,9 +206,6 @@ const AppContent: React.FC = () => {
           {/* Safe area spacer for iOS Home Indicator */}
           <div className="h-[env(safe-area-inset-bottom)] bg-surface"></div>
         </div>
-
-        {/* Global Mobile Sticky Ad */}
-        <AdUnit size="mobile-sticky" partner="binance" />
 
         {/* Global Action Button: Invisible until scroll > 300px */}
         <ScrollToTop />

@@ -134,7 +134,7 @@ export const DividendScreener: React.FC = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke="#27272a" horizontal={false} />
                   <XAxis type="number" hide />
                   <YAxis dataKey="ticker" type="category" tick={{ fontSize: 10, fill: '#a1a1aa' }} stroke="#3f3f46" width={50} />
-                  <Tooltip
+                  <Tooltip itemStyle={{ color: '#e4e4e7' }} labelStyle={{ color: '#a1a1aa' }}
                     contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8 }}
                     formatter={(v: number) => [`${v}%`, 'Annual Yield']}
                   />

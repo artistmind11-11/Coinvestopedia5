@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
-import { Search, ArrowLeft, Clock, Share2, BookmarkPlus, Globe, Shield, Building2, Zap, BarChart3 } from 'lucide-react';
+import { Search, ArrowLeft, Clock, Share2, BookmarkPlus, Globe, Shield, Building2 } from 'lucide-react';
 import { TargetIcon } from '../components/AnimatedIcons';
-import { AdUnit } from '../components/AdUnit';
-import { AffiliateCTA } from '../components/AffiliateCTA';
-import { PageRoute } from '../types';
-import { useAppContext } from '../context/AppContext';
 
 const CATEGORIES = ['All', 'Sovereignty', 'Regulation', 'Institutions', 'Markets', 'Geopolitics'];
 
@@ -37,7 +33,7 @@ export const ARTICLES: Article[] = [
           The Jurisdictional Trap: Traditional wealth storage fails during geopolitical instability.
         </p>
         
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">Three Critical Barriers to Mobility</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Three Critical Barriers to Mobility</h2>
         
         <h3 className="text-xl font-bold mt-6 mb-2 text-primary">1. Physical constraints:</h3>
         <ul className="list-disc pl-5 mb-6 space-y-2">
@@ -90,10 +86,10 @@ export const ARTICLES: Article[] = [
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">The Crypto Solution: Self-Custody</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">The Crypto Solution: Self-Custody</h2>
         <p className="mb-4">Bitcoin and Ethereum enable borderless wealth transfer through cryptographic keys, not physical possession.</p>
         
-        <h3 className="text-xl font-bold mt-6 mb-2 text-white">The Exchange Jurisdiction Problem</h3>
+        <h3 className="text-xl font-bold mt-6 mb-2 text-text">The Exchange Jurisdiction Problem</h3>
         <p className="mb-4">
            Centralized exchanges (Coinbase, Binance, Kraken) introduce regulatory dependencies that negate crypto's portability advantage. Geographic compliance variation poses severe risks when crossing borders.
         </p>
@@ -102,24 +98,24 @@ export const ARTICLES: Article[] = [
            <div className="p-5 bg-background border border-border rounded-lg">
               <h4 className="font-bold text-red-400 mb-2">Turkey Example</h4>
               <ul className="text-sm text-text-muted space-y-2 list-none">
-                 <li><span className="text-white font-medium">Enhanced KYC:</span> Proof of address, tax ID, biometric</li>
-                 <li><span className="text-white font-medium">Caps:</span> $5,000 daily withdrawals</li>
-                 <li><span className="text-white font-medium">Reporting:</span> &gt;$1,500 flagged to authorities</li>
-                 <li><span className="text-white font-medium">Delays:</span> 3-7 days for international</li>
+                 <li><span className="text-text font-medium">Enhanced KYC:</span> Proof of address, tax ID, biometric</li>
+                 <li><span className="text-text font-medium">Caps:</span> $5,000 daily withdrawals</li>
+                 <li><span className="text-text font-medium">Reporting:</span> &gt;$1,500 flagged to authorities</li>
+                 <li><span className="text-text font-medium">Delays:</span> 3-7 days for international</li>
               </ul>
            </div>
            <div className="p-5 bg-background border border-border rounded-lg">
               <h4 className="font-bold text-emerald-400 mb-2">UAE Example</h4>
               <ul className="text-sm text-text-muted space-y-2 list-none">
-                 <li><span className="text-white font-medium">Minimal KYC:</span> ID and selfie sufficient</li>
-                 <li><span className="text-white font-medium">Limits:</span> $100,000+ daily withdrawals</li>
-                 <li><span className="text-white font-medium">Speed:</span> &lt;24 hours processing</li>
-                 <li><span className="text-white font-medium">Tax:</span> No capital gains tax</li>
+                 <li><span className="text-text font-medium">Minimal KYC:</span> ID and selfie sufficient</li>
+                 <li><span className="text-text font-medium">Limits:</span> $100,000+ daily withdrawals</li>
+                 <li><span className="text-text font-medium">Speed:</span> &lt;24 hours processing</li>
+                 <li><span className="text-text font-medium">Tax:</span> No capital gains tax</li>
               </ul>
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">Risk Matrix Analysis</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Risk Matrix Analysis</h2>
         <div className="leather-card p-6 rounded-xl mb-10 overflow-hidden">
            <div className="overflow-x-auto">
               <table className="w-full text-sm text-left border-collapse min-w-[600px]">
@@ -133,28 +129,28 @@ export const ARTICLES: Article[] = [
                     </tr>
                  </thead>
                  <tbody>
-                    <tr className="border-b border-border/50 hover:bg-white/5 transition-colors">
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
                        <td className="py-3 pr-4 font-medium">Border Confiscation</td>
                        <td className="py-3 px-4 text-red-400">High</td>
                        <td className="py-3 px-4 text-green-400">Low</td>
                        <td className="py-3 px-4 text-green-400">None</td>
                        <td className="py-3 pl-4 text-green-400">None</td>
                     </tr>
-                    <tr className="border-b border-border/50 hover:bg-white/5 transition-colors">
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
                        <td className="py-3 pr-4 font-medium">Account Freeze</td>
                        <td className="py-3 px-4 text-text-muted">N/A</td>
                        <td className="py-3 px-4 text-red-400">High</td>
                        <td className="py-3 px-4 text-red-400">High</td>
                        <td className="py-3 pl-4 text-green-400">None</td>
                     </tr>
-                    <tr className="border-b border-border/50 hover:bg-white/5 transition-colors">
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
                        <td className="py-3 pr-4 font-medium">Access Delay</td>
                        <td className="py-3 px-4 text-green-400">None</td>
                        <td className="py-3 px-4 text-amber-400">Medium</td>
                        <td className="py-3 px-4 text-red-400">High</td>
                        <td className="py-3 pl-4 text-green-400">None</td>
                     </tr>
-                    <tr className="border-b border-border/50 hover:bg-white/5 transition-colors">
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
                        <td className="py-3 pr-4 font-medium">Volatility Risk</td>
                        <td className="py-3 px-4 text-amber-400">Low-Med</td>
                        <td className="py-3 px-4 text-green-400">Low</td>
@@ -183,7 +179,7 @@ export const ARTICLES: Article[] = [
           Why small nations can't access global finance and how crypto acts as an alternative rail.
         </p>
         
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">The Mechanics of Correspondent Banking</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">The Mechanics of Correspondent Banking</h2>
         <p className="mb-4">
           International payments require correspondent banking relationships. Small nation banks cannot directly access US dollar clearing systems.
         </p>
@@ -206,7 +202,7 @@ export const ARTICLES: Article[] = [
           </ol>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">De-Risking: Why Banks Exit</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">De-Risking: Why Banks Exit</h2>
         <p className="mb-4">Post-2008 regulatory environment shifted the risk-reward calculation. Banks are increasingly exiting emerging markets due to:</p>
         <ul className="list-disc pl-5 mb-8 space-y-3">
           <li><strong>Regulatory Penalties:</strong> Massive fines (e.g., HSBC $1.9B, Standard Chartered $1.1B) often exceed total revenue from these relationships.</li>
@@ -242,7 +238,7 @@ export const ARTICLES: Article[] = [
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">Crypto as the Alternative Rail</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Crypto as the Alternative Rail</h2>
         <p className="mb-6">Stablecoins and decentralized protocols are filling the gap left by traditional banking exits.</p>
         
         <div className="overflow-x-auto mb-8">
@@ -278,7 +274,7 @@ export const ARTICLES: Article[] = [
           </table>
         </div>
 
-        <h3 className="text-xl font-bold mt-8 mb-4 text-white">CBDC Infrastructure: mBridge</h3>
+        <h3 className="text-xl font-bold mt-8 mb-4 text-text">CBDC Infrastructure: mBridge</h3>
         <p className="mb-4">
           The mBridge project (China, Hong Kong, Thailand, UAE, Saudi Arabia) enables direct central bank-to-central bank settlement, bypassing commercial correspondents entirely.
         </p>
@@ -305,7 +301,7 @@ export const ARTICLES: Article[] = [
           How governments use conversion limits and bank rationing to prevent capital flight.
         </p>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">Control Mechanisms</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Control Mechanisms</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           <div className="p-5 bg-surface border border-border rounded-xl">
              <h3 className="font-bold text-primary mb-3">Currency Restrictions</h3>
@@ -332,7 +328,7 @@ export const ARTICLES: Article[] = [
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">The "Corralito" Case Study: Argentina 2001</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">The "Corralito" Case Study: Argentina 2001</h2>
         <p className="mb-4">Wealth destruction manifested through a series of escalating measures:</p>
         <ol className="list-decimal pl-5 space-y-3 mb-8">
           <li><strong>Withdrawal Limit:</strong> $250/week initial restriction.</li>
@@ -351,7 +347,7 @@ export const ARTICLES: Article[] = [
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">Early Warning Indicators</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Early Warning Indicators</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
            <div className="p-4 bg-background border border-border rounded-lg text-center">
               <div className="text-xs text-text-muted uppercase font-bold mb-1">FX Reserves</div>
@@ -370,7 +366,7 @@ export const ARTICLES: Article[] = [
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">Mitigation Strategies</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Mitigation Strategies</h2>
         <p className="mb-6">Portfolio robustness requires jurisdictional diversification and asset class rotation.</p>
         <ul className="list-disc pl-5 space-y-3 text-text-muted mb-10">
            <li><strong>Tiered Accounts:</strong> Primary (Domestic), Secondary (Regional Center - UAE), Tertiary (Major Center - CH/US).</li>
@@ -402,7 +398,7 @@ export const ARTICLES: Article[] = [
           Regulatory Arbitrage: How different jurisdictions are competing to become the global hub for digital dollars.
         </p>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">The Great Regulatory Divergence</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">The Great Regulatory Divergence</h2>
         <p className="mb-6">
           While stablecoins have reached a market cap of over $150 billion, the legal framework governing them remains fragmented. We currently see three distinct models emerging globally.
         </p>
@@ -414,7 +410,7 @@ export const ARTICLES: Article[] = [
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">1. The US Model: State-by-State Fragmentation</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">1. The US Model: State-by-State Fragmentation</h2>
         <p className="mb-4">
           The United States currently lacks a unified federal framework for stablecoins. Instead, it relies on a patchwork of state-level money transmitter licenses (MTLs) and limited-purpose trust charters.
         </p>
@@ -431,20 +427,20 @@ export const ARTICLES: Article[] = [
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">2. The EU Model: MiCA (Markets in Crypto-Assets)</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">2. The EU Model: MiCA (Markets in Crypto-Assets)</h2>
         <p className="mb-4">
           The European Union has taken the lead with the most comprehensive framework to date. MiCA provides a "passportable" license that allows issuers to operate across all 27 member states.
         </p>
         <div className="my-8 p-6 bg-surface border-l-4 border-primary rounded-r-xl">
            <h4 className="font-bold mb-2">Key MiCA Pillars for Stablecoins:</h4>
            <ul className="text-sm space-y-2 text-text-muted list-none">
-              <li><span className="text-white font-medium">Reserve Ratios:</span> 1:1 liquid reserve requirement with 60% in cash at independent banks.</li>
-              <li><span className="text-white font-medium">Yield Ban:</span> Issuers are strictly prohibited from offering interest on stablecoin holdings.</li>
-              <li><span className="text-white font-medium">Transaction Caps:</span> Limits on non-euro denominated stablecoins for domestic payments (200M EUR/day).</li>
+              <li><span className="text-text font-medium">Reserve Ratios:</span> 1:1 liquid reserve requirement with 60% in cash at independent banks.</li>
+              <li><span className="text-text font-medium">Yield Ban:</span> Issuers are strictly prohibited from offering interest on stablecoin holdings.</li>
+              <li><span className="text-text font-medium">Transaction Caps:</span> Limits on non-euro denominated stablecoins for domestic payments (200M EUR/day).</li>
            </ul>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">3. The Offshore Model: Arbitrage and Innovation</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">3. The Offshore Model: Arbitrage and Innovation</h2>
         <p className="mb-6">
           Jurisdictions like the Cayman Islands, BVI, and Bahamas continue to dominate in terms of volume through Tether (USDT), favoring a "light-touch" approach that prioritizes liquidity over strict prudential oversight.
         </p>
@@ -452,14 +448,14 @@ export const ARTICLES: Article[] = [
         <div className="my-10 rounded-2xl overflow-hidden border border-border shadow-2xl relative">
            <img src="/stablecoin-blocked.png" alt="Blocked Transfer Risk" className="w-full h-auto object-cover" />
            <div className="absolute top-0 right-0 p-3">
-              <span className="px-3 py-1 bg-red-500/90 text-white text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-md">Compliance Risk</span>
+              <span className="px-3 py-1 bg-red-500/90 text-text text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-md">Compliance Risk</span>
            </div>
            <div className="p-4 bg-background/50 text-xs text-center border-t border-border italic text-text-muted">
               Account freezes are 4x more likely in jurisdictions with non-standardized AML protocols.
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">Conclusion: The Convergence toward "Safe Assets"</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Conclusion: The Convergence toward "Safe Assets"</h2>
         <p className="mb-4">
           As institutional adoption scales, the market is voting for transparency. We expect a natural convergence where the majority of global trade will eventually settle on MiCA-compliant or US federal-authorized rails.
         </p>
@@ -490,7 +486,7 @@ export const ARTICLES: Article[] = [
           Institutional Inertia: Why the world's largest pools of capital are stuck in "wait-and-see" mode despite clear market demand.
         </p>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">The Trillion-Dollar Question</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">The Trillion-Dollar Question</h2>
         <p className="mb-6">
           While retail and corporate treasuries have begun their migration toward digital assets, pension funds—representing over $50 trillion in global assets—remain largely on the sidelines. The barriers are not ideological; they are structural, legal, and operational.
         </p>
@@ -502,7 +498,7 @@ export const ARTICLES: Article[] = [
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">1. Fiduciary Duty and the "Prudent Man" Rule</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">1. Fiduciary Duty and the "Prudent Man" Rule</h2>
         <p className="mb-4">
           Pension fund trustees are bound by strict fiduciary duties. Under the "Prudent Man Rule," an investment must be what a "prudent person" would do with their own money. Without a long-term track record (20+ years) and high-quality institutional research, allocating to Bitcoin is often viewed as a breach of duty.
         </p>
@@ -517,7 +513,7 @@ export const ARTICLES: Article[] = [
            </div>
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">2. The Qualified Custodian Gap</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">2. The Qualified Custodian Gap</h2>
         <p className="mb-4">
           The SEC's "Custody Rule" requires registered investment advisers to hold client funds with a "qualified custodian." While several crypto-native firms (Coinbase Custody, Fidelity Digital Assets) now fit this description, the insurance coverage remains a major blocker.
         </p>
@@ -537,7 +533,7 @@ export const ARTICLES: Article[] = [
            <li><strong>Separation of Duties:</strong> Traditional finance requires a separation between the broker and the custodian. Most crypto firms are vertically integrated, creating a conflict of interest.</li>
         </ul>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">3. Accounting Treatment: The Impairment Trap</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">3. Accounting Treatment: The Impairment Trap</h2>
         <p className="mb-6">
           Until recently, GAAP rules required Bitcoin to be treated as an "indefinite-lived intangible asset." This meant companies had to write down the value if the price dropped (impairment), but could not write it up if the price rose.
         </p>
@@ -554,7 +550,7 @@ export const ARTICLES: Article[] = [
            <img src="/pension-impairment-accounting.png" alt="Accounting Comparison" className="w-full h-auto rounded-lg" />
         </div>
 
-        <h2 className="text-2xl font-bold mt-10 mb-4 text-white">Conclusion: The Gradual Dawn of Institutional Adoption</h2>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Conclusion: The Gradual Dawn of Institutional Adoption</h2>
         <p className="mb-8">
           The "Wait and See" approach is slowly transitioning to "How and When." As the regulatory fog clears and accounting standards modernize, we expect the first wave of major state pension funds to begin 0.5% - 1.0% allocations by late 2026.
         </p>
@@ -564,7 +560,6 @@ export const ARTICLES: Article[] = [
 ];
 
 export const Insights: React.FC = () => {
-  const { isProUser } = useAppContext();
   const [activeArticleId, setActiveArticleId] = useState<string | null>(null);
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
@@ -603,7 +598,7 @@ export const Insights: React.FC = () => {
 
   if (activeArticle) {
     return (
-      <div className="animate-fade-in max-w-container mx-auto pb-16">
+      <div className="animate-fade-in max-w-[800px] mx-auto pb-16">
         <button 
           onClick={handleBackToList}
           className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors text-sm font-bold group mb-8"
@@ -611,91 +606,53 @@ export const Insights: React.FC = () => {
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Insights
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-          {/* Article Main */}
-          <div className="lg:col-span-3">
-            <div className="mb-8">
-              <div className="flex items-center gap-3 text-xs font-bold text-text-muted tracking-wider uppercase mb-4">
-                <span className="text-primary">{activeArticle.category}</span>
-                <span>•</span>
-                <span>{activeArticle.date}</span>
-                <span>•</span>
-                <span className="flex items-center gap-1"><Clock size={12} /> {activeArticle.readTime}</span>
-              </div>
-              
-              <h1 className="text-4xl lg:text-6xl font-heading font-bold mb-8 leading-tight">
-                {activeArticle.title}
-              </h1>
-              
-              <div className="flex items-center justify-between py-6 border-y border-border mb-8">
-                <div className="flex items-center gap-4">
-                   <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
-                      RT
-                   </div>
-                   <div>
-                      <div className="font-bold text-sm">Coinvestopedia Research Team</div>
-                      <div className="text-xs text-text-muted">Institutional Strategy</div>
-                   </div>
-                </div>
-                <div className="flex items-center gap-3">
-                   <button className="p-2 border border-border rounded-lg text-text-muted hover:text-primary transition-colors"><BookmarkPlus size={18} /></button>
-                   <button className="p-2 border border-border rounded-lg text-text-muted hover:text-primary transition-colors"><Share2 size={18} /></button>
-                </div>
-              </div>
-            </div>
-
-             {!isProUser && (
-               <div className="mb-12 flex justify-center py-4 border-b border-border/30">
-                  <AdUnit size="leaderboard" context={{ page: PageRoute.INSIGHTS }} label="Research Sponsor" />
-               </div>
-             )}
-
-            <article className="prose prose-invert max-w-none text-text leading-relaxed text-lg">
-              {activeArticle.content}
-            </article>
-
-            {/* Newsletter Callout */}
-            <div className="mt-16 p-8 lg:p-12 bg-surface border border-primary/20 rounded-2xl text-center relative overflow-hidden">
-               <div className="absolute top-0 right-0 p-8 transform translate-x-1/2 -translate-y-1/2">
-                  <div className="w-32 h-32 bg-primary/20 blur-3xl rounded-full"></div>
-               </div>
-               <h3 className="text-2xl lg:text-3xl font-bold mb-4">Get Institutional Crypto Insights</h3>
-               <p className="text-text-muted mb-8 max-w-lg mx-auto text-sm lg:text-base leading-relaxed">
-                  Join 15,000+ fund managers and analysts receiving our weekly deep-dives.
-               </p>
-               <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto relative z-10">
-                  <input type="email" placeholder="Your work email" className="flex-1 bg-background border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary text-sm" />
-                  <Button>Subscribe</Button>
-               </div>
-            </div>
-            
-             {!isProUser && (
-               <div className="mt-12 flex justify-center">
-                  <AdUnit size="billboard" context={{ page: PageRoute.INSIGHTS }} label="Trading Partner" />
-               </div>
-             )}
+        <div className="mb-8">
+          <div className="flex items-center gap-3 text-xs font-bold text-text-muted tracking-wider uppercase mb-4">
+            <span className="text-primary">{activeArticle.category}</span>
+            <span>•</span>
+            <span>{activeArticle.date}</span>
+            <span>•</span>
+            <span className="flex items-center gap-1"><Clock size={12} /> {activeArticle.readTime}</span>
           </div>
-
-          {/* Sticky Article Sidebar */}
-          <aside className="hidden lg:block lg:col-span-1">
-            <div className="sticky top-28 space-y-8">
-               {!isProUser && <AdUnit size="medium" context={{ page: PageRoute.INSIGHTS }} label="Sponsored Integration" />}
-               
-               <div className="p-6 bg-surface border border-border rounded-xl">
-                  <h4 className="font-bold text-sm mb-4">You might also like</h4>
-                  <div className="space-y-4">
-                     {ARTICLES.filter(a => a.id !== activeArticle.id).slice(0, 3).map(a => (
-                        <div key={a.id} className="group cursor-pointer" onClick={() => setActiveArticleId(a.id)}>
-                           <p className="text-[10px] text-primary font-bold uppercase mb-1">{a.category}</p>
-                           <h5 className="text-sm font-bold group-hover:text-primary transition-colors line-clamp-2">{a.title}</h5>
-                        </div>
-                     ))}
-                  </div>
+          
+          <h1 className="text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
+            {activeArticle.title}
+          </h1>
+          
+          <div className="flex items-center justify-between py-6 border-y border-border mb-8">
+            <div className="flex items-center gap-4">
+               <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+                  RT
                </div>
-
-               {!isProUser && <AdUnit size="skyscraper" context={{ page: PageRoute.INSIGHTS }} label="Market Liquidity" />}
+               <div>
+                  <div className="font-bold text-sm">Coinvestopedia Research Team</div>
+                  <div className="text-xs text-text-muted">Institutional Strategy</div>
+               </div>
             </div>
-          </aside>
+            <div className="flex items-center gap-3">
+               <button className="p-2 border border-border rounded-lg text-text-muted hover:text-primary transition-colors"><BookmarkPlus size={18} /></button>
+               <button className="p-2 border border-border rounded-lg text-text-muted hover:text-primary transition-colors"><Share2 size={18} /></button>
+            </div>
+          </div>
+        </div>
+
+        <article className="prose prose-invert max-w-none text-text leading-relaxed">
+          {activeArticle.content}
+        </article>
+
+        {/* Newsletter Callout */}
+        <div className="mt-16 p-8 bg-surface border border-primary/20 rounded-2xl text-center relative overflow-hidden">
+           <div className="absolute top-0 right-0 p-8 transform translate-x-1/2 -translate-y-1/2">
+              <div className="w-32 h-32 bg-primary/20 blur-3xl rounded-full"></div>
+           </div>
+           <h3 className="text-2xl font-bold mb-3">Get Institutional Crypto Insights</h3>
+           <p className="text-text-muted mb-6 max-w-lg mx-auto">
+              Join 15,000+ fund managers and analysts receiving our weekly deep-dives.
+           </p>
+           <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <input type="email" placeholder="Your work email" className="flex-1 bg-background border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary text-sm" />
+              <Button>Subscribe</Button>
+           </div>
         </div>
       </div>
     );
@@ -733,12 +690,6 @@ export const Insights: React.FC = () => {
         </div>
       </div>
 
-      {!isProUser && (
-         <div className="flex justify-center">
-            <AdUnit size="native" context={{ page: PageRoute.INSIGHTS }} label="Knowledge Partner" />
-         </div>
-      )}
-
       {/* Category Pills */}
       <div className="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-hide">
          <div className="flex gap-2">
@@ -760,23 +711,24 @@ export const Insights: React.FC = () => {
 
       {/* Featured Article */}
       <section>
-         <h2 className="text-xl font-bold mb-6 flex items-center gap-2 text-primary font-heading tracking-widest uppercase text-[10px]">
-            <Zap size={14} className="fill-primary" /> Featured Research
+         <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
+            <span className="w-1.5 h-6 bg-primary rounded-sm inline-block"></span> 
+            Featured Research
          </h2>
          <Card 
             className="p-0 overflow-hidden group cursor-pointer border border-border hover:border-primary/50 transition-all duration-300"
             onClick={() => setActiveArticleId(featuredArticle.id)}
          >
-            <div className="flex flex-col lg:flex-row">
-               <div className="w-full lg:w-1/2 relative h-[300px] lg:h-auto overflow-hidden">
+            <div className="flex flex-col">
+               <div className="w-full relative h-[300px] lg:h-[400px] overflow-hidden">
                   <img 
                      src={featuredArticle.image} 
                      alt="Featured" 
                      className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 opacity-90"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent hidden lg:block"></div>
+                  <div className="absolute inset-x-0 bottom-0 top-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
                </div>
-               <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center bg-surface relative z-10">
+               <div className="w-full p-8 lg:p-12 flex flex-col justify-center bg-surface relative z-10">
                   <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-text-muted uppercase tracking-widest mb-4">
                      <span className="text-primary">{featuredArticle.category}</span>
                      <span>•</span>
@@ -799,98 +751,52 @@ export const Insights: React.FC = () => {
          </Card>
       </section>
 
-      {/* Mid-list Ad Break */}
-      {!isProUser && (
-        <div className="py-2 border-y border-border/50 flex flex-col items-center gap-4">
-           <span className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-bold">Research Sponsor</span>
-           <AdUnit size="leaderboard" context={{ page: PageRoute.INSIGHTS }} />
-        </div>
-      )}
-
-      {/* Latest Intelligence with Sidebar */}
-      <div className="grid grid-cols-1 xl:grid-cols-4 gap-10">
-         <section className="xl:col-span-3">
-            <h2 className="text-xl font-bold mb-8 flex items-center gap-2 text-text-muted font-heading tracking-widest uppercase text-[10px]">
-               <BarChart3 size={14} /> Latest Intelligence
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-               {listArticles.slice(0, 2).map((article) => (
-                  <InsightCard key={article.id} article={article} onClick={() => setActiveArticleId(article.id)} />
-               ))}
-
-               {!isProUser && (
-                  <AdUnit size="native" context={{ page: PageRoute.INSIGHTS }} label="Knowledge Partner" />
-               )}
-
-               {listArticles.slice(2, 4).map((article) => (
-                  <InsightCard key={article.id} article={article} onClick={() => setActiveArticleId(article.id)} />
-               ))}
-
-               {!isProUser && (
-                  <AdUnit size="native" partner="bybit" label="Trading Partner" />
-               )}
-
-               {listArticles.slice(4).map((article) => (
-                  <InsightCard key={article.id} article={article} onClick={() => setActiveArticleId(article.id)} />
-               ))}
-            </div>
-            
-            <div className="flex justify-center mt-12">
-               <Button variant="secondary" size="lg" isFullWidth className="md:w-fit">Load More Research</Button>
-            </div>
-         </section>
-
-         {/* Insights List Sidebar */}
-         <aside className="hidden xl:flex flex-col gap-8 pt-12">
-            {!isProUser && <AdUnit size="medium" context={{ page: PageRoute.INSIGHTS }} label="Sponsored Content" />}
-            
-            <div className="leather-card p-6 rounded-xl border border-border bg-gradient-to-b from-surface to-background">
-               <h4 className="font-bold text-sm mb-4 flex items-center gap-2">
-                  <Shield size={16} className="text-primary" />
-                  Institutional Access
-               </h4>
-               <p className="text-xs text-text-muted mb-6 leading-relaxed">
-                  Unlock our proprietary capital flow database and regulatory risk matrix.
-               </p>
-               <Button isFullWidth size="sm" variant="secondary">Upgrade to Pro</Button>
-            </div>
-
-            {!isProUser && <AdUnit size="skyscraper" context={{ page: PageRoute.INSIGHTS }} label="Trading Tools" />}
-         </aside>
+      {/* Latest Intelligence */}
+      <section>
+         <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
+            <span className="w-1.5 h-6 bg-border rounded-sm inline-block"></span> 
+            Latest Intelligence
+         </h2>
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {listArticles.map((article) => (
+               <Card 
+                  key={article.id} 
+                  className="flex flex-col group hover:border-primary/40 cursor-pointer h-full transition-all duration-300"
+                  onClick={() => setActiveArticleId(article.id)}
+               >
+                  <div className="flex justify-between items-start mb-6">
+                     <div className="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center group-hover:scale-110 transition-transform">
+                        {article.icon}
+                     </div>
+                     <span className="px-3 py-1 bg-surface border border-border text-xs rounded-full font-bold text-text-muted uppercase tracking-widest">
+                        {article.category}
+                     </span>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-snug">
+                     {article.title}
+                  </h3>
+                  
+                  <p className="text-text-muted text-sm mb-8 flex-grow">
+                     {article.desc}
+                  </p>
+                  
+                  <div className="flex items-center justify-between pt-4 border-t border-border mt-auto w-full text-xs font-medium text-text-muted">
+                     <div className="flex items-center gap-2">
+                        <Clock size={14} /> {article.readTime}
+                     </div>
+                     <span>{article.date}</span>
+                  </div>
+               </Card>
+            ))}
+         </div>
+      </section>
+      
+      <div className="flex justify-center mt-8">
+         <Button variant="secondary" size="lg">Load More Research</Button>
       </div>
     </div>
   );
 };
-
-const InsightCard: React.FC<{ article: Article, onClick: () => void }> = ({ article, onClick }) => (
-  <Card 
-     className="flex flex-col group hover:border-primary/40 cursor-pointer h-full transition-all duration-300"
-     onClick={onClick}
-  >
-     <div className="flex justify-between items-start mb-6">
-        <div className="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center group-hover:scale-110 transition-transform">
-           {article.icon}
-        </div>
-        <span className="px-3 py-1 bg-surface border border-border text-[10px] rounded-full font-bold text-text-muted uppercase tracking-widest">
-           {article.category}
-        </span>
-     </div>
-     
-     <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors leading-snug">
-        {article.title}
-     </h3>
-     
-     <p className="text-text-muted text-sm mb-8 flex-grow line-clamp-2">
-        {article.desc}
-     </p>
-     
-     <div className="flex items-center justify-between pt-4 border-t border-border mt-auto w-full text-xs font-medium text-text-muted">
-        <div className="flex items-center gap-2">
-           <Clock size={14} /> {article.readTime}
-        </div>
-        <span>{article.date}</span>
-     </div>
-  </Card>
-);
 
 export default Insights;

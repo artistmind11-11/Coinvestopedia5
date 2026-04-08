@@ -73,7 +73,7 @@ export const RebalancingCalculator: React.FC = () => {
   return (
     <div className="animate-fade-in space-y-8">
       {/* Overview Stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
         <ResultMetric label="Portfolio Value" value={fmtUSD(result.totalValue)} neutral />
         <ResultMetric label="Target Total" value={`${result.totalTargetWeight.toFixed(1)}%`} positive={result.isWeightValid} negative={!result.isWeightValid} sub={result.isWeightValid ? 'Balanced' : 'Imbalanced'} />
         <ResultMetric label="Value to Trade" value={fmtUSD(result.totalBuySell)} neutral />
@@ -106,10 +106,10 @@ export const RebalancingCalculator: React.FC = () => {
               <table className="w-full text-sm min-w-[500px]">
                 <thead>
                   <tr className="text-left text-text-muted text-[10px] uppercase tracking-wider border-b border-border">
-                    <th className="pb-3 pl-2">Asset</th>
-                    <th className="pb-3">Current Value ($)</th>
-                    <th className="pb-3 text-right pr-4">Target (%)</th>
-                    <th className="pb-3 text-center">Action</th>
+                    <th className="pb-3 pl-2 w-[20%]">Asset</th>
+                    <th className="pb-3 w-[35%]">Current Value ($)</th>
+                    <th className="pb-3 text-right pr-4 w-[30%]">Target (%)</th>
+                    <th className="pb-3 text-center w-[15%]">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-border/50">
@@ -120,12 +120,12 @@ export const RebalancingCalculator: React.FC = () => {
                           type="text"
                           value={h.symbol}
                           onChange={e => updateHolding(h.id, 'symbol', e.target.value)}
-                          className="w-24 bg-background border border-border rounded-md px-2 py-2 focus:border-primary focus:outline-none font-bold text-center"
+                          className="w-full max-w-[100px] bg-background border border-border rounded-md px-2 py-2 focus:border-primary focus:outline-none font-bold text-center"
                           placeholder="BTC"
                         />
                       </td>
-                      <td className="py-4 pr-2">
-                         <div className="relative group/input flex-1 min-w-[140px]">
+                      <td className="py-4 pr-4">
+                         <div className="relative group/input flex-1 min-w-[120px] max-w-[200px]">
                            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-xs font-bold">$</span>
                            <input
                              type="number"
@@ -136,13 +136,13 @@ export const RebalancingCalculator: React.FC = () => {
                            />
                          </div>
                       </td>
-                      <td className="py-4 text-right">
-                         <div className="relative inline-block">
+                      <td className="py-4 pr-4 text-right flex justify-end">
+                         <div className="relative inline-block w-full max-w-[140px]">
                            <input
                              type="number"
                              value={h.targetWeight}
                              onChange={e => updateHolding(h.id, 'targetWeight', e.target.value)}
-                             className="w-24 bg-background border border-border rounded-md pr-8 pl-3 py-2 focus:border-primary focus:outline-none text-right font-mono font-bold"
+                             className="w-full bg-background border border-border rounded-md pr-8 pl-3 py-2 focus:border-primary focus:outline-none text-right font-mono font-bold"
                              min={0} max={100}
                            />
                            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted text-xs font-bold">%</span>

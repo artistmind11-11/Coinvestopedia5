@@ -73,7 +73,7 @@ const CorrelationRadar: React.FC<{ assets: AssetData[] }> = ({ assets }) => {
             <Radar name="S&P 500 (SPY)" dataKey="SPY" stroke="#00A859" fill="#00A859" fillOpacity={0.3} />
             
             <Legend wrapperStyle={{ fontSize: '12px' }} />
-            <Tooltip 
+            <Tooltip itemStyle={{ color: '#e4e4e7' }} 
               contentStyle={{ backgroundColor: '#18181B', borderColor: '#27272A', borderRadius: '8px' }}
               labelStyle={{ color: '#F4F4F5', fontWeight: 'bold', marginBottom: '8px' }}
               formatter={(value: number) => [`${value}/100 Score`, 'Relative Correlation']}

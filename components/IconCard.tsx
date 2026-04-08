@@ -75,7 +75,7 @@ const IconCardComponent: React.FC<IconCardProps> = ({
         <div className={`relative mb-3 lg:mb-4 w-10 h-10 lg:w-14 lg:h-14 rounded-lg lg:rounded-xl flex items-center justify-center transition-all duration-300 lg:group-hover:scale-110 lg:group-hover:rotate-3 flex-shrink-0 min-w-[44px] min-h-[44px] ${
         variant === 'highlight' 
           ? 'bg-primary/20 text-primary group-hover:bg-primary group-hover:text-white shadow-lg shadow-primary/20' 
-          : 'bg-[#181818] border border-white/5 text-primary group-hover:border-primary/50 group-hover:shadow-lg group-hover:shadow-primary/20'
+          : 'bg-background dark:bg-[#181818] border border-border dark:border-white/5 text-primary group-hover:border-primary/50 group-hover:shadow-lg group-hover:shadow-primary/20'
       }`}> 
           <div className="w-5 h-5 lg:w-7 lg:h-7 flex items-center justify-center" aria-hidden="true">
             {icon}

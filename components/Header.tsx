@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
 import { PageRoute } from '../types';
 import { Button } from './Button';
@@ -46,14 +47,16 @@ export const Header: React.FC<HeaderProps> = ({
       ]
     },
     { 
-      label: 'Academy', 
+      label: 'Knowledge', 
       route: PageRoute.LEARN, 
       options: [
         { label: 'DeFi Strategies', route: PageRoute.LEARN },
-        { label: 'Security & Custody', route: PageRoute.AUDIT },
+        { label: 'Security & Custody', route: PageRoute.LEARN },
         { label: 'Research', route: PageRoute.RESEARCH },
         { label: 'Technical Analysis', route: PageRoute.LEARN },
-        { label: 'Insights', route: PageRoute.INSIGHTS }
+        { label: 'Insights', route: PageRoute.INSIGHTS },
+        { label: 'Crypto Glossary', route: PageRoute.GLOSSARY },
+        { label: 'Exchange Intelligence', route: PageRoute.EXCHANGES }
       ] 
     },
     { label: 'Newsletter', route: PageRoute.NEWSLETTER, options: [] },
@@ -195,76 +198,91 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <div className="xl:hidden fixed inset-0 top-[72px] bg-background z-40 overflow-y-auto pb-32 animate-fade-in border-t border-border">
-          <div className="p-6 flex flex-col gap-6">
-            <div className="mb-4">
-              <SearchBar 
-                className="w-full" 
-                placeholder="Search assets..."
-              />
-            </div>
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="xl:hidden fixed inset-0 top-[72px] bg-background/95 backdrop-blur-md z-40 overflow-y-auto pb-32 border-t border-border"
+          >
+            <div className="p-6 flex flex-col gap-6">
+              <div className="mb-4">
+                <SearchBar 
+                  className="w-full" 
+                  placeholder="Search assets..."
+                />
+              </div>
 
-            <div className="flex flex-col gap-2">
-               <h3 className="text-xs font-bold text-text-muted uppercase tracking-widest mb-2">Navigation</h3>
-               
-               {/* Featured Whale Radar in mobile */}
-               {featuredLinks.map((link) => (
-                 <div 
-                   key={link.label}
-                   className="py-4 border-b border-primary/30 text-xl font-medium text-primary flex items-center justify-between bg-primary/5 rounded-lg px-4 mb-2"
-                   onClick={() => handleNavClick(link.route)}
-                 >
-                   <div className="flex items-center gap-3">
-                       <span>{link.icon}</span>
-                       {link.label}
+              <div className="flex flex-col gap-2">
+                 <h3 className="text-xs font-bold text-text-muted uppercase tracking-widest mb-2">Navigation</h3>
+                 
+                 {/* Featured Whale Radar in mobile */}
+                 {featuredLinks.map((link) => (
+                   <div 
+                     key={link.label}
+                     className="py-4 border-b border-primary/30 text-xl font-medium text-primary flex items-center justify-between bg-primary/5 rounded-lg px-4 mb-2 active:bg-primary/20 transition-colors"
+                     onClick={() => handleNavClick(link.route)}
+                   >
+                     <div className="flex items-center gap-3">
+                         <span>{link.icon}</span>
+                         {link.label}
+                     </div>
+                     <span className="text-xs bg-primary/20 text-primary px-2 py-1 rounded">Featured</span>
                    </div>
-                   <span className="text-xs bg-primary/20 text-primary px-2 py-1 rounded">Featured</span>
-                 </div>
-               ))}
-               
-               {navLinks.map((link) => (
-                 <div key={link.label} className="border-b border-border/50">
-                    <div 
-                      className="py-4 text-xl font-medium text-text flex items-center justify-between active:text-primary transition-colors cursor-pointer"
-                      onClick={() => {
-                        if (link.options.length > 0) {
-                          setActiveDropdown(activeDropdown === link.label ? null : link.label);
-                        } else {
-                          handleNavClick(link.route);
-                        }
-                      }}
-                    >
-                      <div className="flex items-center gap-3">
-                          {link.label}
+                 ))}
+                 
+                 {navLinks.map((link) => (
+                   <div key={link.label} className="border-b border-border/50">
+                      <div 
+                        className="py-4 text-xl font-medium text-text flex items-center justify-between active:text-primary transition-colors cursor-pointer"
+                        onClick={() => {
+                          if (link.options.length > 0) {
+                            setActiveDropdown(activeDropdown === link.label ? null : link.label);
+                          } else {
+                            handleNavClick(link.route);
+                          }
+                        }}
+                      >
+                        <div className="flex items-center gap-3">
+                            {link.label}
+                        </div>
+                        {link.options.length > 0 && <ChevronDown size={20} className={`transition-transform duration-200 ${activeDropdown === link.label ? 'rotate-180' : ''}`} />}
                       </div>
-                      {link.options.length > 0 && <ChevronDown size={20} className={`transition-transform duration-200 ${activeDropdown === link.label ? 'rotate-180' : ''}`} />}
-                    </div>
-                    
-                    {/* Expandable Mobile Sub-options */}
-                    {link.options.length > 0 && activeDropdown === link.label && (
-                      <div className="pl-4 pb-4 flex flex-col gap-3 animate-fade-in">
-                        {link.options.map((opt, i) => (
-                          <div 
-                            key={i} 
-                            className="text-lg font-medium text-text-muted active:text-primary py-2 cursor-pointer"
-                            onClick={() => handleNavClick(opt.route)}
+                      
+                      {/* Expandable Mobile Sub-options */}
+                      <AnimatePresence>
+                        {link.options.length > 0 && activeDropdown === link.label && (
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="pl-4 pb-4 flex flex-col gap-3 overflow-hidden"
                           >
-                            {opt.label}
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                 </div>
-               ))}
+                            {link.options.map((opt, i) => (
+                              <div 
+                                key={i} 
+                                className="text-lg font-medium text-text-muted active:text-primary py-2 cursor-pointer transition-colors"
+                                onClick={() => handleNavClick(opt.route)}
+                              >
+                                {opt.label}
+                              </div>
+                            ))}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                   </div>
+                 ))}
+              </div>
+              
+              <div className="mt-4 pb-8 text-center px-6">
+                 <Button className="w-full justify-center py-4 text-lg">Sign In / Sign Up</Button>
+              </div>
             </div>
-            
-            <div className="mt-4 pb-8 text-center px-6">
-               <Button className="w-full justify-center py-4 text-lg">Sign In / Sign Up</Button>
-            </div>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

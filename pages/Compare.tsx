@@ -13,14 +13,11 @@ import { AnalystPanel } from '../components/compare/AnalystPanel';
 
 // Icons
 import { LayoutDashboard, TrendingUp, ShieldAlert, PieChart, GitMerge, Lightbulb } from 'lucide-react';
-import { AdUnit } from '../components/AdUnit';
-import { useAppContext } from '../context/AppContext';
-import { PageRoute } from '../types';
 
 type TabId = 'overview' | 'performance' | 'risk' | 'allocation' | 'correlation' | 'analyst';
 
 export const Compare: React.FC = () => {
-  const { isProUser } = useAppContext();
+  const isProUser = true; // Set to true for institutional dashboard view
   const [selectedAssetIds, setSelectedAssetIds] = useState<string[]>(DEFAULT_ASSETS);
   const [activeTab, setActiveTab] = useState<TabId>('overview');
 
@@ -70,8 +67,8 @@ export const Compare: React.FC = () => {
                 />
               </div>
               {isProUser && (
-                <div className="shrink-0">
-                  <button className="flex items-center gap-2 px-5 py-2 bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold border border-primary/20 rounded-lg transition-colors shadow-sm">
+                <div className="shrink-0 w-full md:w-auto mt-2 md:mt-0">
+                  <button className="flex justify-center md:items-center gap-2 px-5 py-2 w-full md:w-auto bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold border border-primary/20 rounded-lg transition-colors shadow-sm">
                     Export Data
                   </button>
                 </div>
@@ -80,12 +77,6 @@ export const Compare: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {!isProUser && (
-        <div className="flex justify-center mt-2 mb-4">
-          <AdUnit size="leaderboard" context={{ page: PageRoute.COMPARE }} label="Sponsored Integration" />
-        </div>
-      )}
 
       {/* ─── TABS & NAVIGATION ─────────────────────────────────────────────── */}
       <div className="flex overflow-x-auto no-scrollbar gap-2 md:gap-3 pb-2 scroll-smooth">
@@ -108,39 +99,17 @@ export const Compare: React.FC = () => {
           );
         })}
       </div>
-      
-      {!isProUser && (
-        <div className="flex justify-center py-4">
-          <AdUnit size="native" context={{ page: PageRoute.COMPARE }} label="Analyst Insight" />
-        </div>
-      )}
 
       {/* ─── TAB CONTENT PANELS ────────────────────────────────────────────── */}
-      <div className="flex flex-col lg:flex-row gap-6">
-        <div className="flex-1 min-w-0 min-h-[500px]">
-          {activeTab === 'overview' && <OverviewPanel assets={selectedAssets} />}
-          {activeTab === 'performance' && <PerformancePanel assets={selectedAssets} />}
-          {activeTab === 'risk' && <RiskPanel assets={selectedAssets} isProUser={isProUser} />}
-          {activeTab === 'allocation' && <AllocationPanel />}
-          {activeTab === 'correlation' && <CorrelationHeatmap assets={selectedAssets} />}
-          {activeTab === 'analyst' && <AnalystPanel assets={selectedAssets} isProUser={isProUser} />}
-        </div>
-        
-        {!isProUser && (
-           <aside className="lg:w-[300px] shrink-0">
-             <div className="sticky top-[140px] space-y-6">
-                <AdUnit size="medium" context={{ page: PageRoute.COMPARE }} label="Sponsored Integration" />
-                <AdUnit size="skyscraper" context={{ page: PageRoute.COMPARE }} label="Secure Your Portfolio" />
-             </div>
-           </aside>
-        )}
+      <div className="min-h-[500px]">
+        {activeTab === 'overview' && <OverviewPanel assets={selectedAssets} />}
+        {activeTab === 'performance' && <PerformancePanel assets={selectedAssets} />}
+        {activeTab === 'risk' && <RiskPanel assets={selectedAssets} isProUser={isProUser} />}
+        {activeTab === 'allocation' && <AllocationPanel />}
+        {activeTab === 'correlation' && <CorrelationHeatmap assets={selectedAssets} />}
+        {activeTab === 'analyst' && <AnalystPanel assets={selectedAssets} isProUser={isProUser} />}
       </div>
 
-      {!isProUser && (
-        <div className="flex justify-center pt-8 border-t border-border mt-12">
-          <AdUnit size="leaderboard" context={{ page: PageRoute.COMPARE }} />
-        </div>
-      )}
     </div>
   );
 };

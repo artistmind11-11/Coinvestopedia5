@@ -103,7 +103,7 @@ export const MonteCarloSimulator: React.FC = () => {
           </div>
 
           <div className="lg:col-span-8 flex flex-col gap-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ResultMetric label="Prob. of Principal Loss" value={`${simulations.probLoss.toFixed(1)}%`} negative={simulations.probLoss > 20} positive={simulations.probLoss <= 5} />
               <ResultMetric label="Median ROI" value={fmtPct(((simulations.p50 / (parseFloat(initialValue) || 1)) - 1) * 100)} positive />
               <ResultMetric label="Risk-Adjusted (P5)" value={fmtUSD(simulations.p5)} negative={simulations.p5 < (parseFloat(initialValue) || 0)} />
@@ -118,7 +118,7 @@ export const MonteCarloSimulator: React.FC = () => {
                     <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
                     <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#a1a1aa' }} stroke="#3f3f46" label={{ value: 'Years', position: 'bottom', fill: '#666', fontSize: 10 }} />
                     <YAxis tick={{ fontSize: 10, fill: '#a1a1aa' }} tickFormatter={v => `$${(v/1000).toFixed(0)}k`} stroke="#3f3f46" />
-                    <Tooltip
+                    <Tooltip itemStyle={{ color: '#e4e4e7' }} labelStyle={{ color: '#a1a1aa' }}
                       contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 12 }}
                       formatter={(v: number) => fmtUSD(v)}
                     />

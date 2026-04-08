@@ -158,7 +158,7 @@ export const generateMarketPulseInsights = async (marketContext: string) => {
     const ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
     
     const prompt = `
-      You are an elite, institutional-grade crypto analyst specifically writing for 'Coinvestopedia Academy'.
+      You are an elite, institutional-grade crypto analyst specifically writing for 'Coinvestopedia Knowledge'.
       Context based on live data (or mock if unavailable): ${marketContext}
       
       Generate exactly 5 distinct market insights.

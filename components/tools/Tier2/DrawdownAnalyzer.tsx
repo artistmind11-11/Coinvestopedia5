@@ -87,7 +87,7 @@ export const DrawdownAnalyzer: React.FC = () => {
       </div>
 
       <div className="lg:col-span-8 flex flex-col gap-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4">
            <ResultMetric label="Current Value" value={fmtUSD(result.currentVal)} positive={result.currentVal > parseFloat(investment)} negative={result.currentVal < parseFloat(investment)} />
            <ResultMetric label="Max Historical DD" value={fmtPct(result.maxDrawdown)} negative />
            <ResultMetric label="Longest Underwater" value={`${result.longestDD} mo`} neutral />
@@ -102,7 +102,7 @@ export const DrawdownAnalyzer: React.FC = () => {
                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
                  <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#a1a1aa' }} stroke="#3f3f46" />
                  <YAxis tick={{ fontSize: 10, fill: '#a1a1aa' }} tickFormatter={v => `$${(v/1000).toFixed(0)}k`} stroke="#3f3f46" />
-                 <Tooltip
+                 <Tooltip itemStyle={{ color: '#e4e4e7' }} labelStyle={{ color: '#a1a1aa' }}
                    contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8 }}
                    formatter={(v: number) => fmtUSD(v)}
                  />
@@ -120,7 +120,7 @@ export const DrawdownAnalyzer: React.FC = () => {
                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
                  <XAxis dataKey="year" hide />
                  <YAxis tick={{ fontSize: 10, fill: '#a1a1aa' }} tickFormatter={v => `${v}%`} stroke="#3f3f46" domain={['dataMin - 5', 0]} />
-                 <Tooltip
+                 <Tooltip itemStyle={{ color: '#e4e4e7' }} labelStyle={{ color: '#a1a1aa' }}
                    contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8 }}
                    formatter={(v: number) => [`${v}%`, 'Drawdown']}
                  />

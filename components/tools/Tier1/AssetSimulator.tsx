@@ -154,7 +154,7 @@ export const AssetSimulator: React.FC = () => {
 
       {/* Main Charts */}
       <div className="lg:col-span-8 flex flex-col gap-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4">
            <ResultMetric label="Projected Value" value={fmtUSD(result.finalValue)} positive />
            <ResultMetric label="Expected CAGR" value={fmtPct(result.portReturn * 100)} neutral />
            <ResultMetric label="Max Drawdown" value={fmtPct(result.maxDrawdown)} negative />
@@ -171,7 +171,7 @@ export const AssetSimulator: React.FC = () => {
                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
                  <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#a1a1aa' }} stroke="#3f3f46" />
                  <YAxis tick={{ fontSize: 10, fill: '#a1a1aa' }} tickFormatter={v => `$${(v/1000).toFixed(0)}k`} stroke="#3f3f46" />
-                 <Tooltip
+                 <Tooltip itemStyle={{ color: '#e4e4e7' }} labelStyle={{ color: '#a1a1aa' }}
                    contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8 }}
                    formatter={(v: number) => fmtUSD(v)}
                  />
@@ -190,7 +190,7 @@ export const AssetSimulator: React.FC = () => {
                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
                  <XAxis dataKey="year" hide />
                  <YAxis hide domain={['dataMin', 0]} />
-                 <Tooltip
+                 <Tooltip itemStyle={{ color: '#e4e4e7' }} labelStyle={{ color: '#a1a1aa' }}
                    contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8 }}
                    formatter={(v: number) => [`${v}%`, 'Drawdown']}
                  />

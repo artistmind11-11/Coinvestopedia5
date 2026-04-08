@@ -140,11 +140,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
 
   return (
     <div className="animate-fade-in space-y-12 lg:space-y-20">
-      <Hero onNavigate={onNavigate} partner="binance" />
-
-      <div className="flex justify-center -mt-8 mb-4">
-         <AdUnit size="native" context={{ page: PageRoute.HOME }} label="Sponsor" />
-      </div>
+      <Hero />
       
       {/* Featured Comparisons Section */}
       <section>
@@ -154,7 +150,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             <p className="text-text-muted text-sm lg:text-base">Where Crypto Meets Wall Street - Start Here</p>
           </div>
           <button 
-            className="text-primary font-semibold transition-all group text-sm lg:text-base self-start sm:self-auto"
+            className="px-4 py-2 bg-surface hover:bg-surface-hover border border-border text-primary font-semibold transition-all group text-sm lg:text-base self-start sm:self-auto rounded-lg shadow-sm"
             onClick={() => onNavigate?.(PageRoute.COMPARE)}
           >
             View All Comparisons
@@ -199,7 +195,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                  ))}
               </div>
 
-              <div className="flex items-center text-primary text-sm font-bold mt-auto transition-all">
+              <div className="flex items-center justify-center w-full px-4 py-2.5 mt-auto bg-primary/10 hover:bg-primary/20 text-primary text-sm font-bold rounded-lg transition-colors border border-primary/20">
                 {comparison.cta}
               </div>
             </Card>
@@ -212,15 +208,12 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         <MarketPulseDashboard onNavigate={onNavigate} />
       </section>
 
-      <div className="flex justify-center my-12">
-         <AdUnit size="billboard" context={{ page: PageRoute.HOME }} label="Market Sponsor" />
-      </div>
-
       {/* Live Feed & Ad */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
         <LiveActivityFeed />
         <div className="flex flex-col gap-6">
-           <AdUnit size="large" className="w-full h-full min-h-[250px]" label="Sponsored Partner" context={{ page: PageRoute.HOME }} />
+           {/* Passing partner="3commas" for diversity, or remove prop for random */}
+           <AdUnit size="large" className="w-full h-full min-h-[250px]" label="Sponsored Partner" partner="3commas" />
         </div>
       </section>
 
@@ -244,10 +237,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       </section>
 
       {/* Newsletter */}
-      <section className="relative">
-        <div className="absolute -top-12 right-0 hidden xl:block">
-           <AdUnit size="native" context={{ page: PageRoute.HOME }} />
-        </div>
+      <section>
         <NewsletterSignup />
       </section>
     </div>

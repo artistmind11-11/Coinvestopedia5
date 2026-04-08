@@ -72,7 +72,7 @@ export const InflationAdjusted: React.FC = () => {
         </div>
 
         <div className="lg:col-span-3 flex flex-col gap-6">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 gap-4">
             <ResultMetric label="Real Annual Return" value={fmtPct(result.realReturn)} positive={result.realReturn > 0} negative={result.realReturn < 0} />
             <ResultMetric label="Final Nominal Value" value={fmtUSD(result.finalNominal)} neutral />
             <ResultMetric label="Inflation-Adjusted Value" value={fmtUSD(result.finalReal)} positive />
@@ -87,7 +87,7 @@ export const InflationAdjusted: React.FC = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
                   <XAxis dataKey="year" tick={{ fontSize: 10, fill: '#a1a1aa' }} stroke="#3f3f46" />
                   <YAxis tick={{ fontSize: 10, fill: '#a1a1aa' }} tickFormatter={v => `$${(v/1000).toFixed(0)}k`} stroke="#3f3f46" />
-                  <Tooltip
+                  <Tooltip itemStyle={{ color: '#e4e4e7' }}
                     contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 12, boxShadow: '0 10px 15px rgba(0,0,0,0.5)' }}
                     formatter={(v: number) => fmtUSD(v)}
                     labelStyle={{ color: '#a1a1aa', fontWeight: 'bold', marginBottom: 6 }}

@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Card } from '../../Card';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
-import { Percent, Info, ArrowUpRight } from 'lucide-react';
+import { Percent, Info } from 'lucide-react';
 import { InputField, ResultMetric, fmtUSD, fmtPct } from '../shared/SharedComponents';
 
 const TAX_BRACKETS_2024 = {
@@ -154,7 +154,7 @@ export const TaxEstimator: React.FC = () => {
               <Pie data={result.chartData} innerRadius={35} outerRadius={55} dataKey="value" stroke="none" paddingAngle={3}>
                 {result.chartData.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
               </Pie>
-              <Tooltip
+              <Tooltip labelStyle={{ color: '#a1a1aa' }}
                 contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8, color: '#f4f4f5' }}
                 itemStyle={{ color: '#fff' }}
                 formatter={(v: number) => fmtUSD(v)}
@@ -172,27 +172,9 @@ export const TaxEstimator: React.FC = () => {
           </div>
         )}
 
-        <div className="mt-4 p-3 bg-primary/5 border border-primary/20 rounded-lg text-xs text-text-muted mb-4">
+        <div className="mt-4 p-3 bg-primary/5 border border-primary/20 rounded-lg text-xs text-text-muted">
           💡 <strong>Tax-loss harvesting tip:</strong> Sell assets at a loss to offset gains. You can carry forward unused losses to future years.
         </div>
-
-        <a 
-          href="https://coinledger.io/?ref=COINVEST"
-          rel="noopener sponsored"
-          target="_blank"
-          className="mt-auto flex items-center gap-4 p-4 bg-amber-500/10 border border-amber-500/20 rounded-xl hover:border-amber-500/40 transition-all group group-hover:scale-[1.02]"
-        >
-          <div className="w-12 h-12 bg-amber-500/20 rounded-lg flex items-center justify-center text-2xl group-hover:bg-amber-500/30 transition-colors">
-            📊
-          </div>
-          <div className="flex-1">
-            <p className="font-bold text-sm text-amber-400 mb-0.5">Generate your full crypto tax report</p>
-            <p className="text-xs text-text-muted leading-tight line-clamp-2">Connect 500+ exchanges automatically. 100% IRS compliant reports in minutes.</p>
-          </div>
-          <div className="p-2 bg-amber-500/20 rounded-lg text-amber-400 group-hover:bg-amber-500/40 transition-colors shadow-lg shadow-amber-500/5">
-             <ArrowUpRight size={18} strokeWidth={2.5} />
-          </div>
-        </a>
       </Card>
     </div>
   );

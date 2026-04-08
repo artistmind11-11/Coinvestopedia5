@@ -48,5 +48,7 @@ export enum PageRoute {
   AUDIT = '/security-audit',
   PRIVACY = '/privacy',
   TERMS = '/terms',
+  GLOSSARY = '/glossary',
+  EXCHANGES = '/exchanges',
   COOKIES = '/cookies'
 }

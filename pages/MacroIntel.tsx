@@ -7,11 +7,6 @@ import {
   ChevronRight, Lock, Zap, ArrowUpRight, ArrowDownRight
 } from 'lucide-react';
 import { fetchMacroIndicators } from '../services/api';
-import { AdUnit } from '../components/AdUnit';
-import { LeaderboardAd } from '../components/LeaderboardAd';
-import { AffiliateCTA } from '../components/AffiliateCTA';
-import { PageRoute } from '../types';
-import { useAppContext } from '../context/AppContext';
 
 // ─── TYPES ────────────────────────────────────────────────────────────────────
 
@@ -182,25 +177,25 @@ const REPORTS: MacroReport[] = [
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-b border-border/50 hover:bg-white/5">
+                  <tr className="border-b border-border/50 hover:bg-primary/5">
                     <td className="py-3 pr-4 font-medium">DXY surge above 108</td>
                     <td className="py-3 px-4 text-amber-400">35%</td>
                     <td className="py-3 px-4 text-red-400">Strongly Negative</td>
                     <td className="py-3 pl-4 text-text-muted">2-4 weeks</td>
                   </tr>
-                  <tr className="border-b border-border/50 hover:bg-white/5">
+                  <tr className="border-b border-border/50 hover:bg-primary/5">
                     <td className="py-3 pr-4 font-medium">DXY range 104-107</td>
                     <td className="py-3 px-4 text-emerald-400">45%</td>
                     <td className="py-3 px-4 text-amber-400">Mildly Negative</td>
                     <td className="py-3 pl-4 text-text-muted">Ongoing</td>
                   </tr>
-                  <tr className="border-b border-border/50 hover:bg-white/5">
+                  <tr className="border-b border-border/50 hover:bg-primary/5">
                     <td className="py-3 pr-4 font-medium">Surprise rate cut signal</td>
                     <td className="py-3 px-4 text-red-400">10%</td>
                     <td className="py-3 px-4 text-emerald-400">Strongly Positive</td>
                     <td className="py-3 pl-4 text-text-muted">Immediate</td>
                   </tr>
-                  <tr className="hover:bg-white/5">
+                  <tr className="hover:bg-primary/5">
                     <td className="py-3 pr-4 font-medium">DXY reversal below 104</td>
                     <td className="py-3 px-4 text-red-400">10%</td>
                     <td className="py-3 px-4 text-emerald-400">Positive</td>
@@ -541,7 +536,7 @@ const ReportCard: React.FC<{ report: MacroReport; onClick: () => void }> = ({ re
     </p>
 
     {/* Key Metrics */}
-    <div className="grid grid-cols-4 gap-2 mb-6">
+    <div className="grid grid-cols-2 gap-3 mb-6">
       {report.keyMetrics.map(m => (
         <div key={m.label} className="text-center p-2 bg-surface rounded-lg border border-border">
           <p className="text-[9px] text-text-muted uppercase font-bold tracking-wider">{m.label}</p>
@@ -565,7 +560,6 @@ const ReportCard: React.FC<{ report: MacroReport; onClick: () => void }> = ({ re
 // ─── MAIN PAGE ────────────────────────────────────────────────────────────────
 
 export const MacroIntel: React.FC = () => {
-  const { isProUser } = useAppContext();
   const [activeTab, setActiveTab] = useState<MacroTab>('weekly');
   const [activeReportId, setActiveReportId] = useState<string | null>(null);
 
@@ -582,7 +576,7 @@ export const MacroIntel: React.FC = () => {
   // ── REPORT READER VIEW ──
   if (activeReport) {
     return (
-      <div className="animate-fade-in max-w-container mx-auto pb-16">
+      <div className="animate-fade-in max-w-[800px] mx-auto pb-16">
         <button
           onClick={() => setActiveReportId(null)}
           className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors text-sm font-bold group mb-8"
@@ -590,99 +584,49 @@ export const MacroIntel: React.FC = () => {
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Macro Intel
         </button>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-          {/* Main Content */}
-          <div className="lg:col-span-3">
-            {/* Report Header */}
-            <div className="mb-10">
-              <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-text-muted uppercase tracking-widest mb-4">
-                <span className="text-primary">{TABS.find(t => t.id === activeReport.tab)?.label}</span>
-                <span>•</span>
-                <span>{activeReport.date}</span>
-                <span>•</span>
-                <span className="flex items-center gap-1"><Clock size={12} /> {activeReport.readTime}</span>
-              </div>
-              <h1 className="text-3xl lg:text-5xl font-heading font-bold mb-4 leading-tight">{activeReport.title}</h1>
-              <p className="text-lg text-text-muted leading-relaxed">{activeReport.subtitle}</p>
-            </div>
-
-            {/* Key Metrics Bar */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10 p-4 bg-surface rounded-xl border border-border">
-              {activeReport.keyMetrics.map(m => (
-                <div key={m.label} className="text-center">
-                  <p className="text-[10px] text-text-muted uppercase font-bold tracking-wider">{m.label}</p>
-                  <p className={`text-xl font-bold font-mono mt-1 ${m.direction === 'up' ? 'text-emerald-400' : m.direction === 'down' ? 'text-red-400' : 'text-text'}`}>
-                    {m.value}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Report Sections */}
-            <div className="space-y-12">
-              {activeReport.sections.map((section, idx) => (
-                <React.Fragment key={idx}>
-                  <section className="relative">
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                        {section.icon}
-                      </div>
-                      <h2 className="text-2xl font-bold">{section.title}</h2>
-                    </div>
-                    <div className="text-text leading-relaxed text-lg pl-0 md:pl-12">
-                      {section.content}
-                    </div>
-                  </section>
-                  
-                  {/* Ad after Section 1 */}
-                  {idx === 0 && !isProUser && (
-                    <div className="py-8 border-y border-border/50 my-12">
-                       <div className="flex flex-col items-center gap-4">
-                          <span className="text-[10px] text-text-muted uppercase tracking-[0.2em] font-bold">Research Sponsor</span>
-                          <AdUnit size="leaderboard" context={{ page: PageRoute.MACRO_INTEL }} />
-                       </div>
-                    </div>
-                  )}
-
-                  {idx > 0 && idx < activeReport.sections.length - 1 && (
-                    <div className="border-b border-border my-12" />
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-
-            {/* Bottom CTA */}
-            <div className="mt-16 pt-12 border-t border-border">
-               <AffiliateCTA 
-                  partner="TradingView" 
-                  text="Chart these signal yourself with pro-level tools." 
-                  ctaLabel="Try TradingView Pro" 
-                  href="#" 
-                  variant="banner" 
-               />
-            </div>
+        {/* Report Header */}
+        <div className="mb-10">
+          <div className="flex flex-wrap items-center gap-3 text-xs font-bold text-text-muted uppercase tracking-widest mb-4">
+            <span className="text-primary">{TABS.find(t => t.id === activeReport.tab)?.label}</span>
+            <span>•</span>
+            <span>{activeReport.date}</span>
+            <span>•</span>
+            <span className="flex items-center gap-1"><Clock size={12} /> {activeReport.readTime}</span>
           </div>
+          <h1 className="text-3xl lg:text-4xl font-heading font-bold mb-4 leading-tight">{activeReport.title}</h1>
+          <p className="text-lg text-text-muted leading-relaxed">{activeReport.subtitle}</p>
+        </div>
 
-          {/* Sticky Reader Sidebar */}
-          <aside className="hidden lg:block lg:col-span-1">
-            <div className="sticky top-28 space-y-8">
-               {!isProUser && <AdUnit size="medium" context={{ page: PageRoute.MACRO_INTEL }} label="Sponsored Content" />}
-               
-               <div className="p-6 bg-surface border border-border rounded-xl">
-                  <h4 className="font-bold text-sm mb-4">Related Intelligence</h4>
-                  <div className="space-y-4">
-                     {REPORTS.filter(r => r.id !== activeReport.id).slice(0, 2).map(r => (
-                        <div key={r.id} className="group cursor-pointer" onClick={() => setActiveReportId(r.id)}>
-                           <p className="text-[10px] text-primary font-bold uppercase mb-1">{r.date}</p>
-                           <h5 className="text-sm font-bold group-hover:text-primary transition-colors line-clamp-2">{r.title}</h5>
-                        </div>
-                     ))}
-                  </div>
-               </div>
-
-               {!isProUser && <AdUnit size="skyscraper" context={{ page: PageRoute.MACRO_INTEL }} label="Market Liquidity" />}
+        {/* Key Metrics Bar */}
+        <div className="grid grid-cols-2 gap-4 mb-10 p-4 bg-surface rounded-xl border border-border">
+          {activeReport.keyMetrics.map(m => (
+            <div key={m.label} className="text-center">
+              <p className="text-[10px] text-text-muted uppercase font-bold tracking-wider">{m.label}</p>
+              <p className={`text-xl font-bold font-mono mt-1 ${m.direction === 'up' ? 'text-emerald-400' : m.direction === 'down' ? 'text-red-400' : 'text-text'}`}>
+                {m.value}
+              </p>
             </div>
-          </aside>
+          ))}
+        </div>
+
+        {/* Report Sections */}
+        <div className="space-y-10">
+          {activeReport.sections.map((section, idx) => (
+            <section key={idx} className="relative">
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
+                  {section.icon}
+                </div>
+                <h2 className="text-xl font-bold">{section.title}</h2>
+              </div>
+              <div className="text-text leading-relaxed pl-12">
+                {section.content}
+              </div>
+              {idx < activeReport.sections.length - 1 && (
+                <div className="border-b border-border mt-10" />
+              )}
+            </section>
+          ))}
         </div>
       </div>
     );
@@ -704,20 +648,8 @@ export const MacroIntel: React.FC = () => {
           <p className="text-text-muted max-w-2xl leading-relaxed">
             You are a professional investor. Here is what is happening in the world. Here is how it flows through traditional markets into crypto. Here is what questions you should be asking.
           </p>
-
-          {!isProUser && (
-             <div className="mt-8">
-                <AdUnit size="native" context={{ page: PageRoute.MACRO_INTEL }} label="Macro Sponsor" />
-             </div>
-          )}
         </div>
       </div>
-
-      {!isProUser && (
-        <div className="mt-8 mb-4 flex justify-center">
-          <AdUnit size="leaderboard" context={{ page: PageRoute.MACRO_INTEL }} label="Data Sponsor" />
-        </div>
-      )}
 
       <LiveMacroBar />
 
@@ -744,42 +676,24 @@ export const MacroIntel: React.FC = () => {
         ))}
       </div>
 
-      {/* Reports Grid with Sidebar */}
-      <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
-        <div className="xl:col-span-3">
-          {filteredReports.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredReports.map(report => (
-                <ReportCard
-                  key={report.id}
-                  report={report}
-                  onClick={() => setActiveReportId(report.id)}
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-20">
-              <Globe size={48} className="mx-auto text-text-muted/30 mb-4" />
-              <h3 className="text-lg font-bold text-text-muted mb-2">No reports in this category yet</h3>
-              <p className="text-sm text-text-muted/70">Check back soon. New intelligence is published weekly.</p>
-            </div>
-          )}
+      {/* Reports Grid */}
+      {filteredReports.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+          {filteredReports.map(report => (
+            <ReportCard
+              key={report.id}
+              report={report}
+              onClick={() => setActiveReportId(report.id)}
+            />
+          ))}
         </div>
-
-        {/* List Sidebar Ad */}
-        <aside className="hidden xl:flex flex-col gap-6">
-          {!isProUser && <AdUnit size="medium" context={{ page: PageRoute.MACRO_INTEL }} label="Sponsored Integration" />}
-          <div className="leather-card p-6 rounded-xl border-dashed border-border flex flex-col items-center justify-center text-center">
-             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4">
-                <ArchiveIcon size={24} />
-             </div>
-             <h4 className="font-bold text-sm mb-2">Institutional Archive</h4>
-             <p className="text-xs text-text-muted mb-4">Access 5+ years of historical macro data and cross-asset correlations.</p>
-             <Button variant="secondary" size="sm" isFullWidth>Unlock with Pro</Button>
-          </div>
-          {!isProUser && <AdUnit size="skyscraper" context={{ page: PageRoute.MACRO_INTEL }} label="Trading Tools" />}
-        </aside>
-      </div>
+      ) : (
+        <div className="text-center py-20">
+          <Globe size={48} className="mx-auto text-text-muted/30 mb-4" />
+          <h3 className="text-lg font-bold text-text-muted mb-2">No reports in this category yet</h3>
+          <p className="text-sm text-text-muted/70">Check back soon. New intelligence is published weekly.</p>
+        </div>
+      )}
     </div>
   );
 };

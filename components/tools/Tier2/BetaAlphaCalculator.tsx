@@ -90,7 +90,7 @@ export const BetaAlphaCalculator: React.FC = () => {
       </div>
 
       <div className="lg:col-span-8 flex flex-col gap-6">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 gap-4">
            <ResultMetric label={`${assetName} Beta`} value={result.beta.toFixed(2)} neutral />
            <ResultMetric label="Annualized Alpha" value={`${result.annualizedAlpha > 0 ? '+' : ''}${result.annualizedAlpha.toFixed(2)}%`} positive={result.annualizedAlpha > 0} negative={result.annualizedAlpha < 0} />
            <ResultMetric label="R-Squared (Fit)" value={result.r2.toFixed(2)} neutral />

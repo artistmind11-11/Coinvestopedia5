@@ -85,7 +85,7 @@ export const OnChainValuation: React.FC = () => {
 
             {/* Metrics */}
             {activeModel === 'S2F' ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <ResultMetric label="Current BTC Price" value={fmtUSD(currentData.btcPrice)} neutral />
                 <ResultMetric label="S2F Model Price" value={fmtUSD(currentData.s2fValue)} neutral />
                 <ResultMetric 
@@ -99,7 +99,7 @@ export const OnChainValuation: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <ResultMetric label="Current BTC Price" value={fmtUSD(currentData.btcPrice)} neutral />
                 <ResultMetric label="Realized Price" value={fmtUSD(currentData.realizedPrice)} neutral />
                 <ResultMetric 
@@ -131,7 +131,7 @@ export const OnChainValuation: React.FC = () => {
                      <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 10, fill: '#ef4444' }} stroke="#3f3f46" />
                    )}
 
-                   <Tooltip
+                   <Tooltip itemStyle={{ color: '#e4e4e7' }}
                      contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8 }}
                      formatter={(v: number, name: string) => {
                        if (name === 'MVRV Z-Score') return [v.toFixed(2), name];

@@ -69,7 +69,7 @@ export const RiskAdjustedReturns: React.FC = () => {
           </div>
 
           <div className="lg:col-span-8 flex flex-col gap-6">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 gap-4">
                <ResultMetric label="Sharpe Ratio" value={stats.sharpe.toFixed(2)} positive={stats.sharpe > 1} neutral={stats.sharpe <= 1} />
                <ResultMetric label="Sortino Ratio" value={stats.sortino.toFixed(2)} positive={stats.sortino > 1.5} neutral={stats.sortino <= 1.5} />
                <ResultMetric label="Calmar Ratio" value={stats.calmar.toFixed(2)} positive={stats.calmar > 2} neutral={stats.calmar <= 2} />
@@ -83,7 +83,7 @@ export const RiskAdjustedReturns: React.FC = () => {
                      <CartesianGrid strokeDasharray="3 3" stroke="#27272a" horizontal={false} />
                      <XAxis type="number" domain={[0, 4]} tick={{ fontSize: 10, fill: '#a1a1aa' }} stroke="#3f3f46" />
                      <YAxis dataKey="name" type="category" tick={{ fontSize: 12, fontWeight: 'bold', fill: '#f4f4f5' }} stroke="none" width={80} />
-                     <Tooltip 
+                     <Tooltip itemStyle={{ color: '#e4e4e7' }} labelStyle={{ color: '#a1a1aa' }} 
                         cursor={{ fill: 'transparent' }}
                         contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 12 }}
                         formatter={(v: number, name: string, props: any) => [v, props.payload.desc]}

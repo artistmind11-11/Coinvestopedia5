@@ -11,8 +11,8 @@ export interface MarketPulseMetricProps {
 
 export const MarketPulseMetric: React.FC<MarketPulseMetricProps> = ({ label, value, trend, data }) => {
   const isPositive = trend >= 0;
-  const colorClass = isPositive ? 'text-[#10B981]' : 'text-amber-500';
-  const borderClass = isPositive ? 'border-[#10B981]/20 bg-background hover:bg-[#10B981]/5' : 'border-amber-500/20 bg-background hover:bg-amber-500/5';
+  const colorClass = isPositive ? 'text-primary' : 'text-amber-500';
+  const borderClass = isPositive ? 'border-primary/20 bg-background hover:bg-primary/5' : 'border-amber-500/20 bg-background hover:bg-amber-500/5';
   const lineColor = isPositive ? '#10B981' : '#f59e0b';
   
   const chartData = data.map((val, i) => ({ value: val, index: i }));

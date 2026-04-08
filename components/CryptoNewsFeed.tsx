@@ -42,7 +42,7 @@ export const CryptoNewsFeed: React.FC = () => {
   const visibleArticles = expanded ? articles : articles.slice(0, 8);
 
   return (
-    <div className="leather-card rounded-xl overflow-hidden h-full flex flex-col" style={{ background: 'var(--color-card-bg, #1e222d)' }}>
+    <div className="leather-card rounded-xl overflow-hidden h-full flex flex-col">
       {/* Feed Body — matches TradingView's timeline style */}
       <div className="flex-1 overflow-y-auto custom-scrollbar px-4 py-3">
         {isLoading ? (
@@ -68,7 +68,7 @@ export const CryptoNewsFeed: React.FC = () => {
                 href={article.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block py-2.5 border-b border-border/30 last:border-b-0 hover:bg-white/[0.03] -mx-1 px-1 rounded transition-colors"
+                className="group block py-2.5 border-b border-border/30 last:border-b-0 hover:bg-primary/5 -mx-1 px-1 rounded transition-colors"
               >
                 {/* Source icon + Time row — matches TradingView's layout */}
                 <div className="flex items-center gap-1.5 mb-1.5">

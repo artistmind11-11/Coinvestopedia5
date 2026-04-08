@@ -2,19 +2,14 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { AreaChart, Area, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
-import { Table, Column } from '../components/Table';
-import { AdUnit } from '../components/AdUnit';
-import { AffiliateCTA } from '../components/AffiliateCTA';
-import { LeaderboardAd } from '../components/LeaderboardAd';
-import { NativeSponsoredCard } from '../components/NativeSponsoredCard';
-import { Lock, Search, Sparkles, ExternalLink, X, Tag, Edit2, Save, Filter, Copy, Shield } from 'lucide-react';
+import Table, { Column } from '../components/Table';
+import { Lock, Search, Sparkles, ExternalLink, X, Tag, Edit2, Save, Filter, Copy } from 'lucide-react';
 import { Modal } from '../components/Modal';
 import { analyzeAssetMovement, InsightResult } from '../services/geminiService';
 import { Input } from '../components/Input';
 import { useAppContext } from '../context/AppContext';
 import { PulseIcon } from '../components/AnimatedIcons';
 import { fetchWhaleAlerts, fetchMempoolTxs } from '../services/api';
-import { PageRoute } from '../types';
 
 // Helper to generate fake ETH addresses
 const generateEthAddress = () => {
@@ -90,7 +85,7 @@ const flowData = [
 ];
 
 export const WhaleTracker: React.FC = () => {
-   const { addToast, isProUser } = useAppContext();
+   const { addToast } = useAppContext();
    const [tableData, setTableData] = useState<any[]>([]);
    const [fullLiveDataset, setFullLiveDataset] = useState<any[]>(ALL_MOCK_TRANSACTIONS);
    const [isLoading, setIsLoading] = useState(true);
@@ -307,10 +302,6 @@ export const WhaleTracker: React.FC = () => {
         </div>
       </div>
 
-      <div className="mb-8 flex justify-center">
-         <AdUnit size="leaderboard" context={{ page: PageRoute.WHALE }} label="Market Liquidity" />
-      </div>
-
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 mb-6 lg:mb-8">
         <div className="leather-card p-4 lg:p-6 rounded-xl">
            <div className="text-text-muted text-xs lg:text-sm mb-1">24h Large Inflows</div>
@@ -381,12 +372,6 @@ export const WhaleTracker: React.FC = () => {
         </div>
       </div>
 
-      {!isProUser && (
-        <div className="flex justify-center mb-8">
-           <AdUnit size="native" context={{ page: PageRoute.WHALE }} label="Whale Analyst" />
-        </div>
-      )}
-
       <div className="leather-card rounded-xl overflow-hidden mb-6 lg:mb-8">
          <div className="p-3 lg:p-4 border-b border-border bg-background/50 flex justify-between items-center relative z-10">
             <h3 className="font-bold text-sm lg:text-base">Recent Large Transactions</h3>
@@ -410,7 +395,7 @@ export const WhaleTracker: React.FC = () => {
                 { key: 'to', label: 'To', width: '20%', render: (v: string) => <AddressCell address={v} /> },
                 { key: 'type', label: 'Type', width: '10%', render: (value: string) => (
                   <span className={`px-2 py-1 rounded-md text-xs font-bold uppercase ${
-                    value === 'inflow' ? 'bg-[#EF4444]/20 text-[#EF4444]' : value === 'outflow' ? 'bg-primary/20 text-primary' : 'bg-text-muted/20 text-text-muted'
+                    value === 'inflow' ? 'bg-red-500/20 text-red-500' : value === 'outflow' ? 'bg-primary/20 text-primary' : 'bg-text-muted/20 text-text-muted'
                   }`}>{value}</span>
                 ) },
                 { key: 'actions', label: 'Analysis', width: '5%', isAction: true, render: (_, item) => (
@@ -430,30 +415,18 @@ export const WhaleTracker: React.FC = () => {
               onRowClick={(item) => setSelectedTx(item)}
               striped
               hoverable
-              renderAfterRow={(index) => index === 4 ? (
-                <tr>
-                  <td colSpan={7} className="p-4 bg-surface/50 border-b border-border">
-                    <AdUnit size="leaderboard" partner="htx" context={{ page: PageRoute.WHALE }} label="Sponsored Alert" />
-                  </td>
-                </tr>
-              ) : null}
             />
          </div>
          {/* Paywall Overlay */}
          <div className="relative border-t border-border z-10">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-surface z-10"></div>
-            <div className="relative z-20 grid grid-cols-1 md:grid-cols-3 gap-6 items-center py-8 lg:py-12 px-6">
-               <div className="md:col-span-2 flex flex-col items-center md:items-start text-center md:text-left gap-3 lg:gap-4">
-                  <div className="p-2 lg:p-3 bg-primary/10 rounded-full text-primary w-fit">
-                     <Lock size={24} className="lg:size-[32px]" />
-                  </div>
-                  <h3 className="text-xl lg:text-3xl font-bold">Unlock Full Live Tracking</h3>
-                  <p className="text-text-muted text-sm lg:text-lg max-w-md">Get access to historical data, wallet labelling, and real-time push notifications.</p>
-                  <Button className="mt-2" size="lg">Upgrade to Pro</Button>
+            <div className="relative z-20 flex flex-col items-center justify-center py-8 lg:py-12 gap-3 lg:gap-4 px-4">
+               <div className="p-2 lg:p-3 bg-primary/10 rounded-full text-primary">
+                  <Lock size={24} className="lg:size-[32px]" />
                </div>
-               <div className="hidden md:block sticky top-24">
-                  <AdUnit size="medium" context={{ page: PageRoute.WHALE }} label="Sponsored" />
-               </div>
+               <h3 className="text-lg lg:text-xl font-bold text-center">Unlock Full Live Tracking</h3>
+               <p className="text-text-muted text-sm lg:text-base max-w-md text-center">Get access to historical data, wallet labelling, and real-time push notifications.</p>
+               <Button className="mt-2">Upgrade to Pro</Button>
             </div>
             <div className="opacity-30 blur-sm pointer-events-none p-4 space-y-4">
                {[1,2,3].map(i => <div key={i} className="h-8 lg:h-10 bg-background rounded w-full"></div>)}
@@ -589,38 +562,6 @@ export const WhaleTracker: React.FC = () => {
                      <p className="text-sm text-red-400">Analysis failed. Please check your network or API key.</p>
                   )}
                </div>
-
-               {analysis && !isProUser && (
-                  <div className="space-y-4">
-                     <div className="p-5 bg-primary/5 rounded-2xl border border-primary/20 flex flex-col sm:flex-row items-center gap-6 relative overflow-hidden group">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-                        <div className="flex items-center gap-4 flex-1">
-                           <div className="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center text-primary shadow-inner group-hover:scale-110 transition-transform">
-                              <Shield size={24} />
-                           </div>
-                           <div>
-                              <p className="text-sm font-bold text-text">Institutional Custody</p>
-                              <p className="text-xs text-text-muted leading-relaxed">Secure your institutional-sized capital with enterprise-grade hardware.</p>
-                           </div>
-                        </div>
-                        <AffiliateCTA 
-                           partner="Ledger" 
-                           text="" 
-                           ctaLabel="Get Nano X" 
-                           href="https://shop.ledger.com" 
-                           variant="card"
-                           className="!p-0 !bg-transparent !border-none"
-                        />
-                     </div>
-
-                     <AdUnit 
-                        size="native" 
-                        partner="nansen" 
-                        label="Professional Tool" 
-                        className="w-full !max-w-none"
-                     />
-                  </div>
-               )}
 
                <Button isFullWidth onClick={closeModal} variant="secondary">Close Report</Button>
             </div>

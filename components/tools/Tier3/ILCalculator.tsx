@@ -99,7 +99,7 @@ export const ILCalculator: React.FC = () => {
               <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
               <XAxis dataKey="ratio" tick={{ fontSize: 9, fill: '#a1a1aa' }} stroke="#3f3f46" />
               <YAxis tick={{ fontSize: 10, fill: '#a1a1aa' }} tickFormatter={v => `${v}%`} stroke="#3f3f46" />
-              <Tooltip
+              <Tooltip labelStyle={{ color: '#a1a1aa' }}
                 contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8, color: '#f4f4f5' }}
                 itemStyle={{ color: '#fff' }}
                 formatter={(v: number) => [`${fmt(v, 2)}%`, 'Impermanent Loss']}

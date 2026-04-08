@@ -102,7 +102,7 @@ const ReturnComparisonChart: React.FC<{ assets: AssetData[] }> = ({ assets }) =>
             <CartesianGrid strokeDasharray="3 3" stroke="#27272A" vertical={false} />
             <XAxis dataKey="symbol" stroke="#52525B" tick={{ fill: '#A1A1AA', fontSize: 11, fontWeight: 700 }} />
             <YAxis stroke="#52525B" tick={{ fill: '#71717A', fontSize: 11 }} tickFormatter={(v) => `${v}%`} />
-            <Tooltip
+            <Tooltip itemStyle={{ color: '#e4e4e7' }}
               contentStyle={{ backgroundColor: '#18181B', borderColor: '#27272A', color: '#F4F4F5', borderRadius: '8px' }}
               formatter={(value: number, name: string) => [`${value > 0 ? '+' : ''}${value.toFixed(1)}%`, name]}
               labelStyle={{ color: '#A1A1AA', fontSize: '11px' }}

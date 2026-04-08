@@ -16,7 +16,7 @@ export const SidebarLeft: React.FC<SidebarLeftProps> = ({ onNavigate, currentRou
     { icon: <Calculator size={20} />, label: 'Tools & Calculators', route: PageRoute.TOOLS },
     { icon: <Shield size={20} />, label: 'Security', route: PageRoute.AUDIT },
     { icon: <BookOpen size={20} />, label: 'Research', route: PageRoute.RESEARCH },
-    { icon: <BookOpen size={20} />, label: 'Academy', route: PageRoute.LEARN },
+    { icon: <BookOpen size={20} />, label: 'Knowledge', route: PageRoute.LEARN },
   ];
 
   return (
@@ -27,7 +27,7 @@ export const SidebarLeft: React.FC<SidebarLeftProps> = ({ onNavigate, currentRou
           <button 
             key={index} 
             onClick={() => item.route && onNavigate?.(item.route)}
-            className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-md transition-colors group ${currentRoute === item.route ? 'text-primary bg-surface' : 'text-text-muted hover:text-primary hover:bg-surface'}`}
+            className={`flex items-center gap-3 px-3 py-2 w-full text-left rounded-md transition-all duration-300 group ${currentRoute === item.route ? 'text-primary bg-surface shadow-sm' : 'text-text/80 hover:text-primary hover:bg-surface hover:-translate-y-[1px]'}`}
           >
             <span className="group-hover:text-primary transition-colors flex items-center justify-center">{item.icon}</span>
             <span className="text-sm font-medium">{item.label}</span>

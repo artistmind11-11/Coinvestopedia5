@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import { Hero } from '../components/Hero';
 import { Card } from '../components/Card';
 import { Button } from '../components/Button';
-import { BookOpen, Video, FileText, PlayCircle, Star, Award, TrendingUp, Shield, ArrowLeft, Lock, Unlock, Clock, BarChart3, Zap } from 'lucide-react';
+import { BookOpen, Video, FileText, PlayCircle, Star, Award, TrendingUp, Shield, ArrowLeft, Lock, Unlock, Clock, BarChart2 } from 'lucide-react';
 import { TargetIcon } from '../components/AnimatedIcons';
 import { PageRoute } from '../types';
-import { AdUnit } from '../components/AdUnit';
-import { AffiliateCTA } from '../components/AffiliateCTA';
-import { useAppContext } from '../context/AppContext';
 
 // --- Types & Data ---
 
@@ -32,7 +28,7 @@ interface Category {
   resources: Resource[];
 }
 
-const ACADEMY_CATEGORIES: Category[] = [
+const KNOWLEDGE_CATEGORIES: Category[] = [
   {
     id: 'defi',
     name: 'DeFi Strategies',
@@ -88,7 +84,6 @@ export interface LearnProps {
 }
 
 export const Learn: React.FC<LearnProps> = ({ onNavigate }) => {
-  const { isProUser } = useAppContext();
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
 
   const featuredCourse = {
@@ -114,7 +109,7 @@ export const Learn: React.FC<LearnProps> = ({ onNavigate }) => {
   // --- Views ---
 
   if (activeCategoryId) {
-    const category = ACADEMY_CATEGORIES.find(c => c.id === activeCategoryId);
+    const category = KNOWLEDGE_CATEGORIES.find(c => c.id === activeCategoryId);
     if (!category) return null;
 
     return (
@@ -123,7 +118,7 @@ export const Learn: React.FC<LearnProps> = ({ onNavigate }) => {
           onClick={() => setActiveCategoryId(null)}
           className="flex items-center gap-2 text-text-muted hover:text-primary transition-colors text-sm font-bold group"
         >
-          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Academy
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back to Knowledge
         </button>
 
         <div>
@@ -149,13 +144,9 @@ export const Learn: React.FC<LearnProps> = ({ onNavigate }) => {
                 <div className="flex-1 p-6 flex flex-col justify-center relative">
                   <div className="flex justify-between items-start gap-4 mb-2">
                     <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{resource.title}</h3>
-                    {resource.locked ? (
-                      <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1 bg-surface border border-border rounded text-xs font-medium text-text-muted cursor-not-allowed">
-                        <Lock size={14} /> PRO
-                      </div>
-                    ) : (
-                      <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1 bg-primary/10 border border-primary/20 rounded text-xs font-medium text-primary">
-                        <Unlock size={14} /> FREE
+                    {resource.locked && (
+                      <div className="flex-shrink-0 flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded text-xs font-bold text-amber-500">
+                        <Star size={14} /> EXCLUSIVE
                       </div>
                     )}
                   </div>
@@ -182,234 +173,200 @@ export const Learn: React.FC<LearnProps> = ({ onNavigate }) => {
 
   return (
     <div className="animate-fade-in space-y-12 lg:space-y-16 pb-12">
-      <Hero onNavigate={onNavigate} partner="glassnode" />
-
-      <div className="flex justify-center -mt-8 mb-4">
-         <AdUnit size="native" context={{ page: PageRoute.LEARN }} label="Academy Sponsor" />
+      {/* Header */}
+      <div>
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-bold uppercase tracking-wider mb-4">
+          <BookOpen size={14} /> Knowledge
+        </div>
+        <h1 className="text-3xl lg:text-4xl font-heading font-bold mb-4">Master the Markets</h1>
+        <p className="text-text-muted text-lg max-w-2xl">
+          Curated education from industry professionals. Elevate your understanding of digital assets, from foundational concepts to advanced trading mechanics.
+        </p>
       </div>
 
-      <div className="h-px bg-border/50 w-full" />
 
-      {/* Featured Course */}
-      <section>
-        <Card variant="featured" className="p-0 overflow-hidden relative group border-primary/20 shadow-[0_0_50px_rgba(212,175,55,0.05)]">
-          <div className="flex flex-col md:flex-row h-full">
-             <div className="md:w-1/2 relative min-h-[300px] md:min-h-full">
-               <img 
-                 src={featuredCourse.image} 
-                 alt="Course cover" 
-                 className="absolute inset-0 w-full h-full object-cover opacity-80 mix-blend-luminosity group-hover:mix-blend-normal transition-all duration-1000 group-hover:scale-105"
-               />
-               <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/80 to-transparent"></div>
-               <div className="absolute inset-x-0 bottom-0 p-6 md:hidden">
-                 <div className="px-3 py-1 bg-primary text-white text-xs font-bold rounded-full w-fit mb-2 shadow-lg">FEATURED</div>
-               </div>
-             </div>
-             
-             <div className="md:w-1/2 p-8 lg:p-14 flex flex-col justify-center relative z-10">
-               <div className="hidden md:block px-3 py-1 bg-primary text-white text-[10px] font-extrabold rounded-full w-fit mb-6 tracking-widest shadow-lg">FEATURED COURSE</div>
-               <h2 className="text-3xl lg:text-4xl font-bold mb-6 font-heading tracking-tight leading-tight">{featuredCourse.title}</h2>
-               <p className="text-text-muted mb-10 text-lg leading-relaxed font-medium">
-                 {featuredCourse.description}
-               </p>
-               
-               <div className="flex flex-wrap gap-8 mb-10 text-sm text-text-muted font-bold uppercase tracking-tighter">
-                  <div className="flex items-center gap-2"><PlayCircle size={18} className="text-primary" /> {featuredCourse.modules} Modules</div>
-                  <div className="flex items-center gap-2"><Star size={18} className="text-primary" /> {featuredCourse.level}</div>
-                  <div className="flex items-center gap-2">⏱ {featuredCourse.duration}</div>
-               </div>
-               
-               <Button size="lg" className="w-full md:w-fit font-bold tracking-widest shadow-xl">
-                 GET CERTIFIED <ArrowLeft className="rotate-180 ml-2" size={18} />
-               </Button>
-             </div>
-          </div>
-        </Card>
-      </section>
-
-      {/* Main Grid View */}
-      <div className="grid grid-cols-1 xl:grid-cols-4 gap-12">
-         <div className="xl:col-span-3 space-y-12 lg:space-y-16">
+      {/* Research & Reports CTA */}
+      <section className="space-y-6">
+         {/* Research & Reports Card */}
+         <div 
+           className="leather-card rounded-2xl p-8 lg:p-12 bg-gradient-to-br from-surface to-background relative overflow-hidden group cursor-pointer border border-border hover:border-primary/50 transition-all flex flex-col md:flex-row items-center gap-8 shadow-xl"
+           onClick={() => onNavigate?.(PageRoute.RESEARCH)}
+         >
+            <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -translate-y-1/2 -translate-x-1/2 pointer-events-none group-hover:bg-primary/20 transition-colors duration-700"></div>
             
-            {/* Quick Access Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {/* Research & Reports Card */}
-               <div 
-                  className="leather-card rounded-2xl p-8 bg-gradient-to-br from-surface to-background relative overflow-hidden group cursor-pointer border border-border hover:border-primary/50 transition-all flex flex-col items-center text-center gap-6 shadow-xl"
-                  onClick={() => onNavigate?.(PageRoute.RESEARCH)}
-               >
-                   <div className="absolute top-0 right-0 p-4">
-                     {!isProUser && <AdUnit size="medium" context={{ page: PageRoute.LEARN }} label="Sponsor" />}
-                  </div>
-                  <div className="flex-shrink-0 w-16 h-16 bg-surface border border-border rounded-xl flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-500 shadow-inner mt-4">
-                     <BookOpen size={32} className="group-hover:animate-pulse" />
-                  </div>
-                  <div className="relative z-10">
-                     <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Research & Reports</h3>
-                     <p className="text-text-muted text-sm leading-relaxed mb-4">
-                        Weekly on-chain analysis and institutional reports.
-                     </p>
-                     <span className="text-primary font-bold text-xs flex items-center gap-1 justify-center group-hover:gap-2 transition-all">
-                        EXPLORE NOW <ArrowLeft className="rotate-180" size={14} />
-                     </span>
-                  </div>
-               </div>
-
-               {/* Institutional Insights Card */}
-               <div 
-                  className="leather-card rounded-2xl p-8 bg-gradient-to-br from-surface to-background relative overflow-hidden group cursor-pointer border border-border hover:border-primary/50 transition-all flex flex-col items-center text-center gap-6 shadow-xl"
-                  onClick={() => onNavigate?.(PageRoute.INSIGHTS)}
-               >
-                  <div className="flex-shrink-0 w-16 h-16 bg-surface border border-border rounded-xl flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-500 shadow-inner">
-                     <TargetIcon className="w-8 h-8 group-hover:animate-pulse" />
-                  </div>
-                  <div className="relative z-10">
-                     <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">Market Insights</h3>
-                     <p className="text-text-muted text-sm leading-relaxed mb-4">
-                        Regulatory frameworks and geopolitical deep dives.
-                     </p>
-                     <span className="text-primary font-bold text-xs flex items-center gap-1 justify-center group-hover:gap-2 transition-all">
-                        READ REPORTS <ArrowLeft className="rotate-180" size={14} />
-                     </span>
-                  </div>
-                  <div className="absolute bottom-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-               </div>
+            <div className="flex-shrink-0 relative z-10 w-20 h-20 bg-surface border border-border rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-500 shadow-inner">
+               <BookOpen size={40} className="group-hover:animate-pulse" />
             </div>
-
-            {/* In-feed Ad */}
-            {!isProUser && (
-               <div className="py-8 border-y border-border/30 flex justify-center">
-                  <AdUnit size="leaderboard" context={{ page: PageRoute.LEARN }} label="Academy Sponsor" />
+            
+            <div className="relative z-10 flex-1 text-center md:text-left">
+               <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
+                 Free Update
                </div>
-            )}
-
-            {/* Categories */}
-            <section>
-               <h2 className="text-sm font-bold font-heading uppercase tracking-[0.25em] text-text-muted mb-8 flex items-center gap-4">
-                  Learning Modules <div className="h-[1px] flex-1 bg-border/50" />
-               </h2>
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-               {ACADEMY_CATEGORIES.map((cat) => (
-                  <div 
-                     key={cat.id} 
-                     onClick={() => setActiveCategoryId(cat.id)}
-                     className="leather-card rounded-xl p-6 cursor-pointer hover:border-primary/50 group flex items-center gap-6 transition-all bg-gradient-to-r from-surface to-transparent shadow-lg"
-                  >
-                     <div className="p-4 bg-surface rounded-xl text-primary group-hover:bg-primary/20 transition-all flex-shrink-0 shadow-inner">
-                        {cat.icon}
-                     </div>
-                     <div className="flex-1">
-                        <h3 className="text-lg font-bold group-hover:text-primary transition-colors">{cat.name}</h3>
-                        <p className="text-xs text-text-muted mt-1 uppercase font-bold tracking-widest">{cat.resources.length} Modules Available</p>
-                     </div>
-                     <ArrowLeft className="rotate-180 text-border group-hover:text-primary transition-colors" size={20} />
-                  </div>
-               ))}
-               </div>
-            </section>
-
-            {/* Latest Resources */}
-            <section>
-               <h2 className="text-sm font-bold font-heading uppercase tracking-[0.25em] text-text-muted mb-8 flex items-center gap-4">
-                  Latest Academy Drops <div className="h-[1px] flex-1 bg-border/50" />
-               </h2>
-               
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {recentArticles.slice(0, 2).map((article, i) => (
-                     <Card key={i} className="flex flex-col cursor-pointer group hover:border-primary/40 p-6 bg-surface">
-                        <div className="flex justify-between items-start mb-6">
-                           <span className="px-3 py-1 bg-background border border-border text-[9px] rounded-full font-extrabold text-text-muted uppercase tracking-widest">
-                              {article.tag}
-                           </span>
-                           <div className="flex items-center gap-1.5 text-[10px] text-primary font-extrabold uppercase tracking-widest">
-                              {article.icon} {article.type}
-                           </div>
-                        </div>
-                        
-                        <h3 className="text-xl font-bold mb-6 group-hover:text-primary transition-colors leading-snug">
-                           {article.title}
-                        </h3>
-                        
-                        <div className="mt-auto flex items-center justify-between text-[10px] text-text-muted font-extrabold uppercase tracking-widest pt-4 border-t border-border">
-                           <span>{article.readTime}</span>
-                           <span className="flex items-center gap-1 group-hover:text-primary transition-colors">Start Module</span>
-                        </div>
-                     </Card>
-                  ))}
-                  
-                   {!isProUser && (
-                      <AdUnit size="native" context={{ page: PageRoute.LEARN }} label="Sponsor" />
-                   )}
-               </div>
-            </section>
+               <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors">Research & Reports</h2>
+               <p className="text-text-muted md:text-lg max-w-2xl leading-relaxed">
+                  Weekly on-chain market analysis and reports to guide your investment decisions. Explore deep dives from Glassnode directly here.
+               </p>
+            </div>
+            
+            <div className="relative z-10 flex-shrink-0">
+               <Button variant="secondary" className="group-hover:bg-primary group-hover:text-background group-hover:border-primary transition-all">
+                 Explore Research
+               </Button>
+            </div>
          </div>
 
-         {/* Academy Sidebar */}
-         <aside className="hidden xl:flex flex-col gap-10">
-            {!isProUser && <AdUnit size="medium" context={{ page: PageRoute.LEARN }} label="Sponsored Partner" />}
+         {/* Institutional Insights Card */}
+         <div 
+           className="leather-card rounded-2xl p-8 lg:p-12 bg-gradient-to-br from-surface to-background relative overflow-hidden group cursor-pointer border border-border hover:border-primary/50 transition-all flex flex-col md:flex-row items-center gap-8 shadow-xl"
+           onClick={() => onNavigate?.(PageRoute.INSIGHTS)}
+         >
+            <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -translate-y-1/2 -translate-x-1/2 pointer-events-none group-hover:bg-primary/20 transition-colors duration-700"></div>
             
-            <div className="leather-card p-6 rounded-2xl border-dashed border-primary/30 bg-primary/5">
-               <h4 className="font-bold text-sm mb-4 flex items-center gap-2">
-                  <Zap size={18} className="text-primary fill-primary" />
-                  Free Alpha
-               </h4>
-               <p className="text-xs text-text-muted mb-6 leading-relaxed">
-                  Join our discord to get real-time institutional flow alerts and community research reviews.
-               </p>
-               <Button isFullWidth size="sm" variant="secondary" className="font-bold tracking-widest">JOIN DISCORD</Button>
+            <div className="flex-shrink-0 relative z-10 w-20 h-20 bg-surface border border-border rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-500 shadow-inner">
+               <TargetIcon className="w-10 h-10 group-hover:animate-pulse" />
             </div>
-
-            <div className="p-6 bg-surface border border-border rounded-xl shadow-lg">
-               <h4 className="font-bold text-sm mb-6 flex items-center gap-2">
-                  <Star size={16} className="text-primary" />
-                  Your Progress
-               </h4>
-               <div className="space-y-6">
-                  <div>
-                     <div className="flex justify-between text-[10px] font-bold uppercase mb-2">
-                        <span className="text-text-muted">Total XP</span>
-                        <span className="text-primary">2,450 / 5,000</span>
-                     </div>
-                     <div className="h-1.5 w-full bg-background rounded-full overflow-hidden border border-border">
-                        <div className="h-full bg-primary w-[45%] shadow-[0_0_10px_rgba(212,175,55,0.3)]" />
-                     </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                     <div className="p-3 bg-background border border-border rounded-lg text-center">
-                        <div className="text-lg font-bold text-primary">08</div>
-                        <div className="text-[8px] text-text-muted uppercase font-bold">Resourses</div>
-                     </div>
-                     <div className="p-3 bg-background border border-border rounded-lg text-center">
-                        <div className="text-lg font-bold text-emerald-400">03</div>
-                        <div className="text-[8px] text-text-muted uppercase font-bold">Certificates</div>
-                     </div>
-                  </div>
+            
+            <div className="relative z-10 flex-1 text-center md:text-left">
+               <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
+                 Deep Dives
                </div>
+               <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors">Institutional Insights</h2>
+               <p className="text-text-muted md:text-lg max-w-2xl leading-relaxed">
+                  In-depth analysis of market structure, geopolitical impacts, and regulatory frameworks reshaping digital finance.
+               </p>
             </div>
+            
+            <div className="relative z-10 flex-shrink-0">
+               <Button variant="secondary" className="group-hover:bg-primary group-hover:text-background group-hover:border-primary transition-all">
+                 Read Insights
+               </Button>
+            </div>
+         </div>
 
-            {!isProUser && <AdUnit size="skyscraper" context={{ page: PageRoute.LEARN }} label="Secure Your Gains" />}
-         </aside>
-      </div>
+         {/* Crypto Glossary Card */}
+         <div 
+            className="leather-card rounded-2xl p-8 lg:p-12 bg-gradient-to-br from-surface to-background relative overflow-hidden group cursor-pointer border border-border hover:border-primary/50 transition-all flex flex-col md:flex-row items-center gap-8 shadow-xl"
+            onClick={() => onNavigate?.(PageRoute.GLOSSARY)}
+          >
+             <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -translate-y-1/2 -translate-x-1/2 pointer-events-none group-hover:bg-primary/20 transition-colors duration-700"></div>
+             
+             <div className="flex-shrink-0 relative z-10 w-20 h-20 bg-surface border border-border rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-500 shadow-inner">
+                <FileText size={40} className="group-hover:animate-pulse" />
+             </div>
+             
+             <div className="relative z-10 flex-1 text-center md:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
+                  Reference
+                </div>
+                <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors">Crypto Glossary</h2>
+                <p className="text-text-muted md:text-lg max-w-2xl leading-relaxed">
+                   Wall Street Edition — 100+ institutional-grade crypto terms with traditional finance analogies. Your complete reference guide.
+                </p>
+             </div>
+             
+             <div className="relative z-10 flex-shrink-0">
+                <Button variant="secondary" className="group-hover:bg-primary group-hover:text-background group-hover:border-primary transition-all">
+                  Browse Glossary
+                </Button>
+             </div>
+          </div>
+
+          {/* ClearRate™ Exchange Intelligence Card */}
+          <div 
+             className="leather-card rounded-2xl p-8 lg:p-12 bg-gradient-to-br from-surface to-background relative overflow-hidden group cursor-pointer border border-border hover:border-primary/50 transition-all flex flex-col md:flex-row items-center gap-8 shadow-xl"
+             onClick={() => onNavigate?.(PageRoute.EXCHANGES)}
+           >
+              <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -translate-y-1/2 -translate-x-1/2 pointer-events-none group-hover:bg-primary/20 transition-colors duration-700"></div>
+              
+              <div className="flex-shrink-0 relative z-10 w-20 h-20 bg-surface border border-border rounded-2xl flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary/5 transition-all duration-500 shadow-inner">
+                 <BarChart2 size={40} className="group-hover:animate-pulse" />
+              </div>
+              
+              <div className="relative z-10 flex-1 text-center md:text-left">
+                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
+                   ClearRate™
+                 </div>
+                 <h2 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-primary transition-colors">Exchange Intelligence</h2>
+                 <p className="text-text-muted md:text-lg max-w-2xl leading-relaxed">
+                    Institutional-grade exchange analysis. 10 exchanges scored across 7 weighted dimensions — regulatory standing, custody, fees, and counterparty risk.
+                 </p>
+              </div>
+              
+              <div className="relative z-10 flex-shrink-0">
+                 <Button variant="secondary" className="group-hover:bg-primary group-hover:text-background group-hover:border-primary transition-all">
+                   Compare Exchanges
+                 </Button>
+              </div>
+           </div>
+      </section>
+
+      {/* Categories Grid */}
+      <section>
+        <h2 className="text-2xl font-bold mb-6">Browse by Category</h2>
+        <div className="flex flex-col gap-4">
+          {KNOWLEDGE_CATEGORIES.map((cat) => (
+             <div 
+               key={cat.id} 
+               onClick={() => setActiveCategoryId(cat.id)}
+               className="leather-card rounded-xl p-6 cursor-pointer hover:border-primary/50 group flex items-center gap-6 transition-all"
+             >
+                <div className="p-4 bg-surface rounded-xl text-primary group-hover:bg-primary/20 transition-all flex-shrink-0">
+                   {cat.icon}
+                </div>
+                <div className="flex-1">
+                   <h3 className="text-xl font-bold group-hover:text-primary transition-colors">{cat.name}</h3>
+                   <p className="text-sm text-text-muted mt-1">{cat.resources.length} Modules & Resources</p>
+                </div>
+             </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Latest Resources */}
+      <section>
+        <div className="flex items-center justify-between mb-6">
+           <h2 className="text-2xl font-bold">Latest Free Resources</h2>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+           {recentArticles.map((article, i) => (
+              <Card key={i} className="flex flex-col cursor-pointer group hover:border-primary/40">
+                 <div className="flex justify-between items-start mb-4">
+                    <span className="px-2 py-1 bg-surface border border-border text-xs rounded font-medium text-text-muted uppercase">
+                       {article.tag}
+                    </span>
+                    <div className="flex items-center gap-1.5 text-xs text-primary font-bold">
+                       {article.icon} {article.type}
+                    </div>
+                 </div>
+                 
+                 <h3 className="text-lg font-bold mb-4 group-hover:text-primary transition-colors pr-4">
+                    {article.title}
+                 </h3>
+                 
+                 <div className="mt-auto flex items-center justify-between text-xs text-text-muted font-medium pt-4 border-t border-border">
+                    <span>{article.readTime}</span>
+                    <span className="flex items-center gap-1 group-hover:text-primary transition-colors">Read Now</span>
+                 </div>
+              </Card>
+           ))}
+        </div>
+      </section>
 
       {/* Assessment CTA */}
-      <section className="pt-8">
-         <div className="leather-card rounded-3xl p-10 lg:p-16 text-center bg-gradient-to-b from-surface to-background relative overflow-hidden border-border/50 shadow-2xl">
-            <div className="absolute top-0 right-0 p-12 opacity-10 rotate-12">
-               <Award size={200} />
-            </div>
+      <section>
+         <div className="leather-card rounded-2xl p-8 lg:p-12 text-center bg-gradient-to-b from-surface to-background relative overflow-hidden">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
             
             <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-               <div className="w-20 h-20 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-8 rotate-12 shadow-inner">
-                  <Star size={40} className="fill-primary" />
+               <div className="w-16 h-16 bg-primary/20 rounded-2xl flex items-center justify-center text-primary mb-6 rotate-12">
+                  <BookOpen size={32} />
                </div>
-               <h2 className="text-3xl lg:text-4xl font-heading font-bold mb-6 tracking-tight">Institutional Skills Assessment</h2>
-               <p className="text-text-muted mb-10 text-lg leading-relaxed font-medium">
-                  Take our comprehensive 50-question assessment designed by senior analysts to identify gaps in your crypto portfolio management and get personalized course recommendations.
+               <h2 className="text-3xl font-bold mb-4">Test Your Knowledge</h2>
+               <p className="text-text-muted mb-8">
+                  Take our comprehensive 50-question assessment to identify gaps in your crypto knowledge and get personalized course recommendations.
                </p>
-               <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
-                  <Button size="lg" className="px-10 font-bold tracking-widest">START EXAM</Button>
-                  <Button size="lg" variant="secondary" className="px-10 font-bold tracking-widest">VIEW SYLLABUS</Button>
-               </div>
+               <Button size="lg" variant="secondary">Take the Assessment</Button>
             </div>
          </div>
       </section>

@@ -76,7 +76,7 @@ export const ROICalculator: React.FC = () => {
               <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
               <XAxis dataKey="name" tick={{ fontSize: 10, fill: '#a1a1aa' }} stroke="#3f3f46" />
               <YAxis tick={{ fontSize: 10, fill: '#a1a1aa' }} tickFormatter={v => `$${(v/1000).toFixed(0)}k`} stroke="#3f3f46" />
-              <Tooltip
+              <Tooltip itemStyle={{ color: '#e4e4e7' }} labelStyle={{ color: '#a1a1aa' }}
                 contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8, color: '#f4f4f5' }}
                 cursor={{ fill: '#27272a', opacity: 0.4 }}
                 formatter={(v: number) => fmtUSD(v)}

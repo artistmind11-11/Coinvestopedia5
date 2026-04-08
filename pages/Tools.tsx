@@ -7,8 +7,6 @@ import {
   BookOpen, Clock, ExternalLink
 } from 'lucide-react';
 import { useAppContext } from '../context/AppContext';
-import { AdUnit } from '../components/AdUnit';
-import { PageRoute } from '../types';
 
 // Existing Tools
 import { DCACalculator } from '../components/tools/Tier3/DCACalculator';
@@ -129,12 +127,6 @@ export const Tools: React.FC = () => {
           <p className="text-text-muted text-lg">{activeTool.description}</p>
         </div>
 
-        {!isProUser && (
-          <div className="mb-8 flex justify-center">
-            <AdUnit size="leaderboard" context={{ page: PageRoute.TOOLS, toolId: activeToolId }} label="Secure Your Assets" />
-          </div>
-        )}
-
         {ActiveComponent ? <ActiveComponent /> : <PlaceholderTool tool={activeTool} />}
       </div>
     );
@@ -146,7 +138,7 @@ export const Tools: React.FC = () => {
   return (
     <div className="animate-fade-in pb-16">
       {/* Hero */}
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-[#09090b] p-8 lg:p-16 mb-12 shadow-2xl">
+      <div className="relative overflow-hidden rounded-2xl border border-border bg-surface dark:bg-[#09090b] p-8 lg:p-16 mb-12 shadow-2xl">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
         <div className="relative z-10 flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6 animate-fade-in">
@@ -159,12 +151,6 @@ export const Tools: React.FC = () => {
             Professional-grade modelling tools and risk analytics. 
             Everything calculates in real-time on your hardware.
           </p>
-          
-          {!isProUser && (
-            <div className="mt-8">
-               <AdUnit size="native" context={{ page: PageRoute.TOOLS }} label="Featured Partner" />
-            </div>
-          )}
         </div>
       </div>
 
@@ -188,11 +174,11 @@ export const Tools: React.FC = () => {
                   <button
                     key={tool.id}
                     onClick={() => setActiveToolId(tool.id)}
-                    className="flex flex-col text-left p-6 rounded-2xl border border-border bg-[#111114] hover:border-primary/50 hover:bg-[#16161a] transition-all duration-500 group h-full relative overflow-hidden shadow-lg hover:shadow-primary/5 active:scale-[0.98]"
+                    className="flex flex-col text-left p-6 rounded-2xl border border-border bg-surface dark:bg-[#111114] hover:border-primary/50 hover:bg-primary/5 dark:hover:bg-[#16161a] transition-all duration-500 group h-full relative overflow-hidden shadow-lg hover:shadow-primary/5 active:scale-[0.98]"
                   >
                     {/* Top row: Icon + Tier/Status */}
                     <div className="flex justify-between items-start mb-6">
-                       <div className="w-12 h-12 rounded-xl bg-[#18181b] border border-border flex items-center justify-center text-text-muted group-hover:text-primary group-hover:bg-primary/5 group-hover:border-primary/30 transition-all duration-300 shadow-inner">
+                       <div className="w-12 h-12 rounded-xl bg-background dark:bg-[#18181b] border border-border flex items-center justify-center text-text-muted group-hover:text-primary group-hover:bg-primary/5 group-hover:border-primary/30 transition-all duration-300 shadow-inner">
                          {tool.icon}
                        </div>
                        <div className="flex flex-col items-end gap-1.5">
@@ -241,26 +227,15 @@ export const Tools: React.FC = () => {
       {/* ═══════════════════════════════════════════════════════════════════
           Economic Calendar — TradingView Widget
          ═══════════════════════════════════════════════════════════════════ */}
-      {!isProUser && (
-        <div className="flex justify-center mt-12 mb-4">
-          <AdUnit size="leaderboard" context={{ page: PageRoute.TOOLS }} label="Sponsored Integration" />
-        </div>
-      )}
-
-      <div className="space-y-6 mt-12">
+      <div className="space-y-6 mt-16">
         {/* Section Header — matches existing section header pattern */}
         <div className="flex items-center gap-4">
           <h2 className="text-sm font-bold font-heading uppercase tracking-[0.25em] text-text-muted whitespace-nowrap">
             Economic Calendar
           </h2>
           <div className="h-[1px] flex-1 bg-gradient-to-r from-border/50 to-transparent" />
-          {!isProUser && (
-            <div className="hidden lg:block">
-               <AdUnit size="medium" partner="tradingview" context={{ page: PageRoute.TOOLS }} label="Calendar Sponsor" />
-            </div>
-          )}
           <span className="text-[10px] font-bold text-text-muted/50 border border-border/50 px-2 py-0.5 rounded uppercase tracking-widest">
-             Powered by TradingView
+            Powered by TradingView
           </span>
         </div>
         <p className="text-sm text-text-muted font-body -mt-2">

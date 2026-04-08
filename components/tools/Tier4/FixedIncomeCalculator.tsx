@@ -86,11 +86,11 @@ export const FixedIncomeCalculator: React.FC = () => {
             <ChartIcon size={18} className="text-primary"/> Bond Parameters
           </h3>
           <div className="space-y-4">
-             <InputField label="Face / Par Value" value={faceValue} onChange={setFaceValue} prefix="$" />
-             <InputField label="Current Market Price" value={currentPrice} onChange={setCurrentPrice} prefix="$" />
-             <InputField label="Annual Coupon Rate" value={couponRate} onChange={setCouponRate} suffix="%" />
-             <InputField label="Years to Maturity" value={yearsToMaturity} onChange={setYearsToMaturity} suffix="yrs" />
-             <InputField label="Payment Frequency" value={paymentFreq} onChange={setPaymentFreq} options={[
+             <InputField label="Face / Par Value" value={faceValue} onChange={setFaceValue} prefix="$" helpText="The principal amount repaid at maturity (typically $1,000 for standard corporate bonds)." />
+             <InputField label="Current Market Price" value={currentPrice} onChange={setCurrentPrice} prefix="$" helpText="The current secondary market trading price. Determines if the bond trades at a premium or discount." />
+             <InputField label="Annual Coupon Rate" value={couponRate} onChange={setCouponRate} suffix="%" helpText="The fixed annual interest rate paid by the issuer. Determines actual cash flow." />
+             <InputField label="Years to Maturity" value={yearsToMaturity} onChange={setYearsToMaturity} suffix="yrs" helpText="Time remaining until the issuer repays the Face / Par Value." />
+             <InputField label="Payment Frequency" value={paymentFreq} onChange={setPaymentFreq} helpText="How often interest is paid (e.g., Semi-Annual pays half the annual coupon twice a year)." options={[
                { value: '1', label: 'Annual (1x)' },
                { value: '2', label: 'Semi-Annual (2x)' },
                { value: '4', label: 'Quarterly (4x)' },
@@ -104,7 +104,7 @@ export const FixedIncomeCalculator: React.FC = () => {
       </div>
 
       <div className="lg:col-span-8 flex flex-col gap-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 gap-4">
            <ResultMetric label="Yield to Maturity (YTM)" value={fmtPct(result.ytmApprox)} large positive={result.ytmApprox > 3} />
            <ResultMetric label="Current Yield" value={fmtPct(result.currentYield)} neutral />
            <ResultMetric label="Total Interest Paid" value={fmtUSD(result.totalInterest)} positive />
@@ -139,7 +139,7 @@ export const FixedIncomeCalculator: React.FC = () => {
                    stroke="#3f3f46"
                    width={60}
                  />
-                 <Tooltip
+                 <Tooltip itemStyle={{ color: '#e4e4e7' }}
                    contentStyle={{ backgroundColor: '#18181b', borderColor: '#27272a', borderRadius: 8 }}
                    formatter={(v: number) => [fmtUSD(v), 'Bond Price']}
                    labelStyle={{ color: '#a1a1aa' }}

@@ -1,0 +1,276 @@
+Coinvestopedia Crypto Glossary
+Wall Street Edition — Institutional-Grade Crypto Vocabulary
+
+A
+Address Delegation
+Delegating your wallet's staking power to a third party — the on-chain equivalent of giving a discretionary mandate to a sub-advisor.
+Airdrop
+Free token distribution used as a marketing tactic. Think of it as a prospectus with no subscription fee — you receive shares simply for being a wallet holder on a given date.
+Algorithm
+The ruleset governing how a blockchain validates transactions and produces blocks. The protocol's operating charter.
+All-Time High (ATH) / All-Time Low (ATL)
+Standard peak/trough metrics. Same concept as 52-week high/low, applied to crypto's full trading history.
+Altcoin
+Any cryptocurrency that isn't Bitcoin. The "small-cap" or "non-benchmark" portion of the crypto universe.
+Application-Specific Integrated Circuit (ASIC)
+Purpose-built mining hardware — the equivalent of a high-frequency trading co-location server built for one specific computation task.
+Arbitrage
+Cross-exchange price discrepancy trading. Identical in concept to cash-and-carry arbitrage in traditional markets.
+Ask Me Anything (AMA)
+Public Q&A session hosted by a project team, similar to an earnings call investor day — but informal and typically held on Reddit or Twitter/X.
+
+B
+Bagholder
+Investor holding a depreciated position with no clear exit strategy. The crypto equivalent of being long a stock that's blown through all technical support.
+Bearish / Bear Market
+Standard directional terminology. Negative price outlook; sustained downtrend exceeding 20% from cycle highs.
+Bitcoin ATM
+Physical terminal for retail buy/sell of Bitcoin. Analogous to a foreign currency kiosk, with significantly higher spreads.
+Bitcoin Improvement Proposal (BIP)
+Formal protocol upgrade proposal for Bitcoin. Equivalent to a regulatory comment letter — community reviewed before implementation.
+Block
+The unit of data appended to the blockchain ledger per validation cycle. Think of each block as a single page in a continuously growing settlement ledger.
+Blockchain
+A distributed, immutable ledger. The settlement and custody layer for crypto assets — no central depository, no DTCC equivalent.
+Block Confirmation
+Each subsequent block added after a given transaction provides one confirmation — reduces the statistical probability of a chain reversal. More confirmations = higher settlement finality.
+Block Explorer
+On-chain data terminal. Equivalent to Bloomberg for blockchain transactions — query any address, transaction, or block in real time.
+Block Height
+Sequential block number in the chain. Functions as a timestamp proxy — each block height corresponds to a point in the ledger's history.
+Block Reward
+Newly minted coins awarded to the miner or validator who produces a valid block. The issuance mechanism — crypto's equivalent of seigniorage.
+Bots
+Algorithmic trading programs executing pre-programmed strategies autonomously. On-chain equivalent of quant algo strategies.
+Bullish / Bull Market
+Positive price outlook; sustained uptrend. Standard directional terminology applied to crypto markets.
+Burned Tokens
+Tokens permanently removed from circulation by sending to an unspendable address. Equivalent to a share buyback that reduces float — deflationary by design.
+Buy Wall / Sell Wall
+Concentrated bid or ask orders at a specific price level, visible on the order book. Used to signal support/resistance or manipulate perceived liquidity. Analogous to a large iceberg order that's been made visible.
+
+C
+Central Bank Digital Currency (CBDC)
+State-issued digital currency on a permissioned ledger. Represents the central bank's direct liability in digital form — no commercial bank intermediary required.
+Centralized / Decentralized
+Organizational structure spectrum. Centralized = single point of control (traditional bank, exchange). Decentralized = distributed control with no single governing authority.
+Circulating Supply
+Freely tradeable token count — the float, net of locked, burned, or reserve tokens.
+Cold Storage / Cold Wallet
+Offline private key storage. Equivalent to physical securities held in a vault, inaccessible without direct physical interaction.
+Consensus
+The mechanism by which all network nodes agree on the valid state of the ledger. Replaces the role of a trusted central counterparty.
+Cryptocurrency
+A cryptographically secured digital asset operating on a decentralized network. Functions simultaneously as currency, commodity, and in some cases, a security.
+Cryptography
+The mathematical foundation for securing transactions, verifying ownership, and ensuring ledger integrity — the encryption layer underpinning all crypto assets.
+Custody
+Safekeeping of private keys (which represent ownership). The on-chain equivalent of custodial services — but without a regulated prime broker standing behind the arrangement unless explicitly structured.
+
+D
+Dead Cat Bounce
+Brief price recovery within a sustained downtrend, followed by continuation lower. Identical to the traditional markets definition.
+Decentralized Applications (dApps)
+Applications running on blockchain infrastructure without centralized control — no single server, no CEO, no shutdown switch.
+Decentralized Autonomous Organization (DAO)
+Governance structure where token holders vote on protocol decisions. Analogous to a shareholder democracy — minus the board, legal counsel, and regulatory filing requirements.
+Decentralized Finance (DeFi)
+Financial services (lending, borrowing, trading, yield generation) delivered via smart contracts without intermediaries. The disintermediated version of your prime brokerage relationship.
+Delegated Proof-of-Stake (DPoS)
+A consensus mechanism where token holders vote for validator delegates — analogous to proxy voting in corporate governance, where delegates act on behalf of stakeholders.
+Derivatives
+Futures, options, and swaps on crypto assets. Same instrument category as traditional derivatives — settlement mechanics differ (often cash-settled, sometimes physically settled in tokens).
+Difficulty
+A dynamic parameter governing how hard it is to mine a valid block. Self-adjusts to maintain consistent block production intervals — the protocol's built-in rate stabilizer.
+Distributed Ledger
+A synchronized, replicated database across multiple nodes. No single point of failure; no central authority required for validation.
+Dominance
+Bitcoin's share of total crypto market capitalization. Functions like a benchmark weight — rising BTC dominance typically signals risk-off rotation within the crypto asset class.
+Double Spending
+The fraudulent attempt to spend the same digital asset twice. Blockchain's primary innovation was solving this problem without a trusted intermediary.
+
+E
+Ethereum Improvement Proposal (EIP)
+Protocol upgrade proposal for Ethereum. Equivalent to BIP for Bitcoin — reviewed and adopted through community governance.
+Emission
+The rate at which new tokens are minted and released into circulation. Equivalent to a company's dilution schedule — high emission rate = significant float expansion.
+ERC-20
+The dominant fungible token standard on Ethereum. The technical format that 95%+ of ICO/IEO tokens used — think of it as the common share structure of the crypto capital markets.
+ERC-721
+The NFT token standard on Ethereum. Each token is unique and non-interchangeable — the on-chain equivalent of a title deed or unique collectible.
+Ethereum Virtual Machine (EVM)
+The sandboxed runtime environment where all Ethereum smart contracts execute. The processing engine for the Ethereum financial system.
+Exchange Traded Fund (ETF)
+In crypto context: a regulated fund product providing price exposure to crypto assets without direct custody. Spot Bitcoin ETFs (BlackRock, Fidelity) now trade on NYSE and Nasdaq.
+
+F
+Fear of Missing Out (FOMO)
+Momentum-driven buying behavior driven by perceived opportunity cost rather than fundamental analysis. A well-documented behavioral finance phenomenon — amplified in crypto's 24/7 market structure.
+Fear, Uncertainty and Doubt (FUD)
+Negative sentiment campaign — deliberate or organic — that suppresses price through narrative rather than fundamentals. Equivalent to a coordinated short-and-distort campaign.
+Fully Diluted Valuation (FDV)
+Total market cap if all tokens (including locked, unvested, and unminted supply) were in circulation at the current price. Critical for evaluating real valuation vs. circulating-supply market cap — analogous to fully diluted share count in equity analysis.
+Futures
+Standardized contracts obligating parties to transact at a future date. Crypto futures trade on CME (regulated) and offshore exchanges (Binance, Bybit). Perpetual futures — the dominant crypto product — have no expiry and use a funding rate mechanism to track spot.
+
+G
+Gas
+The computational fee denominated in ETH for executing transactions or smart contracts on Ethereum. Equivalent to exchange transaction fees, but dynamic and determined by network congestion.
+Gas Limit / Gas Price
+Gas limit = maximum computational resources allocated to a transaction. Gas price = amount per unit of gas you're willing to pay. Together they determine transaction cost and priority — a real-time fee auction.
+Genesis Block
+The founding block of a blockchain — Block 0. Analogous to a company's incorporation date; everything in the chain traces back to it.
+
+H
+Halving
+Programmatic reduction of block reward by 50% at predetermined intervals. Bitcoin halves approximately every four years. Functions as a pre-scheduled supply shock — widely cited as a bullish catalyst.
+Hard Fork
+A permanent, backward-incompatible protocol upgrade that splits the chain into two separate blockchains. Analogous to a corporate spin-off — existing holders receive tokens on both chains.
+Hash / Hashrate
+A hash is the cryptographic output of a hashing algorithm — a unique fingerprint for block data. Hashrate is the network's total computational power: higher hashrate = more secure network = higher cost of attack.
+HODL
+Hold On for Dear Life. Long-only, conviction-based position holding through volatility — the crypto equivalent of a buy-and-hold value investor ignoring short-term noise.
+Hot Wallet
+Internet-connected wallet for active transactions. Higher operational utility but materially higher security risk relative to cold storage. Equivalent to cash in a trading account vs. securities in a vault.
+
+I
+IEO (Initial Exchange Offering)
+Token sale conducted on a centralized exchange, which acts as an underwriter and distribution platform. Closer to a traditional IPO structure than an ICO — exchange performs initial due diligence.
+Impermanent Loss
+Temporary unrealized loss experienced by liquidity providers in AMM pools when asset prices diverge from the ratio at deposit. The opportunity cost of providing liquidity vs. holding assets outright.
+Initial Coin Offering (ICO)
+Unregulated token sale to raise capital — the crypto equivalent of a pre-IPO seed/Series A round without the regulatory framework. Peak ICO cycle: 2017–2018.
+Interoperability
+The capacity for distinct blockchain networks to communicate and transfer value without intermediaries. The crypto equivalent of correspondent banking relationships — but trustless.
+
+K
+KYC (Know Your Customer)
+Identity verification process required by regulated exchanges and financial institutions. Standard AML/KYC compliance — identical concept to traditional finance.
+
+L
+Leverage
+Borrowed capital used to amplify position size. Crypto exchanges offer up to 100x leverage on perpetual futures — dramatically higher than traditional margin requirements. Significantly elevates liquidation risk.
+Lightning Network
+Bitcoin's Layer 2 payment channel network enabling near-instant, low-cost transactions off-chain. Final settlement batched back to the Bitcoin mainchain. Analogous to netting in interbank clearing.
+Limit Order / Market Order
+Standard order types — identical to traditional equity/futures markets. Limit orders specify a price; market orders execute immediately at best available price.
+Liquidity
+Depth of the order book; ability to transact without material price impact. Thin liquidity = high slippage — the same framework as fixed income or small-cap equity markets.
+
+M
+Market Capitalization
+Circulating supply × current price. Primary valuation metric in crypto — note it excludes locked supply (see FDV for full dilution basis).
+Mempool
+The queue of unconfirmed transactions awaiting inclusion in the next block. Equivalent to a settlement queue — during congestion, transactions with higher fees get prioritized.
+Merkle Tree
+A cryptographic data structure enabling efficient, tamper-proof verification of transaction inclusion in a block — the hashing architecture underlying blockchain data integrity.
+Mining / Miners
+Proof-of-Work validators who expend computational resources to produce valid blocks in exchange for block rewards. The network's security workforce — compensated via newly minted tokens and transaction fees.
+Mining Pool
+Cooperative of miners combining hashrate to increase the frequency of block discovery — revenue shared proportionally. Risk-pooling mechanism that smooths income volatility for individual miners.
+Multisignature (Multi-sig)
+Wallet requiring multiple private key signatures to authorize a transaction. Institutional custody standard — analogous to requiring dual signatures on a wire transfer.
+
+N
+Node
+Any computer participating in the blockchain network by maintaining a copy of the ledger. Full nodes validate all transactions independently — the distributed audit infrastructure.
+Non-Fungible Token (NFT)
+A unique, indivisible on-chain asset with verifiable provenance. Each token represents a distinct item — cannot be exchanged on a 1:1 basis with another token of the same contract.
+
+O
+Off-Chain
+Transactions or computation occurring outside the main blockchain — typically faster and cheaper, but relies on trust assumptions or cryptographic proofs for finality.
+Options
+Derivatives giving the right (not obligation) to buy or sell a crypto asset at a specified strike price. Deribit is the dominant venue for crypto options. Greeks apply identically to traditional options.
+Oracles
+Third-party data feeds that deliver real-world information (price data, interest rates, events) to smart contracts. The bridge between off-chain reality and on-chain logic — critical infrastructure for DeFi.
+Order Book
+Aggregated list of outstanding buy and sell orders at each price level. Identical to traditional exchange market microstructure.
+Over The Counter (OTC)
+Bilateral crypto trades executed directly between counterparties, off-exchange. Used by institutions and whales to minimize market impact. Equivalent to block trading desks in equities.
+
+P
+Ponzi Scheme
+Fraudulent investment structure paying returns from new capital rather than genuine returns. Numerous crypto projects have followed this model — most infamously Bitconnect.
+Portfolio
+Aggregate crypto holdings — same concept as a traditional investment portfolio, tracked by cost basis, current value, and allocation weights.
+Privacy Coins
+Cryptocurrencies (e.g., Monero, Zcash) with built-in transaction obfuscation. Regulatory scrutiny is highest in this category — several major exchanges have delisted them due to FATF compliance pressure.
+Private Key
+The cryptographic credential that authorizes transactions from a wallet. Whoever controls the private key controls the assets — no recovery mechanism, no custodian to call. Equivalent to bearer bonds.
+Proof-of-Stake (PoS)
+Consensus mechanism where validators lock tokens as collateral to earn the right to validate blocks. Capital-at-risk model — validators can be "slashed" (penalized) for malicious or negligent behavior.
+Proof-of-Work (PoW)
+Consensus mechanism requiring validators (miners) to expend computational energy to produce valid blocks. Security model is based on energy expenditure — the cost of attacking the network must exceed the reward.
+Protocol
+The complete ruleset governing a blockchain network — equivalent to a regulated exchange's trading rules and market structure requirements.
+Public Key
+The wallet's publicly visible address — shareable for receiving funds. Mathematically linked to the private key but computationally infeasible to reverse-engineer from it.
+Pump and Dump
+Coordinated price manipulation: accumulate → promote aggressively → distribute into the artificially elevated price. Illegal in traditional markets; enforcement in crypto is nascent but increasing.
+
+R
+Relative Strength Index (RSI)
+Standard momentum oscillator. Readings above 70 indicate overbought; below 30 indicate oversold. Same interpretation as traditional technical analysis.
+ROI (Return on Investment)
+Net profit divided by cost of investment. Standard performance metric — identical across asset classes.
+Rug Pull
+Developer team removes liquidity or abandons a project after raising capital, causing token price to collapse to near zero. The crypto equivalent of a corporate fraud exit — no regulatory recourse in most jurisdictions.
+
+S
+Satoshi
+The smallest unit of Bitcoin — 1 BTC = 100,000,000 satoshis. The basis point of Bitcoin pricing.
+Securities and Exchange Commission (SEC)
+The U.S. federal regulatory body asserting jurisdiction over crypto assets it classifies as securities. The Howey Test is the primary legal standard for determining whether a token is a security. Ongoing litigation with major exchanges shapes the U.S. regulatory landscape.
+Seed Phrase / Mnemonic Phrase
+A 12-24 word sequence that generates your wallet's private key. The master credential — if compromised, all assets in the wallet are at risk. Equivalent to the master password for a bearer instrument.
+Smart Contracts
+Self-executing code deployed on a blockchain that automatically enforces agreement terms when predefined conditions are met. No counterparty risk from the code itself — risk lies in code vulnerabilities and oracle manipulation.
+Soft Fork
+A backward-compatible protocol upgrade. Nodes running the old software continue to function — unlike a hard fork, no chain split occurs.
+Stablecoin
+A token pegged to a fiat currency (typically USD) via collateral backing (USDC, USDT) or algorithmic mechanisms. Functions as the settlement currency of the crypto ecosystem — the cash equivalent for on-chain transactions.
+Staking
+Locking tokens in a PoS protocol to participate as a validator and earn yield. The crypto equivalent of posting margin to participate as a market maker — yield is earned in exchange for capital at risk.
+Stop-Loss Order
+Conditional sell order triggered when price falls below a specified level. Standard risk management tool — identical to traditional markets.
+
+T
+Testnet
+A staging network for protocol testing with no real value at stake. Equivalent to a sandbox environment in software development — all functionality, zero financial risk.
+Total Value Locked (TVL)
+The aggregate value of assets deposited into a DeFi protocol. The primary AUM metric for decentralized protocols — used to gauge protocol adoption and liquidity depth.
+Transaction Fee
+Fee paid to validators for including a transaction in a block. Dynamic in most networks — spikes during congestion. Equivalent to exchange commission + clearing fee, rolled into one.
+Trustless
+Requiring no trust in a counterparty — outcomes are enforced by code and cryptography rather than legal agreements or reputational capital.
+
+U
+Unspent Transaction Output (UTXO)
+The Bitcoin accounting model — each UTXO represents a discrete, unspent output from a previous transaction. Contrast with Ethereum's account-based model. Conceptually similar to tracking individual dollar bills rather than account balances.
+Utility Token
+A token that grants access to a specific product or service within a network, rather than representing an equity-like ownership stake. Regulatory classification as utility (vs. security) has significant legal implications.
+
+V
+Validator
+A PoS network participant who locks tokens as collateral to validate transactions and produce blocks. Earns staking rewards; subject to slashing penalties for protocol violations. The PoS equivalent of a clearing member.
+Venture Capital (VC)
+In crypto context: early-stage capital providers who receive token allocations at significant discounts to public sale price, typically with vesting schedules. VC token unlocks are closely tracked as potential selling pressure events.
+
+W
+Wallet
+Software managing private key storage and transaction signing. The custody layer for self-sovereign crypto holdings — equivalent to a prime brokerage account but without the institution standing behind it.
+Whale
+An entity holding a sufficiently large position to materially impact market price through buy or sell activity. On-chain wallet tracking allows real-time monitoring of whale movements — a unique data advantage over traditional markets.
+Whitepaper
+The foundational technical and economic document for a crypto project — part prospectus, part technical spec. Quality varies dramatically; rigor of analysis should mirror due diligence on any early-stage investment.
+
+Y
+Yield Farming
+Deploying crypto assets across DeFi protocols to maximize return — rotating between lending rates, liquidity mining rewards, and staking yields. High return potential; high smart contract and liquidity risk.
+YTD (Year-to-Date)
+Standard performance tracking period — identical to traditional markets.
+
+Z
+Zero Knowledge Proof (ZK Proof)
+A cryptographic method allowing one party to prove knowledge of information without revealing the information itself. Applied in privacy-preserving transactions and Layer 2 scaling solutions (ZK-rollups). Increasingly relevant as the foundation for next-generation blockchain scaling infrastructure.

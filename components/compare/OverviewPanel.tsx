@@ -143,9 +143,9 @@ const SummaryTable: React.FC<{ assets: AssetData[] }> = ({ assets }) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-border/30">
-            {sorted.map(asset => (
-              <tr key={asset.id} className="hover:bg-primary/5 transition-colors group">
-                <td className="p-3 sticky left-0 bg-background z-10 border-r border-border/10 group-hover:bg-[#1a1a1a]">
+            {sorted.map((asset, index) => (
+              <tr key={index} className="border-b border-border/50 hover:bg-primary/5 transition-colors group">
+                <td className="p-3 sticky left-0 bg-background z-10 border-r border-border/10 group-hover:bg-primary/5 dark:group-hover:bg-[#1a1a1a]">
                   <div className="flex items-center gap-3 min-w-[130px]">
                     <AssetIcon symbol={asset.symbol} size={32} />
                     <div className="min-w-0">
