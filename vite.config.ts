@@ -46,8 +46,13 @@ export default defineConfig(({ mode }) => {
           output: {
             manualChunks(id) {
               if (id.includes('node_modules')) {
-                if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) {
-                  return 'vendor-react';
+                if (
+                  id.includes('react') || 
+                  id.includes('react-dom') || 
+                  id.includes('scheduler') ||
+                  id.includes('prop-types')
+                ) {
+                  return 'foundation';
                 }
                 if (id.includes('lucide-react')) {
                   return 'vendor-icons';
@@ -58,7 +63,7 @@ export default defineConfig(({ mode }) => {
                 if (id.includes('recharts')) {
                   return 'vendor-charts';
                 }
-                return 'vendor-others';
+                return 'vendor-libs';
               }
             }
           }
