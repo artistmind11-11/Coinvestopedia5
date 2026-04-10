@@ -131,7 +131,7 @@ const GLOSSARY_DATA: GlossarySection[] = [
   {
     letter: 'L',
     entries: [
-      { term: 'Leverage', definition: 'Borrowed capital used to amplify position size. Crypto exchanges offer up to 100x leverage on perpetual futures — dramatically higher than traditional margin requirements. Significantly elevates liquidation risk.' },
+      { term: 'Leverage', definition: 'Borrowed capital used to amplify position size. Crypto exchanges offer up to 100x leverage on perpetual futures — dramatically higher than traditional margin requirements. Significantly increases liquidation risk.' },
       { term: 'Lightning Network', definition: 'Bitcoin\'s Layer 2 payment channel network enabling near-instant, low-cost transactions off-chain. Final settlement batched back to the Bitcoin mainchain. Analogous to netting in interbank clearing.' },
       { term: 'Limit Order / Market Order', definition: 'Standard order types — identical to traditional equity/futures markets. Limit orders specify a price; market orders execute immediately at best available price.' },
       { term: 'Liquidity', definition: 'Depth of the order book; ability to transact without material price impact. Thin liquidity = high slippage — the same framework as fixed income or small-cap equity markets.' },
@@ -176,7 +176,7 @@ const GLOSSARY_DATA: GlossarySection[] = [
       { term: 'Proof-of-Work (PoW)', definition: 'Consensus mechanism requiring validators (miners) to expend computational energy to produce valid blocks. Security model is based on energy expenditure — the cost of attacking the network must exceed the reward.' },
       { term: 'Protocol', definition: 'The complete ruleset governing a blockchain network — equivalent to a regulated exchange\'s trading rules and market structure requirements.' },
       { term: 'Public Key', definition: 'The wallet\'s publicly visible address — shareable for receiving funds. Mathematically linked to the private key but computationally infeasible to reverse-engineer from it.' },
-      { term: 'Pump and Dump', definition: 'Coordinated price manipulation: accumulate → promote aggressively → distribute into the artificially elevated price. Illegal in traditional markets; enforcement in crypto is nascent but increasing.' },
+      { term: 'Pump and Dump', definition: 'Coordinated price manipulation: accumulate → promote aggressively → distribute into the artificially inflated price. Illegal in traditional markets; enforcement in crypto is nascent but increasing.' },
     ]
   },
   {
@@ -228,7 +228,7 @@ const GLOSSARY_DATA: GlossarySection[] = [
     entries: [
       { term: 'Wallet', definition: 'Software managing private key storage and transaction signing. The custody layer for self-sovereign crypto holdings — equivalent to a prime brokerage account but without the institution standing behind it.' },
       { term: 'Whale', definition: 'An entity holding a sufficiently large position to materially impact market price through buy or sell activity. On-chain wallet tracking allows real-time monitoring of whale movements — a unique data advantage over traditional markets.' },
-      { term: 'Whitepaper', definition: 'The foundational technical and economic document for a crypto project — part prospectus, part technical spec. Quality varies dramatically; rigor of analysis should mirror due diligence on any early-stage investment.' },
+      { term: 'Whitepaper', definition: 'The primary technical and economic disclosure document for a digital asset project — equivalent to a combined registration statement and technical specification. We evaluate these with the same rigor as an institutional equity prospectus.' },
     ]
   },
   {

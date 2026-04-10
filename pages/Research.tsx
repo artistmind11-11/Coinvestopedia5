@@ -81,20 +81,24 @@ export const Research: React.FC = () => {
   return (
     <div className="animate-fade-in pb-16">
       {/* Hero */}
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-surface dark:bg-[#09090b] p-8 lg:p-16 mb-12 shadow-2xl">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-        <div className="relative z-10 flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 border border-primary/20 rounded-full text-primary text-[10px] font-bold uppercase tracking-[0.2em] mb-6 animate-fade-in">
-            <BookOpen size={14} className="animate-pulse" /> Free Research
+      <section className="relative overflow-hidden rounded-2xl lg:rounded-3xl border border-border bg-gradient-to-br from-background to-surface p-8 lg:p-16 mb-12 lg:mb-20 text-center">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-48 translate-x-48 blur-3xl pointer-events-none"></div>
+        
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-semibold mb-6">
+            <BookOpen size={16} />
+            <span>On-Chain Intelligence</span>
           </div>
-          <h1 className="text-4xl lg:text-6xl font-heading font-extrabold mb-6 tracking-tight bg-gradient-to-b from-text to-text-muted bg-clip-text text-transparent">
-            Research & Insights
+          
+          <h1 className="text-3xl lg:text-5xl font-bold mb-6">
+            Research & <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark">Insights</span>
           </h1>
-          <p className="text-text-muted max-w-2xl text-lg lg:text-xl leading-relaxed font-medium">
-            Weekly on-chain market analysis powered by Glassnode. Let data drive your institutional understanding.
+          
+          <p className="text-xl text-text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
+            Weekly on-chain market analysis powered by Glassnode. Let professional-grade data drive your institutional understanding of market cycles.
           </p>
         </div>
-      </div>
+      </section>
 
       <div className="space-y-6">
         <div className="flex items-center gap-4">

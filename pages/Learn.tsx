@@ -177,16 +177,25 @@ export const Learn: React.FC<LearnProps> = ({ onNavigate }) => {
 
   return (
     <div className="animate-fade-in space-y-12 lg:space-y-16 pb-12">
-      {/* Header */}
-      <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary text-xs font-bold uppercase tracking-wider mb-4">
-          <BookOpen size={14} /> Knowledge
+      {/* Hero */}
+      <section className="relative overflow-hidden rounded-2xl lg:rounded-3xl border border-border bg-gradient-to-br from-background to-surface p-8 lg:p-16 mb-12 lg:mb-20 text-center">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-48 translate-x-48 blur-3xl pointer-events-none"></div>
+        
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-semibold mb-6">
+            <BookOpen size={16} />
+            <span>Digital Asset Academy</span>
+          </div>
+          
+          <h1 className="text-3xl lg:text-5xl font-bold mb-6">
+            Master the <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark">Crypto Markets</span>
+          </h1>
+          
+          <p className="text-xl text-text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
+            Curated education from industry professionals. Advance your understanding of digital assets, from foundational concepts to advanced institutional mechanics.
+          </p>
         </div>
-        <h1 className="text-3xl lg:text-4xl font-heading font-bold mb-4">Master the Markets</h1>
-        <p className="text-text-muted text-lg max-w-2xl">
-          Curated education from industry professionals. Elevate your understanding of digital assets, from foundational concepts to advanced trading mechanics.
-        </p>
-      </div>
+      </section>
 
 
       {/* Research & Reports CTA */}

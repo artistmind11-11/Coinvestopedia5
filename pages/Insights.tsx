@@ -5,12 +5,13 @@ import { Search, ArrowLeft, Clock, Share2, BookmarkPlus, Globe, Shield, Building
 import { TargetIcon } from '../components/AnimatedIcons';
 import { useAppContext } from '../context/AppContext';
 
-const CATEGORIES = ['All', 'Sovereignty', 'Regulation', 'Institutions', 'Markets', 'Geopolitics'];
+const CATEGORIES = ['All', 'Sovereignty', 'Regulation', 'Institutions', 'Markets', 'Geopolitics', 'Africa'];
 
 export interface Article {
   id: string;
   title: string;
   category: string;
+  tags?: string[];
   readTime: string;
   date: string;
   image: string;
@@ -162,6 +163,208 @@ export const ARTICLES: Article[] = [
               </table>
            </div>
         </div>
+      </>
+    )
+  },
+  {
+    id: 'africa-crypto-infrastructure',
+    title: "Africa's Crypto Infrastructure: From Grassroots Utility to Regulated Markets",
+    category: 'Geopolitics',
+    tags: ['Africa'],
+    readTime: '14 min read',
+    date: 'April 10, 2026',
+    image: '/africa-crypto-featured.png',
+    desc: 'Sub-Saharan Africa is the third fastest-growing crypto region globally, driven by infrastructure needs, financial inclusion, and FX stability.',
+    icon: <Globe className="text-emerald-400" size={24} />,
+    content: (
+      <>
+        <p className="text-xl text-text-muted mb-8 italic">
+          Infrastructure-Driven Adoption: How African markets are building financial utility from the bottom up.
+        </p>
+        
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Scale and Context</h2>
+        <p className="mb-6">
+          Sub-Saharan Africa received $205B in on-chain value in the 12 months to June 2025 — a 52% YoY increase, making it the third fastest-growing crypto region globally behind APAC and Latin America.
+        </p>
+
+        <div className="my-10 rounded-2xl overflow-hidden border border-border shadow-2xl">
+           <img src="/africa-crypto-featured.png" alt="Africa Crypto Infrastructure" className="w-full h-auto object-cover" />
+           <div className="p-4 bg-background/50 text-xs text-center border-t border-border italic text-text-muted">
+              Digital Finance Evolution: Stylized visualization of Africa's emerging crypto infrastructure and cross-border nodes.
+           </div>
+        </div>
+
+        <div className="leather-card p-6 rounded-xl mb-10 overflow-hidden">
+           <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left border-collapse min-w-[600px]">
+                 <thead>
+                    <tr className="border-b border-border text-text-muted">
+                       <th className="py-3 pr-4 font-medium uppercase text-xs">Region</th>
+                       <th className="py-3 px-4 font-medium uppercase text-xs">YoY Growth</th>
+                       <th className="py-3 px-4 font-medium uppercase text-xs">On-Chain Value</th>
+                       <th className="py-3 pl-4 font-medium uppercase text-xs">Primary Driver</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                       <td className="py-3 pr-4 font-medium">APAC</td>
+                       <td className="py-3 px-4">69%</td>
+                       <td className="py-3 px-4">$2.36T</td>
+                       <td className="py-3 pl-4 text-text-muted">Retail + Inst. Innovation</td>
+                    </tr>
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                       <td className="py-3 pr-4 font-medium">Latin America</td>
+                       <td className="py-3 px-4">63%</td>
+                       <td className="py-3 px-4">—</td>
+                       <td className="py-3 pl-4 text-text-muted">Remittances, Inflation Hedge</td>
+                    </tr>
+                    <tr className="border-b border-border/50 bg-primary/5">
+                       <td className="py-3 pr-4 font-bold text-primary">Sub-Saharan Africa</td>
+                       <td className="py-3 px-4 font-bold">52%</td>
+                       <td className="py-3 px-4 font-bold">$205B</td>
+                       <td className="py-3 pl-4 font-bold">Financial Inclusion, FX Stability</td>
+                    </tr>
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                       <td className="py-3 pr-4 font-medium">MENA</td>
+                       <td className="py-3 px-4">33%</td>
+                       <td className="py-3 px-4">$500B+</td>
+                       <td className="py-3 pl-4 text-text-muted">Wealth Management</td>
+                    </tr>
+                 </tbody>
+              </table>
+           </div>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Macro Catalyst: Currency Devaluation</h2>
+        <p className="mb-4">
+          Nigeria serves as the primary case study. Between May 2023 and February 2024, the Naira lost over 200% of its value against the USD, driving immediate adoption of stablecoins as a store of value — not for speculation, but for capital preservation.
+        </p>
+
+        <div className="my-8 p-6 bg-surface border border-border rounded-xl">
+           <h3 className="text-lg font-bold mb-3 flex items-center gap-2"><TargetIcon className="w-5 h-5 text-primary" /> Devaluation Engine</h3>
+           <p className="text-sm">When a domestic currency devalues, three distinct phases occur:</p>
+           <ul className="list-disc pl-5 mt-4 space-y-2 text-sm text-text-muted">
+              <li><strong>Hedged Entry:</strong> New users enter to preserve existing savings.</li>
+              <li><strong>Accumulation:</strong> Existing users accelerate stablecoin holdings.</li>
+              <li><strong>Volume Spike:</strong> Exchange volumes decouple from global market trends.</li>
+           </ul>
+        </div>
+
+        <div className="my-10 rounded-2xl overflow-hidden border border-border shadow-2xl">
+           <img src="/africa-market-growth.png" alt="Africa Market Growth" className="w-full h-auto object-cover" />
+           <div className="p-4 bg-background/50 text-xs text-center border-t border-border italic text-text-muted">
+              Market Dynamics: Visualizing the shift from traditional banking to stablecoin-based commerce in Nigeria and Kenya.
+           </div>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Regulatory Landscape: A Divergent Map</h2>
+        <h3 className="text-xl font-bold mt-6 mb-2 text-primary">Mature Frameworks: Mauritius & South Africa</h3>
+        <p className="mb-6">Mauritius offers the most structured licensing under the VAITOS Act (2021), while South Africa has approved 138 CASP licenses as of mid-2024, including VALR and Luno.</p>
+
+        <div className="overflow-x-auto mb-10">
+           <table className="w-full text-sm text-left border-collapse bg-surface border border-border rounded-xl overflow-hidden">
+              <thead>
+                 <tr className="bg-white/5 border-b border-border text-xs uppercase tracking-wider">
+                    <th className="p-4">License Type</th>
+                    <th className="p-4">Service Scope</th>
+                    <th className="p-4 text-right">Min. Capital (MUR)</th>
+                 </tr>
+              </thead>
+              <tbody>
+                 <tr className="border-b border-border/50">
+                    <td className="p-4 font-medium">Class M</td>
+                    <td className="p-4 text-text-muted">Broker-Dealer</td>
+                    <td className="p-4 text-right">2,000,000</td>
+                 </tr>
+                 <tr className="border-b border-border/50">
+                    <td className="p-4 font-medium">Class R</td>
+                    <td className="p-4 text-text-muted">Custodial Services</td>
+                    <td className="p-4 text-right">5,000,000</td>
+                 </tr>
+                 <tr className="border-b border-border/50">
+                    <td className="p-4 font-medium">Class S</td>
+                    <td className="p-4 text-text-muted">Exchange Operations</td>
+                    <td className="p-4 text-right">6,500,000</td>
+                 </tr>
+              </tbody>
+           </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Exchange Ecosystem: Global vs. Local</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+           <div className="p-6 bg-background border border-border rounded-xl">
+              <h4 className="font-bold text-primary mb-3">Global Dominance</h4>
+              <p className="text-sm text-text-muted">Binance holds the majority market share, with its P2P marketplace acting as a critical differentiator in markets with legacy banking restrictions.</p>
+           </div>
+           <div className="p-6 bg-background border border-border rounded-xl">
+              <h4 className="font-bold text-emerald-400 mb-2">Local Champions</h4>
+              <p className="text-sm text-text-muted">Local exchanges like VALR and Yellow Card compete on regulatory trust, local currency integration, and 24/7 fiat settlement.</p>
+           </div>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Stablecoins as the Physical Rail</h2>
+        <p className="mb-6">
+          While Bitcoin drives retail purchase behavior, stablecoins underpin actual commerce. Stablecoin payment volume for real economic activity reached $390B in 2025.
+        </p>
+
+        <div className="my-10 p-8 bg-blue-500/10 border border-blue-500/30 rounded-2xl">
+           <div className="flex items-start gap-4">
+              <Shield className="text-blue-400 shrink-0 mt-1" size={24} />
+              <div>
+                 <h4 className="font-bold text-blue-400 mb-2">Remittance and B2B Impact</h4>
+                 <p className="text-sm text-text-muted leading-relaxed italic">
+                    For SMEs trading with suppliers in Asia, USDC/USDT settlement bypasses SWIFT delays entirely. For migrant workers, costs drop from 8.3% to under 1% via Polygon or Solana rails.
+                 </p>
+              </div>
+           </div>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Fraud and Risk Trajectory</h2>
+        <p className="mb-6">Fraud rates declined to 2.6% in 2025, driven by faster KYC and FATF Travel Rule compliance, but AI-enabled scams have become 4.5x more profitable.</p>
+        <div className="leather-card p-6 rounded-xl mb-10 overflow-hidden">
+           <table className="w-full text-sm text-left">
+              <thead>
+                 <tr className="border-b border-border text-text-muted text-xs uppercase font-bold">
+                    <th className="py-2">Country</th>
+                    <th className="py-2">2025 Fraud Rate</th>
+                    <th className="py-2 text-right">YoY Change</th>
+                 </tr>
+              </thead>
+              <tbody>
+                 <tr className="border-b border-border/30">
+                    <td className="py-3">Kenya</td>
+                    <td className="py-2">2.5%</td>
+                    <td className="py-3 text-green-400 text-right font-medium">-30%</td>
+                 </tr>
+                 <tr className="border-b border-border/30">
+                    <td className="py-3">Nigeria</td>
+                    <td className="py-3">2.6%</td>
+                    <td className="py-3 text-green-400 text-right font-medium">-28%</td>
+                 </tr>
+                 <tr className="border-b border-border/30">
+                    <td className="py-3">South Africa</td>
+                    <td className="py-3">3.1%</td>
+                    <td className="py-3 text-green-400 text-right font-medium">-14%</td>
+                 </tr>
+              </tbody>
+           </table>
+        </div>
+
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Key Takeaways for Institutional Allocators</h2>
+        <ul className="space-y-4 mb-10">
+           <li className="flex gap-4 p-4 bg-surface/50 border border-border rounded-lg">
+              <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold shrink-0">01</span>
+              <p className="text-sm"><strong>Nigeria is the Market:</strong> 25% adult penetration, $92B volume, and persistent stablecoin demand.</p>
+           </li>
+           <li className="flex gap-4 p-4 bg-surface/50 border border-border rounded-lg">
+              <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold shrink-0">02</span>
+              <p className="text-sm"><strong>South Africa is the Hub:</strong> 138 licensed CASPs and the continent's most mature regulatory regime.</p>
+           </li>
+           <li className="flex gap-4 p-4 bg-surface/50 border border-border rounded-lg">
+              <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold shrink-0">03</span>
+              <p className="text-sm"><strong>Utility &gt; Speculation:</strong> Infrastructure adoption is denominated in USD-stablecoins, not BTC volatility.</p>
+           </li>
+        </ul>
       </>
     )
   },
@@ -358,7 +561,7 @@ export const ARTICLES: Article[] = [
            <div className="p-4 bg-background border border-border rounded-lg text-center">
               <div className="text-xs text-text-muted uppercase font-bold mb-1">Parallel Spread</div>
               <div className="text-xl font-bold text-amber-400">&gt;20%</div>
-              <div className="text-[10px] text-text-muted">Signal Elevated Risk</div>
+              <div className="text-[10px] text-text-muted">Signal Heightened Risk</div>
            </div>
            <div className="p-4 bg-background border border-border rounded-lg text-center">
               <div className="text-xs text-text-muted uppercase font-bold mb-1">Deposit Flight</div>
@@ -647,13 +850,13 @@ export const Insights: React.FC = () => {
            <div className="absolute top-0 right-0 p-8 transform translate-x-1/2 -translate-y-1/2">
               <div className="w-32 h-32 bg-primary/20 blur-3xl rounded-full"></div>
            </div>
-           <h3 className="text-2xl font-bold mb-3">Get Institutional Crypto Insights</h3>
+           <h3 className="text-2xl font-bold mb-3">Subscribe to Institutional Research</h3>
            <p className="text-text-muted mb-6 max-w-lg mx-auto">
-              Join 15,000+ fund managers and analysts receiving our weekly deep-dives.
+              Join 15,000+ institutional allocators receiving our weekly market intelligence.
            </p>
            <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
               <input type="email" placeholder="Your work email" className="flex-1 bg-background border border-border rounded-lg px-4 py-3 focus:outline-none focus:border-primary text-sm" />
-              <Button>Subscribe</Button>
+              <Button>Get Intelligence</Button>
            </div>
         </div>
       </div>
@@ -661,7 +864,9 @@ export const Insights: React.FC = () => {
   }
 
   const filteredArticles = ARTICLES.filter(a => {
-    const matchesCategory = activeCategory === 'All' || a.category === activeCategory;
+    const matchesCategory = activeCategory === 'All' || 
+                          a.category === activeCategory || 
+                          (a.tags && a.tags.includes(activeCategory));
     const matchesSearch = a.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                          a.desc.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -672,25 +877,36 @@ export const Insights: React.FC = () => {
 
   return (
     <div className="animate-fade-in space-y-10 lg:space-y-14 pb-12">
-      {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-        <div>
-          <h1 className="text-3xl lg:text-4xl font-heading font-bold mb-3">Institutional Insights</h1>
-          <p className="text-text-muted text-lg max-w-2xl">
+      {/* Hero */}
+      <section className="relative overflow-hidden rounded-2xl lg:rounded-3xl border border-border bg-gradient-to-br from-background to-surface p-8 lg:p-16 mb-12 lg:mb-20 text-center">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-48 translate-x-48 blur-3xl pointer-events-none"></div>
+        
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-semibold mb-6">
+            <TargetIcon className="w-4 h-4" />
+            <span>Institutional Research Hub</span>
+          </div>
+          
+          <h1 className="text-3xl lg:text-5xl font-bold mb-6">
+            Institutional <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark">Insights</span>
+          </h1>
+          
+          <p className="text-xl text-text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
             In-depth analysis of market structure, geopolitical impacts, and regulatory frameworks reshaping digital finance.
           </p>
+
+          <div className="relative w-full max-w-lg mx-auto">
+             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted transition-colors group-focus-within:text-primary" size={18} />
+             <input 
+                type="text" 
+                placeholder="Search research and reports..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full bg-background border border-border rounded-xl pl-10 pr-4 py-3.5 text-sm focus:outline-none focus:border-primary transition-all hover:border-text-muted shadow-sm"
+             />
+          </div>
         </div>
-        <div className="relative w-full md:w-64">
-           <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
-           <input 
-              type="text" 
-              placeholder="Search research..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-surface border border-border rounded-lg pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-primary transition-colors hover:border-text-muted"
-           />
-        </div>
-      </div>
+      </section>
 
       {/* Category Pills */}
       <div className="flex items-center gap-2 overflow-x-auto pb-4 scrollbar-hide">
@@ -745,7 +961,7 @@ export const Insights: React.FC = () => {
                   <div className="flex items-center justify-between mt-auto">
                      <span className="text-sm font-bold">{featuredArticle.date}</span>
                      <span className="text-primary font-bold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                        Read Full Report <ArrowLeft className="rotate-180" size={16} />
+                        View Full Analysis <ArrowLeft className="rotate-180" size={16} />
                      </span>
                   </div>
                </div>

@@ -157,7 +157,7 @@ const MethodologySection: React.FC = () => {
     { range: '90–100', label: 'Institutional Grade', desc: 'Suitable for compliance-constrained mandates.', color: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' },
     { range: '80–89', label: 'Professional Grade', desc: 'Suitable for sophisticated investors with custody controls.', color: 'bg-emerald-400/10 text-emerald-300 border border-emerald-400/20' },
     { range: '70–79', label: 'Active Trader Grade', desc: 'Acceptable for discretionary crypto-native strategies.', color: 'bg-slate-400/10 text-slate-400 border border-slate-400/20' },
-    { range: '<70', label: 'Elevated Risk', desc: 'Appropriate only with full due diligence and position limits.', color: 'bg-red-500/10 text-red-400 border border-red-500/20' },
+    { range: '<70', label: 'Heightened Risk', desc: 'Appropriate only with full due diligence and position limits.', color: 'bg-red-500/10 text-red-400 border border-red-500/20' },
   ];
 
   return (

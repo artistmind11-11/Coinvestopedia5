@@ -52,9 +52,9 @@ const REPORTS: MacroReport[] = [
     readTime: '14 min read',
     confidenceLevel: 'High',
     keyMetrics: [
-      { label: 'DXY', value: '106.4', direction: 'up' },
+      { label: 'DXY (Dollar Index)', value: '106.4', direction: 'up' },
       { label: 'Fed Rate', value: '5.25%', direction: 'neutral' },
-      { label: 'BTC', value: '$67,200', direction: 'down' },
+      { label: 'BTC (Bitcoin)', value: '$67,200', direction: 'down' },
       { label: '10Y Yield', value: '4.32%', direction: 'up' },
     ],
     sections: [
@@ -63,11 +63,11 @@ const REPORTS: MacroReport[] = [
         title: 'Macro Context',
         content: (
           <>
-            <p className="mb-4">The Federal Reserve held rates at 5.25-5.50% for the seventh consecutive meeting, signaling "higher for longer" with no cuts expected until inflation sustainably approaches 2%. Meanwhile, the DXY has surged above 106, its highest level since November 2023.</p>
+            <p className="mb-4">The Federal Reserve held rates at 5.25-5.50% for the seventh consecutive meeting, signaling "higher for longer" with no cuts expected until inflation sustainably approaches 2%. Meanwhile, the DXY (U.S. Dollar Index) has surged above 106, its highest level since November 2023.</p>
             <p className="mb-4"><strong>What's driving dollar strength:</strong></p>
             <ul className="list-disc pl-5 space-y-2 mb-4">
               <li><strong>Rate differentials:</strong> US rates remain significantly above Europe and Japan, attracting global capital into dollar-denominated assets.</li>
-              <li><strong>Fiscal expansion:</strong> US government spending continues to elevate growth expectations relative to trading partners.</li>
+              <li><strong>Fiscal expansion:</strong> US government spending continues to drive growth expectations relative to trading partners.</li>
               <li><strong>Safe-haven demand:</strong> Geopolitical tensions in Europe and the Middle East are driving risk-averse capital into the dollar.</li>
               <li><strong>Energy independence:</strong> US energy exports create structural dollar demand that didn't exist a decade ago.</li>
             </ul>
@@ -84,11 +84,11 @@ const REPORTS: MacroReport[] = [
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
               <div className="p-4 bg-surface border border-border rounded-xl">
                 <h4 className="text-sm font-bold text-primary mb-2">Channel 1: Risk Appetite</h4>
-                <p className="text-xs text-text-muted">Dollar strength correlates with risk-off sentiment. BTC's 90-day rolling correlation with DXY: <span className="text-red-400 font-bold">-0.72</span> (strong inverse). When DXY rises above 104, BTC has historically underperformed in 78% of 30-day windows.</p>
+                <p className="text-xs text-text-muted">Dollar strength correlates with risk-off sentiment. BTC's 90-day rolling correlation with DXY: <span className="text-red-400 font-bold">-0.72</span> (strong inverse). When the index rises above 104, Bitcoin has historically underperformed in 78% of 30-day windows.</p>
               </div>
               <div className="p-4 bg-surface border border-border rounded-xl">
                 <h4 className="text-sm font-bold text-primary mb-2">Channel 2: Liquidity</h4>
-                <p className="text-xs text-text-muted">Strong dollar tightens global dollar liquidity. Emerging market investors — a growing crypto cohort — face currency depreciation, reducing fiat→crypto flows. USDT market cap growth has stalled at $110B for 6 weeks.</p>
+                <p className="text-xs text-text-muted">Strong dollar tightens global dollar liquidity. EM (Emerging Market) investors — a growing crypto cohort — face currency depreciation, reducing fiat→crypto flows. USDT (Tether) market cap growth has stalled at $110B for 6 weeks.</p>
               </div>
               <div className="p-4 bg-surface border border-border rounded-xl">
                 <h4 className="text-sm font-bold text-primary mb-2">Channel 3: Opportunity Cost</h4>
@@ -110,14 +110,14 @@ const REPORTS: MacroReport[] = [
                 <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                 <div>
                   <strong className="text-text">DXY 107.8 level:</strong>
-                  <span className="text-text-muted"> Above this, we enter a regime where the BTC-DXY inverse correlation historically strengthens to -0.85+. This is the "pain threshold" for EM-driven crypto demand.</span>
+                  <span className="text-text-muted"> Above this, we enter a regime where the BTC-DXY inverse correlation historically strengthens to -0.85+. This is the "pain threshold" for EM (Emerging Market) driven crypto demand.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                 <div>
                   <strong className="text-text">CME FedWatch probabilities:</strong>
-                  <span className="text-text-muted"> Currently pricing 18% chance of September cut. Any movement toward 30%+ would likely trigger a DXY reversal and crypto-positive regime shift.</span>
+                  <span className="text-text-muted"> We are currently monitoring the CME FedWatch (Interest rate probability tracker), which is pricing an 18% chance of a September cut. Any movement toward 30%+ would likely trigger a reversal in dollar strength and a crypto-positive regime shift.</span>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -242,7 +242,7 @@ const REPORTS: MacroReport[] = [
     keyMetrics: [
       { label: 'Gold', value: '$2,340', direction: 'up' },
       { label: 'BTC', value: '$67,200', direction: 'down' },
-      { label: 'VIX', value: '18.4', direction: 'up' },
+      { label: 'VIX (Volatility)', value: '18.4', direction: 'up' },
       { label: 'BTC/Gold', value: '28.7x', direction: 'down' },
     ],
     sections: [
@@ -251,7 +251,7 @@ const REPORTS: MacroReport[] = [
         title: 'Macro Context',
         content: (
           <>
-            <p className="mb-4">Geopolitical risk is elevated across multiple theaters: Middle East escalation, China-Taiwan tensions, and European energy security concerns. The VIX has risen from 13 to 18.4 over two weeks, and gold is testing all-time highs above $2,300.</p>
+            <p className="mb-4">Geopolitical risk remains high across multiple theaters: Middle East escalation, China-Taiwan tensions, and European energy security concerns. The VIX (CBOE Volatility Index) has risen from 13 to 18.4 over two weeks, and gold is testing all-time highs above $2,300.</p>
             <p className="mb-4">The fundamental question: <em>Is Bitcoin a risk asset or a safe-haven asset?</em> The answer, historically, is "it depends on the type of crisis."</p>
             <div className="p-5 bg-surface border border-border rounded-xl mb-4">
               <h4 className="font-bold text-sm mb-3">Historical Crisis Performance (BTC vs Gold, first 30 days)</h4>
@@ -372,8 +372,8 @@ const REPORTS: MacroReport[] = [
     keyMetrics: [
       { label: 'Oil', value: '$87.40', direction: 'up' },
       { label: 'Gold', value: '$2,340', direction: 'up' },
-      { label: 'USDT P2P₃', value: '+4.2%', direction: 'up' },
-      { label: 'BTC Vol', value: '62%', direction: 'up' },
+      { label: 'USDT P2P Premium', value: '+4.2%', direction: 'up' },
+      { label: 'BTC Volatility', value: '62%', direction: 'up' },
     ],
     sections: [
       {
@@ -384,8 +384,8 @@ const REPORTS: MacroReport[] = [
             <p className="mb-4">Escalation in the Middle East is creating cascading effects across global markets. Crude oil has surged 12% in three weeks on supply disruption fears. Safe-haven flows are accelerating into gold, Swiss franc, and US treasuries.</p>
             <p className="mb-4"><strong>Key capital flow dynamics:</strong></p>
             <ul className="list-disc pl-5 space-y-2 mb-4">
-              <li>MENA region stablecoin volumes have increased 340% vs. 30-day average on major P2P platforms.</li>
-              <li>USDT is trading at a 4.2% premium to USD on Turkish and Lebanese P2P markets — a classic capital flight signal.</li>
+              <li>MENA (Middle East & North Africa) region stablecoin volumes have increased 340% vs. 30-day average on major P2P (Peer-to-Peer) platforms.</li>
+              <li>USDT (Tether) is trading at a 4.2% premium to USD on Turkish and Lebanese P2P markets — a classic capital flight signal.</li>
               <li>UAE crypto exchange volumes have doubled, suggesting the region is being used as a capital intermediary.</li>
               <li>Hawala networks are reporting increased BTC settlement requests from conflict-adjacent regions.</li>
             </ul>
@@ -636,20 +636,24 @@ export const MacroIntel: React.FC = () => {
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Hero */}
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-surface via-background to-surface p-8 lg:p-12">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      <section className="relative overflow-hidden rounded-2xl lg:rounded-3xl border border-border bg-gradient-to-br from-background to-surface p-8 lg:p-16 mb-12 lg:mb-20 text-center">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-48 translate-x-48 blur-3xl pointer-events-none"></div>
+        
         <div className="relative z-10">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-              <Globe size={22} className="text-primary" />
-            </div>
-            <h1 className="text-3xl lg:text-4xl font-heading font-bold">Macro Intel</h1>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 border border-primary/20 rounded-full text-primary text-sm font-semibold mb-6">
+            <Globe size={16} />
+            <span>Pro-Level Macro Analysis</span>
           </div>
-          <p className="text-text-muted max-w-2xl leading-relaxed">
-            You are a professional investor. Here is what is happening in the world. Here is how it flows through traditional markets into crypto. Here is what questions you should be asking.
+          
+          <h1 className="text-3xl lg:text-5xl font-bold mb-6">
+            Macro <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark">Intelligence</span>
+          </h1>
+          
+          <p className="text-xl text-text-muted mb-10 max-w-2xl mx-auto leading-relaxed">
+            Professional-grade analysis of global market trends, geopolitical shifts, and institutional capital flows across traditional and digital assets.
           </p>
         </div>
-      </div>
+      </section>
 
       <LiveMacroBar />
 

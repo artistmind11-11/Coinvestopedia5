@@ -105,10 +105,10 @@ export const AssetSelector: React.FC<AssetSelectorProps> = ({ selectedIds, onCha
             {showDropdown && (
               <>
                 {/* Backdrop overlay - dims the page and catches outside clicks */}
-                <div className="fixed inset-0 z-[198] bg-black/40" onClick={() => setShowDropdown(false)} />
+                <div className="fixed inset-0 z-[50] bg-black/40" onClick={() => setShowDropdown(false)} />
                 
                 {/* Dropdown */}
-                <div className="absolute top-12 left-0 w-[340px] sm:w-[400px] rounded-xl z-[199] flex flex-col overflow-hidden"
+                <div className="absolute top-12 left-0 w-[340px] sm:w-[400px] rounded-xl z-[100] flex flex-col overflow-hidden"
                      style={{ backgroundColor: '#141414', border: '1px solid #2a2a2a', boxShadow: '0 25px 60px rgba(0,0,0,0.9)' }}>
                  {/* Search */}
                  <div className="px-4 pt-4 pb-3" style={{ backgroundColor: '#141414' }}>

@@ -8,38 +8,31 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
-    <section className="relative hero-mesh bg-background overflow-hidden py-12 lg:py-24 mb-8 lg:mb-12 rounded-2xl lg:rounded-3xl border border-border">
-      <div className="relative z-10 max-w-[800px] mx-auto text-center px-4 lg:px-6">
+    <section className="relative overflow-hidden rounded-2xl lg:rounded-3xl border border-border bg-gradient-to-br from-background to-surface mb-12 lg:mb-20">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full -translate-y-48 translate-x-48 blur-3xl"></div>
+      
+      <div className="relative z-10 p-8 lg:p-16 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold mb-4 lg:mb-6">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            Where Crypto Meets Wall Street
+            Strategic Digital Asset Analysis
         </div>
         <h1 className="text-[28px] sm:text-4xl lg:text-5xl xl:text-[56px] font-heading font-bold text-text leading-[1.15] sm:leading-tight mb-4 lg:mb-6 tracking-tight">
-          Expert Insights for <br className="sm:hidden" /><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark">Smart Investing</span>
+          Cross-Asset Intelligence <br className="sm:hidden" />for <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary-dark">Informed Capital</span>
         </h1>
         <p className="text-[15px] sm:text-base lg:text-xl text-text-muted mb-6 lg:mb-10 font-body leading-[1.6] max-w-[600px] mx-auto px-2">
-          Bridge traditional finance and crypto markets with data-driven analysis, real-time tracking, and educational resources
+          Bridging traditional capital markets and digital assets with quantitative research, real-time data flows, and institutional-grade analysis.
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 lg:gap-4">
           <Button size="lg" onClick={() => onNavigate?.(PageRoute.COMPARE)}>
-            Browse Comparisons
+            Analyze Assets
           </Button>
           <Button variant="secondary" size="lg" onClick={() => onNavigate?.(PageRoute.NEWSLETTER)}>
-            Read the Newsletter
+            View Market Intelligence
           </Button>
         </div>
-        
-
-      </div>
-      
-      {/* Animated mesh gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 opacity-50 pointer-events-none"></div>
-      <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none pattern-grid"></div>
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-primary/10 via-transparent to-primary/5 rounded-[100%] blur-3xl animate-pulse-slow transform-gpu"></div>
       </div>
     </section>
   );

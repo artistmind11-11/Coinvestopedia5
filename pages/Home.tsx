@@ -109,7 +109,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         { label: 'Counterparty Risk', tooltip: 'Risk of the other party defaulting.', valueA: 'Smart Contract', valueB: 'Bank Failure' },
         { label: 'Regulatory Status', tooltip: 'Current legal and compliance standing.', valueA: 'Evolving', valueB: 'Established' },
       ],
-      cta: 'Compare Now',
+      cta: 'View Comparative Analysis',
       route: PageRoute.COMPARE
     },
     {
@@ -121,7 +121,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         { label: 'Market Position', tooltip: 'Current standing in respective industry.', valueA: 'L1 Leader', valueB: 'Cloud Leader' },
         { label: 'Growth (YoY)', tooltip: 'Year-over-year revenue/usage growth.', valueA: '+32%', valueB: '+28%' },
       ],
-      cta: 'Read Analysis',
+      cta: 'Analyze Research',
       route: PageRoute.COMPARE
     },
     {
@@ -133,7 +133,7 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
         { label: 'Avg Fee ($10k)', tooltip: 'Cost to transfer $10,000 internationally.', valueA: '< $1', valueB: '$30-50' },
         { label: 'Availability', tooltip: 'Operating hours of the settlement network.', valueA: '24/7/365', valueB: 'Bank Hours' },
       ],
-      cta: 'Explore Future',
+      cta: 'View Forecast',
       route: PageRoute.COMPARE
     },
   ];
@@ -146,8 +146,8 @@ export const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       <section>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 lg:mb-8">
           <div>
-            <h2 className="text-2xl lg:text-3xl font-bold text-text mb-2">Featured Comparisons</h2>
-            <p className="text-text-muted text-sm lg:text-base">Where Crypto Meets Wall Street - Start Here</p>
+            <h2 className="text-2xl lg:text-3xl font-bold text-text mb-2">Institutional Comparisons</h2>
+            <p className="text-text-muted text-sm lg:text-base">Quantitative Analysis: Where Digital Assets Meet Traditional Finance</p>
           </div>
           <button 
             className="px-4 py-2 bg-surface hover:bg-surface-hover border border-border text-primary font-semibold transition-all group text-sm lg:text-base self-start sm:self-auto rounded-lg shadow-sm"
