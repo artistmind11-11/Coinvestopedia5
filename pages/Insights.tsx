@@ -184,7 +184,7 @@ export const ARTICLES: Article[] = [
         
         <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Scale and Context</h2>
         <p className="mb-6">
-          Sub-Saharan Africa received $205B in on-chain value in the 12 months to June 2025 — a 52% YoY increase, making it the third fastest-growing crypto region globally behind APAC and Latin America.
+          Sub-Saharan Africa received $205B in on-chain value in the 12 months to June 2025 — a 52% YoY increase, making it the third fastest-growing crypto region globally behind APAC and Latin America. Unlike developed markets where crypto is primarily an institutional portfolio play, African adoption is infrastructure-driven: it solves real problems that legacy finance cannot.
         </p>
 
         <div className="my-10 rounded-2xl overflow-hidden border border-border shadow-2xl">
@@ -228,7 +228,7 @@ export const ARTICLES: Article[] = [
                        <td className="py-3 pr-4 font-medium">MENA</td>
                        <td className="py-3 px-4">33%</td>
                        <td className="py-3 px-4">$500B+</td>
-                       <td className="py-3 pl-4 text-text-muted">Wealth Management</td>
+                       <td className="py-3 pl-4 text-text-muted">Institutions + Wealth Mgmt.</td>
                     </tr>
                  </tbody>
               </table>
@@ -258,8 +258,10 @@ export const ARTICLES: Article[] = [
         </div>
 
         <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Regulatory Landscape: A Divergent Map</h2>
+        <p className="mb-6">Regulatory frameworks across Africa's 54 countries are diverging, creating distinct regional hubs for institutional and retail activity.</p>
+        
         <h3 className="text-xl font-bold mt-6 mb-2 text-primary">Mature Frameworks: Mauritius & South Africa</h3>
-        <p className="mb-6">Mauritius offers the most structured licensing under the VAITOS Act (2021), while South Africa has approved 138 CASP licenses as of mid-2024, including VALR and Luno.</p>
+        <p className="mb-6">South Africa declared crypto a financial product in 2022, approving over 138 CASP licenses by mid-2024. Mauritius offers the most structured licensing under the VAITOS Act (2021) with five distinct classes:</p>
 
         <div className="overflow-x-auto mb-10">
            <table className="w-full text-sm text-left border-collapse bg-surface border border-border rounded-xl overflow-hidden">
@@ -277,6 +279,11 @@ export const ARTICLES: Article[] = [
                     <td className="p-4 text-right">2,000,000</td>
                  </tr>
                  <tr className="border-b border-border/50">
+                    <td className="p-4 font-medium">Class O</td>
+                    <td className="p-4 text-text-muted">Wallet Services</td>
+                    <td className="p-4 text-right">2,000,000</td>
+                 </tr>
+                 <tr className="border-b border-border/50">
                     <td className="p-4 font-medium">Class R</td>
                     <td className="p-4 text-text-muted">Custodial Services</td>
                     <td className="p-4 text-right">5,000,000</td>
@@ -290,21 +297,71 @@ export const ARTICLES: Article[] = [
            </table>
         </div>
 
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Volume Distribution: The Power Centers</h2>
+        <p className="mb-6">Nigeria dominates the regional share, with value received exceeding that of the next four countries combined.</p>
+        
+        <div className="leather-card p-6 rounded-xl mb-10 overflow-hidden">
+           <div className="overflow-x-auto">
+              <table className="w-full text-sm text-left border-collapse min-w-[600px]">
+                 <thead>
+                    <tr className="border-b border-border text-text-muted">
+                       <th className="py-3 pr-4 font-medium uppercase text-xs">Country</th>
+                       <th className="py-3 px-4 font-medium uppercase text-xs">Value Received</th>
+                       <th className="py-3 px-4 font-medium uppercase text-xs">Regional Share</th>
+                       <th className="py-3 pl-4 font-medium uppercase text-xs">Dominant Asset</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                       <td className="py-3 pr-4 font-bold">Nigeria</td>
+                       <td className="py-3 px-4 font-bold text-primary">$92.1B</td>
+                       <td className="py-3 px-4">45%</td>
+                       <td className="py-3 pl-4 text-text-muted">Bitcoin (89% of fiat buys)</td>
+                    </tr>
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                       <td className="py-3 pr-4 font-medium">South Africa</td>
+                       <td className="py-3 px-4">$35.0B</td>
+                       <td className="py-3 px-4">17%</td>
+                       <td className="py-3 pl-4 text-text-muted">Bitcoin (74% of fiat buys)</td>
+                    </tr>
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                       <td className="py-3 pr-4 font-medium">Ethiopia</td>
+                       <td className="py-3 px-4">~$15B</td>
+                       <td className="py-3 px-4">7%</td>
+                       <td className="py-3 pl-4 text-text-muted">Bitcoin (Mining-driven)</td>
+                    </tr>
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                       <td className="py-3 pr-4 font-medium">Kenya</td>
+                       <td className="py-3 px-4">~$12B</td>
+                       <td className="py-3 px-4">6%</td>
+                       <td className="py-3 pl-4 text-text-muted">Stablecoins</td>
+                    </tr>
+                    <tr className="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                       <td className="py-3 pr-4 font-medium">Ghana</td>
+                       <td className="py-3 px-4">~$8B</td>
+                       <td className="py-3 px-4">4%</td>
+                       <td className="py-3 pl-4 text-text-muted">Stablecoins</td>
+                    </tr>
+                 </tbody>
+              </table>
+           </div>
+        </div>
+
         <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Exchange Ecosystem: Global vs. Local</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
            <div className="p-6 bg-background border border-border rounded-xl">
               <h4 className="font-bold text-primary mb-3">Global Dominance</h4>
-              <p className="text-sm text-text-muted">Binance holds the majority market share, with its P2P marketplace acting as a critical differentiator in markets with legacy banking restrictions.</p>
+              <p className="text-sm text-text-muted leading-relaxed">Binance holds the majority market share, with its P2P marketplace acting as a critical differentiator in markets where legacy banking restrictions still limit direct fiat-to-exchange flows.</p>
            </div>
            <div className="p-6 bg-background border border-border rounded-xl">
               <h4 className="font-bold text-emerald-400 mb-2">Local Champions</h4>
-              <p className="text-sm text-text-muted">Local exchanges like VALR and Yellow Card compete on regulatory trust, local currency integration, and 24/7 fiat settlement.</p>
+              <p className="text-sm text-text-muted leading-relaxed">Local exchanges like VALR and Yellow Card compete on regulatory trust, local currency integration, and 24/7 fiat settlement, particularly within the AfCFTA context.</p>
            </div>
         </div>
 
         <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Stablecoins as the Physical Rail</h2>
         <p className="mb-6">
-          While Bitcoin drives retail purchase behavior, stablecoins underpin actual commerce. Stablecoin payment volume for real economic activity reached $390B in 2025.
+          While Bitcoin drives retail purchase behavior as a store of value, stablecoins underpin actual commerce. Stablecoin payment volume for real economic activity reached $390B in 2025 across the continent.
         </p>
 
         <div className="my-10 p-8 bg-blue-500/10 border border-blue-500/30 rounded-2xl">
@@ -320,7 +377,7 @@ export const ARTICLES: Article[] = [
         </div>
 
         <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Fraud and Risk Trajectory</h2>
-        <p className="mb-6">Fraud rates declined to 2.6% in 2025, driven by faster KYC and FATF Travel Rule compliance, but AI-enabled scams have become 4.5x more profitable.</p>
+        <p className="mb-6">Fraud rates declined to 2.6% in 2025, driven by faster KYC and FATF Travel Rule compliance, but the threat vector has shifted toward AI-enabled social engineering.</p>
         <div className="leather-card p-6 rounded-xl mb-10 overflow-hidden">
            <table className="w-full text-sm text-left">
               <thead>
@@ -338,35 +395,45 @@ export const ARTICLES: Article[] = [
                  </tr>
                  <tr className="border-b border-border/30">
                     <td className="py-3">Nigeria</td>
-                    <td className="py-3">2.6%</td>
+                    <td className="py-2">2.6%</td>
                     <td className="py-3 text-green-400 text-right font-medium">-28%</td>
                  </tr>
                  <tr className="border-b border-border/30">
                     <td className="py-3">South Africa</td>
-                    <td className="py-3">3.1%</td>
+                    <td className="py-2">3.1%</td>
                     <td className="py-3 text-green-400 text-right font-medium">-14%</td>
                  </tr>
               </tbody>
            </table>
         </div>
 
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Structural Tailwind: AfCFTA</h2>
+        <p className="mb-6">
+          The African Continental Free Trade Area (AfCFTA) — covering 1.4B people — depends on borderless payment infrastructure. Both the official PAPSS system and private crypto rails are running in parallel to solve the correspondent banking bottleneck.
+        </p>
+
         <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Key Takeaways for Institutional Allocators</h2>
-        <ul className="space-y-4 mb-10">
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
            <li className="flex gap-4 p-4 bg-surface/50 border border-border rounded-lg">
               <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold shrink-0">01</span>
-              <p className="text-sm"><strong>Nigeria is the Market:</strong> 25% adult penetration, $92B volume, and persistent stablecoin demand.</p>
+              <p className="text-sm"><strong>Nigeria is the Market:</strong> 25% adult penetration, $92B volume, and persistent demand driven by FX weakness.</p>
            </li>
            <li className="flex gap-4 p-4 bg-surface/50 border border-border rounded-lg">
               <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold shrink-0">02</span>
-              <p className="text-sm"><strong>South Africa is the Hub:</strong> 138 licensed CASPs and the continent's most mature regulatory regime.</p>
+              <p className="text-sm"><strong>South Africa is the Hub:</strong> The continent's most mature regulatory regime with institutional-grade custody options.</p>
            </li>
            <li className="flex gap-4 p-4 bg-surface/50 border border-border rounded-lg">
               <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold shrink-0">03</span>
-              <p className="text-sm"><strong>Utility &gt; Speculation:</strong> Infrastructure adoption is denominated in USD-stablecoins, not BTC volatility.</p>
+              <p className="text-sm"><strong>Stablecoins drive volume:</strong> Infrastructure-layer adoption is denominated in USD-stablecoins for actual commerce.</p>
+           </li>
+           <li className="flex gap-4 p-4 bg-surface/50 border border-border rounded-lg">
+              <span className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary text-xs font-bold shrink-0">04</span>
+              <p className="text-sm"><strong>Regulatory risk is bifurcated:</strong> Tier 1 markets offer clear frameworks; Tier 2 still carries informal P2P risk.</p>
            </li>
         </ul>
       </>
     )
+  },)
   },
   {
     id: 'correspondent-banking-crisis',
@@ -384,75 +451,89 @@ export const ARTICLES: Article[] = [
         </p>
         
         <h2 className="text-2xl font-bold mt-10 mb-4 text-text">The Mechanics of Correspondent Banking</h2>
-        <p className="mb-4">
-          International payments require correspondent banking relationships. Small nation banks cannot directly access US dollar clearing systems.
+        <p className="mb-6 text-text-muted leading-relaxed">
+          International payments require correspondent banking relationships. Small nation banks cannot directly access US dollar clearing systems. Instead, a local bank (e.g., Vanuatu) must hold a pooled account at a global correspondent bank (e.g., JPMorgan or HSBC) to facilitate cross-border settlement.
         </p>
         
         <div className="my-10 rounded-2xl overflow-hidden border border-border shadow-2xl">
            <img src="/correspondent-2.png" alt="Correspondent Banking Mechanics" className="w-full h-auto object-cover" />
            <div className="p-4 bg-background/50 text-xs text-center border-t border-border italic text-text-muted">
-              Fig 1: Modern correspondent banking relationships require pooled accounts.
+              Modern correspondent banking requires massive pooled accounts and complex clearing chains.
            </div>
         </div>
 
         <div className="my-8 p-6 bg-surface border border-border rounded-xl">
-          <h3 className="text-lg font-bold mb-4">Typical Transaction Flow:</h3>
+          <h3 className="text-lg font-bold mb-4 flex items-center gap-2"><TargetIcon className="w-5 h-5 text-primary" /> Typical Transaction Flow</h3>
           <ol className="list-decimal pl-5 space-y-3 text-text-muted">
-            <li>Local bank (e.g., Vanuatu) holds account at correspondent bank (JPMorgan).</li>
-            <li>Customer initiates transfer.</li>
-            <li>Local bank debits customer, messages correspondent.</li>
-            <li>Correspondent bank executes SWIFT transfer from pooled account.</li>
-            <li>Settlement occurs 1-5 business days later.</li>
+            <li><strong>Instruction:</strong> Customer initiates transfer at local bank.</li>
+            <li><strong>Messaging:</strong> Local bank debits customer and sends SWIFT instruction to correspondent.</li>
+            <li><strong>Clearing:</strong> Correspondent bank executes transfer from the pooled account.</li>
+            <li><strong>Settlement:</strong> Finality reached in 1-5 business days depending on intermediary hops.</li>
           </ol>
         </div>
 
         <h2 className="text-2xl font-bold mt-10 mb-4 text-text">De-Risking: Why Banks Exit</h2>
-        <p className="mb-4">Post-2008 regulatory environment shifted the risk-reward calculation. Banks are increasingly exiting emerging markets due to:</p>
-        <ul className="list-disc pl-5 mb-8 space-y-3">
-          <li><strong>Regulatory Penalties:</strong> Massive fines (e.g., HSBC $1.9B, Standard Chartered $1.1B) often exceed total revenue from these relationships.</li>
-          <li><strong>Compliance Costs:</strong> KYC verification ($50-100/customer) and transaction monitoring ($5-15/tx) make small accounts unprofitable.</li>
-          <li><strong>High-Risk Jurisdiction Factors:</strong> Weak AML enforcement, PEP prevalence, and tax haven designations.</li>
-        </ul>
+        <p className="mb-4">The post-2008 regulatory environment shifted the risk-reward calculation for tier-1 banks. The cost of compliance and potential for fines now often exceed total revenue from emerging market relationships.</p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+           <div className="p-6 bg-background border border-border rounded-xl">
+              <h4 className="font-bold text-red-400 mb-3 uppercase text-xs tracking-widest">Regulatory Penalties</h4>
+              <ul className="text-sm space-y-3">
+                 <li><span className="font-bold">HSBC ($1.9B):</span> 2012 fine for Mexican cartel money laundering.</li>
+                 <li><span className="font-bold">Standard Chartered ($1.1B):</span> 2019 fine for Iran sanctions violations.</li>
+                 <li><span className="font-bold">Deutsche Bank ($630M):</span> 2017 fine for Russia mirror trades.</li>
+              </ul>
+           </div>
+           <div className="p-6 bg-background border border-border rounded-xl">
+              <h4 className="font-bold text-amber-400 mb-3 uppercase text-xs tracking-widest">Quantified Costs</h4>
+              <ul className="text-sm space-y-3">
+                 <li><span className="font-bold">KYC Verification:</span> $50-$100 per individual customer.</li>
+                 <li><span className="font-bold">Tech Infrastructure:</span> $10M+ initial setup for clearing nodes.</li>
+                 <li><span className="font-bold">Compliance Staff:</span> $2M-$10M annual payroll for tier-2 banks.</li>
+              </ul>
+           </div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-10">
-          <div className="p-6 bg-background border border-border rounded-xl">
-            <h4 className="font-bold text-red-400 mb-3">Caribbean Critical Impact</h4>
-            <ul className="text-sm space-y-2">
-              <li>13 of 16 jurisdictions lost &gt;50% of relationships.</li>
-              <li>Transaction costs doubled ($30 → $60).</li>
-              <li>Settlement time increased by 3-5 days.</li>
-              <li>40% of SMEs affected by account closures.</li>
+        <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Impact Analysis: A Crisis of Exclusion</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <div className="p-6 bg-surface/30 border border-border rounded-xl">
+            <h4 className="font-bold text-primary mb-3">Caribbean Case Study</h4>
+            <p className="text-sm text-text-muted mb-4">Between 2016-2020, 13 of 16 Caribbean jurisdictions lost over 50% of their relationships.</p>
+            <ul className="text-sm space-y-2 text-text-muted">
+              <li>• Transaction costs doubled ($30 → $60).</li>
+              <li>• Settlement time increased by 5+ days.</li>
+              <li>• 40% of SMEs lost access to international banking.</li>
             </ul>
           </div>
-          <div className="p-6 bg-background border border-border rounded-xl">
-            <h4 className="font-bold text-emerald-400 mb-3">Pacific Islands Crisis</h4>
-            <ul className="text-sm space-y-2">
-              <li>85% of regional banks lost correspondent access.</li>
-              <li>Import costs increased by 15-25%.</li>
-              <li>Export competitiveness declined significantly.</li>
-              <li>GDP growth impact: -0.8 to -1.2 percentage points.</li>
+          <div className="p-6 bg-surface/30 border border-border rounded-xl">
+            <h4 className="font-bold text-primary mb-3">Pacific Islands Impact</h4>
+            <p className="text-sm text-text-muted mb-4">By 2018, 85% of regional banks lost correspondent clearing access.</p>
+            <ul className="text-sm space-y-2 text-text-muted">
+              <li>• Import costs for essentials increased 15-25%.</li>
+              <li>• GDP growth impact: -0.8% to -1.2%.</li>
+              <li>• Export competitiveness significantly declined.</li>
             </ul>
           </div>
         </div>
 
-        <div className="my-10 rounded-2xl overflow-hidden border border-border shadow-2xl">
-           <img src="/financial-exclusion-1.png" alt="Financial Exclusion Graphic" className="w-full h-auto object-cover" />
+        <div className="my-10 rounded-2xl overflow-hidden border border-border shadow-2xl relative">
+           <img src="/financial-exclusion-1.png" alt="Financial Exclusion Graphic" className="w-full h-auto object-cover opacity-80" />
            <div className="p-4 bg-background/50 text-xs text-center border-t border-border italic text-text-muted">
-              Fig 2: Financial exclusion driven by strict compliance.
+              Choke Points: How de-risking creates systemic barriers for developing economies.
            </div>
         </div>
 
         <h2 className="text-2xl font-bold mt-10 mb-4 text-text">Crypto as the Alternative Rail</h2>
-        <p className="mb-6">Stablecoins and decentralized protocols are filling the gap left by traditional banking exits.</p>
+        <p className="mb-6">Stablecoins and decentralized protocols are filling the gap as banks exit, offering atomic settlement without the need for correspondent trust.</p>
         
-        <div className="overflow-x-auto mb-8">
-          <table className="w-full text-sm text-left border-collapse bg-surface border border-border rounded-xl overflow-hidden">
+        <div className="overflow-x-auto mb-10">
+          <table className="w-full text-sm text-left border-collapse bg-surface border border-border rounded-xl overflow-hidden shadow-lg">
             <thead>
               <tr className="bg-white/5 border-b border-border">
-                <th className="p-4">Method</th>
-                <th className="p-4">Fee</th>
-                <th className="p-4">FX Spread</th>
-                <th className="p-4">Settlement</th>
+                <th className="p-4 uppercase text-xs font-bold text-text-muted">Method</th>
+                <th className="p-4 uppercase text-xs font-bold text-text-muted">Fee</th>
+                <th className="p-4 uppercase text-xs font-bold text-text-muted">FX Spread</th>
+                <th className="p-4 uppercase text-xs font-bold text-text-muted">Settlement</th>
               </tr>
             </thead>
             <tbody>
@@ -463,16 +544,16 @@ export const ARTICLES: Article[] = [
                 <td className="p-4">1-3 days</td>
               </tr>
               <tr className="border-b border-border/50">
-                <td className="p-4 font-medium">Bank Wire</td>
+                <td className="p-4 font-medium">Bank Wire (SWIFT)</td>
                 <td className="p-4">$45</td>
                 <td className="p-4">2.0%</td>
                 <td className="p-4">3-5 days</td>
               </tr>
-              <tr className="text-primary font-bold">
-                <td className="p-4">USDC (Polygon)</td>
+              <tr className="bg-primary/5 text-primary font-bold">
+                <td className="p-4">USDC (Polygon/Solana)</td>
                 <td className="p-4">&lt;$0.01</td>
                 <td className="p-4">0.5%</td>
-                <td className="p-4">2 min</td>
+                <td className="p-4">2-5 min</td>
               </tr>
             </tbody>
           </table>
@@ -480,13 +561,25 @@ export const ARTICLES: Article[] = [
 
         <h3 className="text-xl font-bold mt-8 mb-4 text-text">CBDC Infrastructure: mBridge</h3>
         <p className="mb-4">
-          The mBridge project (China, Hong Kong, Thailand, UAE, Saudi Arabia) enables direct central bank-to-central bank settlement, bypassing commercial correspondents entirely.
+          The mBridge project (China, HK, Thailand, UAE, Saudi Arabia) enables direct central bank-to-central bank settlement, bypassing commercial correspondents entirely.
         </p>
-        <ul className="list-disc pl-5 space-y-2 text-text-muted">
-          <li><strong>Volume:</strong> $22B in test transactions.</li>
-          <li><strong>Cost:</strong> 90% reduction vs. SWIFT.</li>
-          <li><strong>Timeline:</strong> Production deployment expected 2025-2027.</li>
-        </ul>
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
+           <div className="flex-1 p-4 bg-background border border-border rounded-lg text-center">
+              <div className="text-xs text-text-muted font-bold mb-1 uppercase">Volume</div>
+              <div className="text-xl font-bold text-primary">$22B+</div>
+              <div className="text-[10px] text-text-muted">Test Transactions</div>
+           </div>
+           <div className="flex-1 p-4 bg-background border border-border rounded-lg text-center">
+              <div className="text-xs text-text-muted font-bold mb-1 uppercase">Cost Reduction</div>
+              <div className="text-xl font-bold text-emerald-400">90%</div>
+              <div className="text-[10px] text-text-muted">vs. traditional SWIFT</div>
+           </div>
+           <div className="flex-1 p-4 bg-background border border-border rounded-lg text-center">
+              <div className="text-xs text-text-muted font-bold mb-1 uppercase">Deployment</div>
+              <div className="text-xl font-bold text-amber-400">2025-27</div>
+              <div className="text-[10px] text-text-muted">Production Estimates</div>
+           </div>
+        </div>
       </>
     )
   },
